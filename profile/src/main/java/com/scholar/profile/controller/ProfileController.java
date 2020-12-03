@@ -1,5 +1,6 @@
 package com.scholar.profile.controller;
 
+import com.scholar.profile.dto.UserPreview;
 import com.scholar.profile.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,12 +16,23 @@ public class ProfileController {
     private ProfileService profileService;
 
     @RequestMapping("/register")
-    public int register(@RequestParam("/username") String username, @RequestParam("/password") String password) {
+    public int register(@RequestParam("username") String username, @RequestParam("password") String password,
+                        @RequestParam("password2") String password2) {
         try {
-            return profileService.register(username, password);
+            return profileService.register(username, password, password2);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    @RequestMapping("/login")
+    public UserPreview login(@RequestParam("ID") String ID, @RequestParam("password") String password) {
+        try {
+            return profileService.login(ID, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

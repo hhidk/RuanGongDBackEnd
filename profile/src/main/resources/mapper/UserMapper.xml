@@ -7,7 +7,21 @@
 
     <insert id="addUser" parameterType="User">
         insert
-        into user(userID, userIdentity, username, password,image)
+        into user(userID, userIdentity, username, password, image)
+        values (#{userID}, #{userIdentity}, #{username}, #{password}, #{image})
     </insert>
+    
+    <select id="loginUser" parameterType="String" resultType="UserPreview">
+        select userID, username, realName, image, userDegree, userIdentity, organization, emailAddress, phoneNum
+        from user
+        where userID = #{ID} or username = #{ID} or emailAddress = #{ID}
+        limit 0,1
+    </select>
+
+    <select id="checkUserName" parameterType="String" resultType="String">
+        select username
+        from user
+        where username = #{username}
+    </select>
 
 </mapper>

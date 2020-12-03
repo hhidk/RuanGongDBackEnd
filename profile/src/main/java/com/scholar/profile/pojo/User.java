@@ -1,8 +1,6 @@
 package com.scholar.profile.pojo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class User {
@@ -21,6 +19,10 @@ public class User {
     public User(){ }
 
     public User(String userID, String username, String password) {
-
+        this.userID = userID;
+        this.username = username;
+        this.password = password;
+        this.userIdentity = 2;
+        this.image = null;
     }
 }
