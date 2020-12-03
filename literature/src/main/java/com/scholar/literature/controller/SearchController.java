@@ -2,6 +2,8 @@ package com.scholar.literature.controller;
 
 import com.scholar.literature.dto.SearchItem;
 import com.scholar.literature.pojo.Literature;
+import com.scholar.literature.service.SearchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,24 +13,18 @@ import java.util.List;
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class SearchController {
 
+    @Autowired
+    private SearchService searchService;
+
     @PostMapping("/advance")
     public List<Literature> advancedSearch(@RequestBody List<SearchItem> detail,
                                            @RequestParam("start") int start, @RequestParam("end") int end){
-
-        System.out.println(start);
-        System.out.println(end);
-        for (SearchItem item : detail) {
-            System.out.println(item.getValue());
+        try {
+            return searchService.advancedSearch(detail, start, end);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-
-        List<Literature> list = new ArrayList();
-        list.add(new Literature("hh","hh"));
-        return list;
-    }
-
-    @RequestMapping("/test")
-    public String test(@RequestParam("param") String param){
-        return "true";
     }
 
 }
