@@ -12,5 +12,5 @@ public class UserPreview {
     private int userDegree;
     private String organization;
     private String emailAddress;
-    private String phoneNum;
+    private String phoneNumber;
 }
