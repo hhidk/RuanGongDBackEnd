@@ -24,4 +24,22 @@
         where username = #{username}
     </select>
 
+    <update id="updateUser" parameterType="User">
+        update user
+        set username = #{username}, realName = #{realName}, userDegree = #{userDegree}, image = #{image}, emailAddress = #{emailAddress}, phoneNumber = #{phoneNumber}, organization = #{organization}
+        where userID = #{userID}
+    </update>
+
+    <select id="getFollowUsers" parameterType="String" resultType="UserPreview">
+        select user.userID, userIdentity, username, realName, image, userDegree, organization, emailAddress, phoneNumber
+        from user,follow
+        where follow.userID = user.userID and followerID = #{userID}
+    </select>
+
+    <select id="getFollowers" parameterType="String" resultType="UserPreview">
+        select user.userID, userIdentity, username, realName, image, userDegree, organization, emailAddress, phoneNumber
+        from user,follow
+        where followerID = user.userID and follow.userID = #{userID}
+    </select>
+
 </mapper>

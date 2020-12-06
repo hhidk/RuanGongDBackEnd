@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface UserMapper {
@@ -31,6 +33,21 @@ public interface UserMapper {
     * 通过userID获取User信息
     */
     User getUserByUserID(String userID);
+
+    /*
+    * 修改User信息
+    */
+    int updateUser(User user);
+
+    /*
+     * 获取用户关注列表
+     */
+    List<UserPreview> getFollowUsers(String userID);
+
+    /*
+     * 获取用户粉丝列表
+     */
+    List<UserPreview> getFollowers(String userID);
 
 
 }
