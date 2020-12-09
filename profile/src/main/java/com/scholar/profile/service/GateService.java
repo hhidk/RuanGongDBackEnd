@@ -10,5 +10,13 @@ public class GateService {
     @Autowired
     private UserMapper userMapper;
 
+    public int followUser(String followerID, String userID, int option) {
+        if (option == 1) {
+            userMapper.addFollow(followerID, userID);
+        } else {
+            userMapper.deleteFollow(followerID, userID);
+        }
+        return 0;
+    }
 
 }

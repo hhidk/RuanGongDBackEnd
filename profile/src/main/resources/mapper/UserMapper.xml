@@ -42,4 +42,16 @@
         where followerID = user.userID and follow.userID = #{userID}
     </select>
 
+    <insert id="addFollow" parameterType="String">
+        insert
+        into follow(followerID, userID)
+        values (#{followerID}, #{userID})
+    </insert>
+
+    <delete id="deleteFollow" parameterType="String">
+        delete
+        from follow
+        where followerID = #{followerID} and userID = #{userID}
+    </delete>
+
 </mapper>

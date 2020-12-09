@@ -49,5 +49,15 @@ public interface UserMapper {
      */
     List<UserPreview> getFollowers(String userID);
 
+    /**
+     * 添加关注信息
+     */
+    int addFollow(String followerID, String userID);
+
+    /**
+     * 删除关注信息
+     */
+    int deleteFollow(String followerID, String userID);
+
 
 }
