@@ -6,8 +6,8 @@ import lombok.Data;
 public class UserInfo
 {
     String userID;
-    boolean isAuthorized;
-    String imgPath;
+    int userIdentity;
+    String image;
     String realName;
-    String userJob;
+    String userDegree;
 }

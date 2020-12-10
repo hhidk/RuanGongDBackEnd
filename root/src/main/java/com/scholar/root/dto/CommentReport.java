@@ -8,7 +8,9 @@ public class CommentReport
     String commentContent;
     String commentID;
     boolean hasRead;
+    boolean isTrimmed;
     UserInfo reporterInfo;
     String reportContent;
     String reportID;
+    String trimmedContent;
 }
