@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/RuanGongDBackEnd.iml" filepath="$PROJECT_DIR$/.idea/RuanGongDBackEnd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/literature/literature.iml" filepath="$PROJECT_DIR$/literature/literature.iml" />
+      <module fileurl="file://$PROJECT_DIR$/profile/profile.iml" filepath="$PROJECT_DIR$/profile/profile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/root/root.iml" filepath="$PROJECT_DIR$/root/root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/social/social.iml" filepath="$PROJECT_DIR$/social/social.iml" />
     </modules>
   </component>
 </project>

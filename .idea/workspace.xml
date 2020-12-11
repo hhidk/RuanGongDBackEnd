@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="64213711-cf03-432b-8017-2bf67046e3b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/root/src/main/java/com/scholar/root/mapper/ReportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/root/src/main/java/com/scholar/root/mapper/ReportMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/controller/CommentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/controller/FollowController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/controller/PostController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/controller/PostInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/controller/SectorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/util/ControllerParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/util/TimeFormat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/social/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/social/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/SocialApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/social/src/main/java/com/scholar/social/SocialApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social/src/test/java/com/scholar/social/SocialApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/social/src/test/java/com/scholar/social/SocialApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,11 +39,18 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mysql" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
@@ -45,11 +73,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607605223120</updated>
-      <workItem from="1607605226962" duration="758000" />
+      <workItem from="1607605226962" duration="1988000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
