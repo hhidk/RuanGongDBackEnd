@@ -17,7 +17,7 @@ public class PostController {
 
     @RequestMapping(value = "/deletePost",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public Map<String, String> delete(@RequestBody Map<String, String> body) {
+    public Map<String, String> delete(@RequestBody Map<String, Object> body) {
         // TODO match front end's body
         int userId = parseUserId(body);
         int commentId = parseCommentId(body);
@@ -28,7 +28,7 @@ public class PostController {
 
     @RequestMapping(value = "/reportPost",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public Map<String, String> report(@RequestBody Map<String, String> body) {
+    public Map<String, String> report(@RequestBody Map<String, Object> body) {
         // TODO match front end's body
         int userId = parseUserId(body);
         int commentId = parseCommentId(body);
@@ -40,10 +40,11 @@ public class PostController {
 
     @RequestMapping(value = "/createPost",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public Map<String, String> put(@RequestBody Map<String, Map<String, String>> body) {
+    public Map<String, String> put(@RequestBody Map<String, Map<String, Object>> body) {
         // TODO match front end's body
-        Map<String, String> form = body.get("createPostForm");
+        Map<String, Object> form = body.get("createPostForm");
         int userId = parseUserId(form);
+        String name = (String) form.get("postName");
         String content = parseContent(form);
         // TODO call service
         boolean status = false;
