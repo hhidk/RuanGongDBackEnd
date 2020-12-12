@@ -3,35 +3,26 @@ package com.scholar.social.util;
 import java.util.List;
 
 public class Post {
+    int postId;
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public Post setPostId(int postId) {
+        this.postId = postId;
+        return this;
+    }
+
     List<String> tags;
     int citeId;
     List<Comment> comments;
     private String userId;
     private String title;
     private String content;
-    private String userName;
-    private String userAvatar;
     private int viewNum;
     private long createTime;
     private int sectorId;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public Post setUserName(String userName) {
-        this.userName = userName;
-        return this;
-    }
-
-    public String getUserAvatar() {
-        return userAvatar;
-    }
-
-    public Post setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
-        return this;
-    }
 
     public int getViewNum() {
         return viewNum;
