@@ -28,7 +28,7 @@ public class PostInfoController {
     @RequestMapping(value = "/getPostInfo",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, Object> getInfo(@RequestBody Map<String, Object> body) {
-        int userId = parseUserId(body);
+        String userId = parseUserId(body);
         int postId = parsePostId(body);
         Post post = service.get(userId, postId);
         // TODO add view times

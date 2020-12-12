@@ -12,12 +12,12 @@ public final class ControllerParser {
         return res;
     }
 
-    public static int parseUserId(Map<String, Object> body) {
+    public static String parseUserId(Map<String, Object> body) {
         String userId = "userId";
         if (body.containsKey(userId)) {
-            return Integer.parseInt((String) body.get(userId));
+            return (String) body.get(userId);
         }
-        return -1;
+        return null;
     }
 
     public static int parseSectorId(Map<String, Object> body) {

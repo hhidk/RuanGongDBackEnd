@@ -6,7 +6,7 @@ public class Post {
     List<String> tags;
     int citeId;
     List<Comment> comments;
-    private int userId;
+    private String userId;
     private String title;
     private String content;
     private String userName;
@@ -51,11 +51,11 @@ public class Post {
         return this;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public Post setUserId(int userId) {
+    public Post setUserId(String userId) {
         this.userId = userId;
         return this;
     }

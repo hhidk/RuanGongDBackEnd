@@ -12,12 +12,12 @@ public class PostService {
         return -1;
     }
 
-    public boolean report(int userId, int postId, String content) {
+    public boolean report(String userId, int postId, String content) {
         // TODO add body
         return false;
     }
 
-    public boolean delete(int userId, int postId) {
+    public boolean delete(String userId, int postId) {
         // TODO add body
         return false;
     }
@@ -27,7 +27,7 @@ public class PostService {
         return null;
     }
 
-    public Post get(int userId, int postId) {
+    public Post get(String userId, int postId) {
         // TODO add body
         return null;
     }

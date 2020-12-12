@@ -27,7 +27,7 @@ public class CommentController {
     @RequestMapping(value = "/deleteComment",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> delete(@RequestBody Map<String, Object> body) {
-        int userId = parseUserId(body);
+        String userId = parseUserId(body);
         int commentId = parseCommentId(body);
         boolean status = service.delete(userId, commentId);
         return response(status);
@@ -36,7 +36,7 @@ public class CommentController {
     @RequestMapping(value = "/reportComment",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> report(@RequestBody Map<String, Object> body) {
-        int userId = parseUserId(body);
+        String userId = parseUserId(body);
         int commentId = parseCommentId(body);
         String content = parseContent(body);
         boolean status = service.report(userId, commentId, content);
@@ -46,7 +46,7 @@ public class CommentController {
     @RequestMapping(value = "/commentPost",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> put(@RequestBody Map<String, Object> body) {
-        int userId = parseUserId(body);
+        String userId = parseUserId(body);
         int postId = parsePostId(body);
         String content = parseContent(body);
         boolean status = service.put(userId, postId, content);

@@ -28,7 +28,7 @@ public class PostController {
     @RequestMapping(value = "/deletePost",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> delete(@RequestBody Map<String, Object> body) {
-        int userId = parseUserId(body);
+        String userId = parseUserId(body);
         int postId = parsePostId(body);
         boolean status = service.delete(userId, postId);
         return response(status);
@@ -37,7 +37,7 @@ public class PostController {
     @RequestMapping(value = "/reportPost",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> report(@RequestBody Map<String, Object> body) {
-        int userId = parseUserId(body);
+        String userId = parseUserId(body);
         int postId = parsePostId(body);
         String content = parseContent(body);
         boolean status = service.report(userId, postId, content);
@@ -48,7 +48,7 @@ public class PostController {
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> put(@RequestBody Map<String, Map<String, Object>> body) {
         Map<String, Object> form = body.get("createPostForm");
-        int userId = parseUserId(form);
+        String userId = parseUserId(form);
         String title = (String) form.get("postName");
         String content = parseContent(form);
         int sectorId = parseSectorId(form);

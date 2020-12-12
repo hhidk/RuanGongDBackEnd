@@ -28,7 +28,7 @@ public class FollowController {
     @RequestMapping(value = "/isFollowed",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> get(@RequestBody Map<String, Object> body) {
-        int userId = parseUserId(body);
+        String userId = parseUserId(body);
         int sectorId = parseSectorId(body);
         boolean followed = service.get(userId, sectorId);
         Map<String, String> res = new HashMap<>();
@@ -39,7 +39,7 @@ public class FollowController {
     @RequestMapping(value = "/followSector",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> set(@RequestBody Map<String, Object> body) {
-        int userId = parseUserId(body);
+        String userId = parseUserId(body);
         int sectorId = parseSectorId(body);
         boolean status = service.set(userId, sectorId);
         return response(status);
