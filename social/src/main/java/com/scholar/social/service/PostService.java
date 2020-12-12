@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public class PostService {
-    public int put() {
+    public int put(Post post) {
         // TODO add args and body
         return -1;
     }

@@ -1,6 +1,9 @@
 package com.scholar.social.controller;
 
+import com.scholar.social.service.PostService;
+import com.scholar.social.util.Post;
 import com.scholar.social.util.SortType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,12 +18,20 @@ import static com.scholar.social.util.ControllerParser.*;
  */
 @RestController
 public class PostInfoController {
+    private final PostService service;
+
+    @Autowired
+    PostInfoController(PostService service) {
+        this.service = service;
+    }
+
     @RequestMapping(value = "/getPostInfo",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, Object> getInfo(@RequestBody Map<String, Object> body) {
         int userId = parseUserId(body);
         int postId = parsePostId(body);
-        // TODO call service
+        Post post = service.get(userId, postId);
+        // TODO add view times
         return null;
     }
 

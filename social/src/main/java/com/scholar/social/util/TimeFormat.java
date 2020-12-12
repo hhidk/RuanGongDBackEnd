@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public final class TimeFormat {
-    public String format(long time) {
+    public static String format(long time) {
         SimpleDateFormat recent = new SimpleDateFormat("MM月dd日 HH:mm");
         SimpleDateFormat past = new SimpleDateFormat("yyyy年MM月dd日");
         Date date = new Date(time);

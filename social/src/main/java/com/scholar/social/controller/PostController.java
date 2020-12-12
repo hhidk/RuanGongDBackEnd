@@ -1,5 +1,8 @@
 package com.scholar.social.controller;
 
+import com.scholar.social.service.PostService;
+import com.scholar.social.util.Post;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,14 +18,19 @@ import static com.scholar.social.util.ControllerParser.*;
  */
 @RestController
 public class PostController {
+    private final PostService service;
+
+    @Autowired
+    PostController(PostService service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "/deletePost",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, String> delete(@RequestBody Map<String, Object> body) {
         int userId = parseUserId(body);
         int postId = parsePostId(body);
-        // TODO call service
-        boolean status = false;
+        boolean status = service.delete(userId, postId);
         return response(status);
     }
 
@@ -32,8 +40,7 @@ public class PostController {
         int userId = parseUserId(body);
         int postId = parsePostId(body);
         String content = parseContent(body);
-        // TODO call service
-        boolean status = false;
+        boolean status = service.report(userId, postId, content);
         return response(status);
     }
 
@@ -42,13 +49,22 @@ public class PostController {
     public Map<String, String> put(@RequestBody Map<String, Map<String, Object>> body) {
         Map<String, Object> form = body.get("createPostForm");
         int userId = parseUserId(form);
-        String name = (String) form.get("postName");
+        String title = (String) form.get("postName");
         String content = parseContent(form);
         int sectorId = parseSectorId(form);
         List<String> tags = (List<String>) form.get("postTags");
         int citeId = Integer.parseInt((String) form.get("citeId"));
-        // TODO call service
-        boolean status = false;
-        return response(status);
+        Post post = new Post();
+        post = post.setUserId(userId)
+                .setCiteId(citeId)
+                .setTags(tags)
+                .setTitle(title)
+                .setComments(null)
+                .setContent(content)
+                .setSectorId(sectorId);
+        int postId = service.put(post);
+        Map<String, String> res = response(postId != -1);
+        res.put("postId", String.valueOf(postId));
+        return res;
     }
 }
