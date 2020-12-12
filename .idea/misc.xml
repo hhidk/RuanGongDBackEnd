@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/root/pom.xml" />
+        <option value="$PROJECT_DIR$/social/pom.xml" />
+        <option value="$PROJECT_DIR$/profile/pom.xml" />
+        <option value="$PROJECT_DIR$/literature/pom.xml" />
+      </list>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scholar.root.mapper.ReportMapper">
+
+    <resultMap id="ArticleReportMap" type="ArticleReport">
+        <!-- id为主键 -->
+        <id column="report.reportID" property="reportID"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="literature.literatureID" property="articleID"/>
+        <result column="literature.title" property="articleTitle"/>
+        <result column="report.status" property="hasRead"/>
+        <result column="report.content" property="reportContent"/>
+        <association property="reporterInfo" javaType="UserInfo">
+            <result property="userID" column="user.userID"/>
+            <result property="userIdentity" column="user.userIdentity"/>
+            <result property="image" column="user.image"/>
+            <result property="realName" column="user.realName"/>
+            <result property="userDegree" column="user.userDegree"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="GateReportMap" type="GateReport">
+        <!-- id为主键 -->
+        <id column="report.reportID" property="reportID"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="report.status" property="hasRead"/>
+        <result column="report.content" property="reportContent"/>
+        <association property="reporteeInfo" javaType="UserInfo">
+            <result property="userID" column="A.userID"/>
+            <result property="userIdentity" column="A.userIdentity"/>
+            <result property="image" column="A.image"/>
+            <result property="realName" column="A.realName"/>
+            <result property="userDegree" column="A.userDegree"/>
+        </association>
+        <association property="reporterInfo" javaType="UserInfo">
+            <result property="userID" column="B.userID"/>
+            <result property="userIdentity" column="B.userIdentity"/>
+            <result property="image" column="B.image"/>
+            <result property="realName" column="B.realName"/>
+            <result property="userDegree" column="B.userDegree"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="CommentReportMap" type="CommentReport">
+        <!-- id为主键 -->
+        <id column="report.reportID" property="reportID"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="comment.postCommentID" property="commentID"/>
+        <result column="comment.content" property="commentContent"/>
+        <result column="report.status" property="hasRead"/>
+        <result column="report.content" property="reportContent"/>
+        <association property="reporterInfo" javaType="UserInfo">
+            <result property="userID" column="user.userID"/>
+            <result property="userIdentity" column="user.userIdentity"/>
+            <result property="image" column="user.image"/>
+            <result property="realName" column="user.realName"/>
+            <result property="userDegree" column="user.userDegree"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="PostReportMap" type="PostReport">
+        <!-- id为主键 -->
+        <id column="report.reportID" property="reportID"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="post.postID" property="postID"/>
+        <result column="post.postContent" property="postContent"/>
+        <result column="report.status" property="hasRead"/>
+        <result column="report.content" property="reportContent"/>
+        <association property="reporterInfo" javaType="UserInfo">
+            <result property="userID" column="user.userID"/>
+            <result property="userIdentity" column="user.userIdentity"/>
+            <result property="image" column="user.image"/>
+            <result property="realName" column="user.realName"/>
+            <result property="userDegree" column="user.userDegree"/>
+        </association>
+    </resultMap>
+
+    <select id="getArticleReportByReportID" parameterType="String" resultMap="ArticleReportMap">
+        select literature.literatureID, literature.title, report.status, report.content, report.reportID, user.userID, user.userIdentity, user.image, user.realName, user.userDegree
+        from report, literature, user
+        where report.reportID = #{reportID} and report.type = 1 and literature.literatureID = report.reporteeID and user.userID = report.reporterID;
+    </select>
+
+    <select id="getGateReportByReportID" parameterType="String" resultMap="GateReportMap">
+        select report.status, report.content, report.reportID, A.userID, A.userIdentity, A.image, A.realName, A.userDegree, B.userID, B.userIdentity, B.image, B.realName, B.userDegree
+        from report, user A, user B
+        where report.reportID = #{reportID} and report.type = 4 and A.userID = reporteeID and B.userID = reporterID
+    </select>
+
+    <select id="getCommentReportByReportID" parameterType="String" resultMap="CommentReportMap">
+        select comment.postCommentID, comment.content, report.status, report.content, report.reportID, user.userID, user.userIdentity, user.image, user.realName, user.userDegree
+        from report, comment, user
+        where report.reportID = #{reportID} and report.type = 2 and comment.postCommentID = report.reporteeID and user.userID = report.reporterID;
+    </select>
+
+    <select id="getPostReportByReportID" parameterType="String" resultMap="PostReportMap">
+        select post.postID, post.postContent, report.status, report.content, report.reportID, user.userID, user.userIdentity, user.image, user.realName, user.userDegree
+        from report, post, user
+        where report.reportID = #{reportID} and report.type = 3 and post.postID = report.reporteeID and user.userID = report.reporterID;
+    </select>
+
+</mapper>
