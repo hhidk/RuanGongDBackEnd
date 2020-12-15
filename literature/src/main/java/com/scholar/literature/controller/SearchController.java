@@ -16,6 +16,14 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
+
+    @PostMapping("/search")
+    public List<Literature> simpleSearch(@RequestBody List<SearchItem> detail){
+    //@todo : fix Search logic
+        return null;
+    }
+
+
     @PostMapping("/advance")
     public List<Literature> advancedSearch(@RequestBody List<SearchItem> detail,
                                            @RequestParam("start") int start, @RequestParam("end") int end){
@@ -26,5 +34,6 @@ public class SearchController {
             return null;
         }
     }
+
 
 }

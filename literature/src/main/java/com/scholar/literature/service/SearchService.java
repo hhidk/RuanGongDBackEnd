@@ -13,5 +13,8 @@ public class SearchService {
 
         return null;
     }
+    public  List<Literature> search(SearchItem Item){
 
+        return  null;
+    }
 }
