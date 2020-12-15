@@ -33,7 +33,7 @@ public class LiteratureService {
         return false;
     }
     public List<Literature> getMyLiterature(String userID) {
-        // TODO: 12/15/20  
+        // TODO: 12/15/20
         return null;
     }
 }
