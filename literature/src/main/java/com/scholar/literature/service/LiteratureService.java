@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class LiteratureService {
 
-    public Literature getLiterature(int literatureID) {
+    public Literature getLiterature(String literatureID) {
         // TODO: 12/15/20
         return null;
     }

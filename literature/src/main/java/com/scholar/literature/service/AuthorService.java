@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class authorService {
+public class AuthorService {
 
     public List<Author> getAuthors(String authorName){
         // TODO: 12/15/20
