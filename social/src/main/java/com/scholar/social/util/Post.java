@@ -4,16 +4,6 @@ import java.util.List;
 
 public class Post {
     int postId;
-
-    public int getPostId() {
-        return postId;
-    }
-
-    public Post setPostId(int postId) {
-        this.postId = postId;
-        return this;
-    }
-
     List<String> tags;
     int citeId;
     List<Comment> comments;
@@ -23,6 +13,15 @@ public class Post {
     private int viewNum;
     private long createTime;
     private int sectorId;
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public Post setPostId(int postId) {
+        this.postId = postId;
+        return this;
+    }
 
     public int getViewNum() {
         return viewNum;

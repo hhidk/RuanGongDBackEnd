@@ -19,6 +19,7 @@ public class PostGenerator {
         res.put("viewNum", String.valueOf(post.getViewNum()));
         res.put("createTime", format(post.getCreateTime()));
         res.put("tags", post.getTags());
+        res.put("citeId", String.valueOf(post.getCiteId()));
         return res;
     }
 }
