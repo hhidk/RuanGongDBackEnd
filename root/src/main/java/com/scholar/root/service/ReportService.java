@@ -7,11 +7,8 @@ import com.scholar.root.dto.PostReport;
 import com.scholar.root.mapper.ReportMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ReportService
@@ -20,7 +17,7 @@ public class ReportService
     @Autowired
     private ReportMapper reportMapper;
 
-    public List<ArticleReport> getArticleReports(String reportID) throws Exception {
+    public List<ArticleReport> getArticleReports(int reportID) throws Exception {
         List<ArticleReport> list = reportMapper.getArticleReportByReportID(reportID);
         for (ArticleReport articleReport : list)
         {
@@ -33,7 +30,7 @@ public class ReportService
         return list;
     }
 
-    public List<GateReport> getGateReports(String reportID) throws Exception {
+    public List<GateReport> getGateReports(int reportID) throws Exception {
         List<GateReport> list = reportMapper.getGateReportByReportID(reportID);
         for (GateReport gateReport : list)
         {
@@ -46,7 +43,7 @@ public class ReportService
         return list;
     }
 
-    public List<CommentReport> getCommentReports(String reportID) throws Exception {
+    public List<CommentReport> getCommentReports(int reportID) throws Exception {
         List<CommentReport> list = reportMapper.getCommentReportByReportID(reportID);
         for (CommentReport commentReport : list)
         {
@@ -59,7 +56,7 @@ public class ReportService
         return list;
     }
 
-    public List<PostReport> getPostReports(String reportID) throws Exception {
+    public List<PostReport> getPostReports(int reportID) throws Exception {
         List<PostReport> list = reportMapper.getPostReportByReportID(reportID);
         for (PostReport postReport : list)
         {

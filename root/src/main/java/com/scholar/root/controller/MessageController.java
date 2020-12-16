@@ -1,0 +1,44 @@
+package com.scholar.root.controller;
+
+import com.scholar.root.dto.CommentMessage;
+import com.scholar.root.dto.SystemMessage;
+import com.scholar.root.service.MessageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
+public class MessageController
+{
+
+    @Autowired
+    private MessageService messageService;
+
+    @PostMapping("/getCommentMsg")
+    public List<CommentMessage> getCommentMsg(@RequestParam("userID") String userID) {
+        try {
+            return messageService.getCommentMsg(userID);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @PostMapping("/getSystemMsg")
+    public List<SystemMessage> getSystemMsg(@RequestParam("userID") String userID) {
+        try {
+            return messageService.getSystemMsg(userID);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+}

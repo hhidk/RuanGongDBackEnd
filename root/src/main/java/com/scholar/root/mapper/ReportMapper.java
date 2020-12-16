@@ -9,18 +9,16 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 @Repository
 public interface ReportMapper
 {
-    List<ArticleReport> getArticleReportByReportID(@Param("reportID") String reportID);
+    List<ArticleReport> getArticleReportByReportID(@Param("reportID") int reportID);
 
-    List<GateReport> getGateReportByReportID(@Param("reportID") String reportID);
+    List<GateReport> getGateReportByReportID(@Param("reportID") int reportID);
 
-    List<CommentReport> getCommentReportByReportID(@Param("reportID") String reportID);
+    List<CommentReport> getCommentReportByReportID(@Param("reportID") int reportID);
 
-    List<PostReport> getPostReportByReportID(@Param("reportID") String reportID);
+    List<PostReport> getPostReportByReportID(@Param("reportID") int reportID);
 }
-4GC891vxMVIro01mGa
