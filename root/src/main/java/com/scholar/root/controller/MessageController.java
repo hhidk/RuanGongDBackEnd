@@ -2,7 +2,6 @@ package com.scholar.root.controller;
 
 import com.scholar.root.dto.CommentMessage;
 import com.scholar.root.dto.ConsultMessage;
-import com.scholar.root.dto.SystemMessage;
 import com.scholar.root.pojo.Message;
 import com.scholar.root.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
