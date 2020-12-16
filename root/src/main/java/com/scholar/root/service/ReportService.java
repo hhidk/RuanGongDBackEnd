@@ -47,6 +47,9 @@ public class ReportService
         List<CommentReport> list = reportMapper.getCommentReportByReportID(reportID);
         for (CommentReport commentReport : list)
         {
+
+            commentReport.setCommentID(Integer.parseInt(commentReport.getStrCommentID()));
+
             if (commentReport.getReportContent().length() > 86)
             {
                 commentReport.setTrimmed(true);
@@ -60,6 +63,9 @@ public class ReportService
         List<PostReport> list = reportMapper.getPostReportByReportID(reportID);
         for (PostReport postReport : list)
         {
+
+            postReport.setPostID(Integer.parseInt(postReport.getStrPostID()));
+
             if (postReport.getReportContent().length() > 86)
             {
                 postReport.setTrimmed(true);

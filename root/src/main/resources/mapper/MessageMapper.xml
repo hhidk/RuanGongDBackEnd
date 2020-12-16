@@ -18,26 +18,37 @@
         <result column="Post.postContent" property="originalContent"/>
     </resultMap>
 
-    <resultMap id="SystemMessageMap" type="SystemMessage">
+    <resultMap id="ConsultMessageMap" type="ConsultMessage">
+        <!-- id为主键 -->
         <id column="Message.messageID" property="messageID"/>
-        <result column="Message.type" property="type"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="Message.viewed" property="viewed"/>
         <result column="Message.sendTime" property="sendTime"/>
         <result column="Message.content" property="content"/>
+        <result column="User.userID" property="senderID"/>
+        <result column="User.username" property="senderUserName"/>
+        <result column="User.image" property="image"/>
     </resultMap>
 
     <select id="getCommentMessageByUserID" parameterType="String" resultMap="CommentMessageMap">
         select Message.messageID, Message.viewed, User.userID, User.username,
                User.image, Comment.content, Comment.commentTime, Post.postContent
         from Message, User, Comment, Post
-        where Message.receiverID = #{userID} and User.userID = #{userID} and Message.type = 3
+        where Message.receiverID = #{userID} and User.userID = Message.senderID and Message.type = 3
               and Message.commentID = Comment.postCommentID and Comment.type = 2
               and Post.postID = Comment.postID;
     </select>
 
-    <select id="getSystemMessageByUserID" parameterType="String" resultMap="SystemMessageMap">
-        select Message.messageID, Message.type, Message.sendTime, Message.content
+    <select id="getSystemMessageByUserID" parameterType="String" resultType="Message">
+        select *
         from Message
-        where Message.receiverID = #{userID};
+        where Message.receiverID = #{userID} and Message.type = 1;
+    </select>
+
+    <select id="getConsultMessageByUserID" parameterType="String" resultMap="ConsultMessageMap">
+        select Message.messageID, Message.viewed, Message.sendTime, Message.content, User.userID, User.username, User.image
+        from Message, User
+        where Message.receiverID = #{userID} and Message.type = 2 and User.userID = Message.senderID
     </select>
 
 </mapper>

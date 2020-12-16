@@ -17,6 +17,7 @@
             <result property="userID" column="User.userID"/>
             <result property="userIdentity" column="User.userIdentity"/>
             <result property="image" column="User.image"/>
+            <result property="username" column="User.username"/>
             <result property="realName" column="User.realName"/>
             <result property="userDegree" column="User.userDegree"/>
         </association>
@@ -32,6 +33,7 @@
             <result property="userID" column="A.userID"/>
             <result property="userIdentity" column="A.userIdentity"/>
             <result property="image" column="A.image"/>
+            <result property="username" column="A.username"/>
             <result property="realName" column="A.realName"/>
             <result property="userDegree" column="A.userDegree"/>
         </association>
@@ -39,6 +41,7 @@
             <result property="userID" column="B.userID"/>
             <result property="userIdentity" column="B.userIdentity"/>
             <result property="image" column="B.image"/>
+            <result property="username" column="B.username"/>
             <result property="realName" column="B.realName"/>
             <result property="userDegree" column="B.userDegree"/>
         </association>
@@ -48,7 +51,7 @@
         <!-- id为主键 -->
         <id column="Report.reportID" property="reportID"/>
         <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="Comment.postCommentID" property="commentID"/>
+        <result column="Comment.postCommentID" property="strCommentID"/>
         <result column="Comment.content" property="commentContent"/>
         <result column="Report.status" property="hasRead"/>
         <result column="Report.content" property="reportContent"/>
@@ -56,6 +59,7 @@
             <result property="userID" column="User.userID"/>
             <result property="userIdentity" column="User.userIdentity"/>
             <result property="image" column="User.image"/>
+            <result property="username" column="User.username"/>
             <result property="realName" column="User.realName"/>
             <result property="userDegree" column="User.userDegree"/>
         </association>
@@ -65,7 +69,7 @@
         <!-- id为主键 -->
         <id column="Report.reportID" property="reportID"/>
         <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="Post.postID" property="postID"/>
+        <result column="Post.postID" property="strPostID"/>
         <result column="Post.postContent" property="postContent"/>
         <result column="Report.status" property="hasRead"/>
         <result column="Report.content" property="reportContent"/>
@@ -73,31 +77,32 @@
             <result property="userID" column="User.userID"/>
             <result property="userIdentity" column="User.userIdentity"/>
             <result property="image" column="User.image"/>
+            <result property="username" column="User.username"/>
             <result property="realName" column="User.realName"/>
             <result property="userDegree" column="User.userDegree"/>
         </association>
     </resultMap>
 
     <select id="getArticleReportByReportID" parameterType="int" resultMap="ArticleReportMap">
-        select Literature.literatureID, Literature.title, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.realName, User.userDegree
+        select Literature.literatureID, Literature.title, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Literature, User
         where Report.reportID = #{reportID} and Report.type = 1 and Literature.literatureID = Report.reporteeID and User.userID = Report.reporterID;
     </select>
 
     <select id="getGateReportByReportID" parameterType="int" resultMap="GateReportMap">
-        select Report.status, Report.content, Report.reportID, A.userID, A.userIdentity, A.image, A.realName, A.userDegree, B.userID, B.userIdentity, B.image, B.realName, B.userDegree
+        select Report.status, Report.content, Report.reportID, A.userID, A.userIdentity, A.image, A.username, A.realName, A.userDegree, B.userID, B.userIdentity, B.image, B.username, B.realName, B.userDegree
         from Report, User A, User B
         where Report.reportID = #{reportID} and Report.type = 4 and A.userID = Report.reporteeID and B.userID = #{reportID};
     </select>
 
     <select id="getCommentReportByReportID" parameterType="int" resultMap="CommentReportMap">
-        select Comment.postCommentID, Comment.content, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.realName, User.userDegree
+        select Comment.postCommentID, Comment.content, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Comment, User
         where Report.reportID = #{reportID} and Report.type = 2 and Comment.postCommentID = Report.reporteeID and User.userID = Report.reporterID;
     </select>
 
     <select id="getPostReportByReportID" parameterType="int" resultMap="PostReportMap">
-        select Post.postID, Post.postContent, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.realName, User.userDegree
+        select Post.postID, Post.postContent, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Post, User
         where Report.reportID = #{reportID} and Report.type = 3 and Post.postID = Report.reporteeID and User.userID = Report.reporterID;
     </select>

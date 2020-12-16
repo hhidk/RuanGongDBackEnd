@@ -10,6 +10,7 @@ public class PostReport
     UserInfo reporterInfo;
     String reportContent;
     int reportID;
+    String strPostID;
     int postID;
     String postContent;
     String trimmedContent;
