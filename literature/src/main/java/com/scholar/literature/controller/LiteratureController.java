@@ -4,6 +4,8 @@ import com.scholar.literature.dto.SearchItem;
 import com.scholar.literature.pojo.Literature;
 import com.scholar.literature.service.LiteratureService;
 import com.scholar.literature.service.SearchService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,8 @@ import java.util.List;
 @RestController
 @CrossOrigin(value = "*", maxAge = 3600)
 public class LiteratureController {
+
+    private static final Logger log = LoggerFactory.getLogger(LiteratureController.class);
 
     @Autowired
     LiteratureService literatureService;
