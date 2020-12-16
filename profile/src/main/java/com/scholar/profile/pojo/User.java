@@ -22,7 +22,7 @@ public class User {
         this.userID = userID;
         this.username = username;
         this.password = password;
-        this.userIdentity = 2;
+        this.userIdentity = 0;
         this.image = null;
     }
 }

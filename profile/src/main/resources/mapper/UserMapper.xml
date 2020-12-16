@@ -54,4 +54,10 @@
         where followerID = #{followerID} and userID = #{userID}
     </delete>
 
+    <select id="checkIsAuthor" parameterType="String">
+        select authorID
+        from User
+        where userID = #{userID}
+    </select>
+
 </mapper>

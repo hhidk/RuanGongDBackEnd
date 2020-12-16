@@ -59,5 +59,9 @@ public interface UserMapper {
      */
     int deleteFollow(String followerID, String userID);
 
+    /**
+     * 查看用户是否已认证
+     */
+    String checkIsAuthor(String userID);
 
 }
