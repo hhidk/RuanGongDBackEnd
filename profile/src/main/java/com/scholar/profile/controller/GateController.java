@@ -28,8 +28,8 @@ public class GateController {
         }
     }
 
-    @RequestMapping("/applicate")
-    public int applicate(@RequestParam("userID") String userID, @RequestParam("authorID") String authorID,
+    @RequestMapping("/apply")
+    public int apply(@RequestParam("userID") String userID, @RequestParam("authorID") String authorID,
                          @RequestParam("emailAddress") String emailAddress, @RequestParam("content") String content) {
         try {
             return gateService.applicate(userID, authorID, emailAddress, content);
