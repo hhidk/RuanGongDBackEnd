@@ -1,7 +1,9 @@
 package com.scholar.root.controller;
 
 import com.scholar.root.dto.CommentMessage;
+import com.scholar.root.dto.ConsultMessage;
 import com.scholar.root.dto.SystemMessage;
+import com.scholar.root.pojo.Message;
 import com.scholar.root.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,9 +33,20 @@ public class MessageController
     }
 
     @PostMapping("/getSystemMsg")
-    public List<SystemMessage> getSystemMsg(@RequestParam("userID") String userID) {
+    public List<Message> getSystemMsg(@RequestParam("userID") String userID) {
         try {
             return messageService.getSystemMsg(userID);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @PostMapping("/getConsultMsg")
+    public List<ConsultMessage> getConsultMsg(@RequestParam("userID") String userID) {
+        try {
+            return messageService.getConsultMsg(userID);
         }
         catch (Exception e)  {
             e.printStackTrace();
