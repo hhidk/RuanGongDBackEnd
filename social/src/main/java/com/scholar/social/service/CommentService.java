@@ -1,12 +1,14 @@
 package com.scholar.social.service;
 
 import com.scholar.social.repository.CommentRepository;
+import com.scholar.social.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
+    private ReportRepository reportRepository;
 
     @Autowired
     public CommentService(CommentRepository commentRepository) {
@@ -19,8 +21,8 @@ public class CommentService {
     }
 
     public boolean report(String userId, int commentId, String content) {
-        // TODO call repository
-        return false;
+        reportRepository.report(2, content, String.valueOf(commentId), userId);
+        return true;
     }
 
     public boolean delete(String userId, int commentId) {

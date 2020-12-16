@@ -3,9 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.scholar.social.repository.CommentRepository">
     <insert id="insert">
-        insert into Comment(content, postID, userID) values (#{content}, #{postId}, #{userId})
+        insert into Comment(content, postID, userID, type, commentTime)
+        values (#{content}, #{postId}, #{userId}, 2, now())
     </insert>
     <delete id="delete">
-        delete from where
+        delete from Comment where postCommentID = #{commentId}
     </delete>
 </mapper>
