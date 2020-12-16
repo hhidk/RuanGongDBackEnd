@@ -51,7 +51,7 @@ public class PostInfoController {
         // format comments
         List<Map<String, Object>> commentMapList = new ArrayList<>();
         List<Comment> commentList = post.getComments();
-        commentList.sort(Comparator.comparingLong(Comment::getTime));
+        commentList.sort(Comparator.comparingLong(t -> t.getTime().getTime()));
         for (int i = 0; i < commentList.size(); i++) {
             Comment comment = commentList.get(i);
             Map<String, Object> commentMap = CommentGenerator.info(comment);
@@ -82,7 +82,7 @@ public class PostInfoController {
             User creator = userService.get(post.getUserId());
             postMap.putAll(UserGenerator.userInfo(creator, "creator"));
             List<Comment> commentList = post.getComments();
-            commentList.sort(Comparator.comparingLong(Comment::getTime));
+            commentList.sort(Comparator.comparingLong(t -> t.getTime().getTime()));
             if (commentList.isEmpty()) {
                 postMap.putAll(UserGenerator.userInfo(creator, "editor"));
                 postMap.put("editTime", format(post.getCreateTime()));

@@ -1,5 +1,6 @@
 package com.scholar.social.util;
 
+import java.util.Date;
 import java.util.List;
 
 public class Post {
@@ -11,7 +12,7 @@ public class Post {
     private String title;
     private String content;
     private int viewNum;
-    private long createTime;
+    private Date createTime;
     private int sectorId;
 
     public int getPostId() {
@@ -32,11 +33,11 @@ public class Post {
         return this;
     }
 
-    public long getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public Post setCreateTime(long createTime) {
+    public Post setCreateTime(Date createTime) {
         this.createTime = createTime;
         return this;
     }

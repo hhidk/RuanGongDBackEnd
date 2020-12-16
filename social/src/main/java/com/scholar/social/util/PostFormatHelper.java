@@ -1,11 +1,12 @@
 package com.scholar.social.util;
 
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class PostFormatHelper {
     private final String lastUserId;
-    private final long lastTime;
+    private final Date lastTime;
     private Post post;
 
     public PostFormatHelper(Post post) {
@@ -15,7 +16,7 @@ public class PostFormatHelper {
             lastUserId = post.getUserId();
             lastTime = post.getCreateTime();
         } else {
-            commentList.sort(Comparator.comparingLong(Comment::getTime));
+            commentList.sort(Comparator.comparingLong(t -> t.getTime().getTime()));
             Comment latest = commentList.get(commentList.size() - 1);
             lastUserId = latest.getUserId();
             lastTime = latest.getTime();
@@ -26,7 +27,7 @@ public class PostFormatHelper {
         return lastUserId;
     }
 
-    public long getLastTime() {
+    public Date getLastTime() {
         return lastTime;
     }
 }

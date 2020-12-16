@@ -5,16 +5,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public final class TimeFormat {
-    public static String format(long time) {
+    public static String format(Date time) {
         SimpleDateFormat recent = new SimpleDateFormat("MM月dd日 HH:mm");
         SimpleDateFormat past = new SimpleDateFormat("yyyy年MM月dd日");
-        Date date = new Date(time);
         Calendar c = Calendar.getInstance();
-        Calendar n = new Calendar.Builder().setInstant(date).build();
+        Calendar n = new Calendar.Builder().setInstant(time).build();
         if (c.get(Calendar.YEAR) != n.get(Calendar.YEAR)) {
-            return past.format(date);
+            return past.format(time);
         } else {
-            return recent.format(date);
+            return recent.format(time);
         }
     }
 }

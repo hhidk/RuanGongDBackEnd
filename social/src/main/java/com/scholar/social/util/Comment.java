@@ -1,10 +1,12 @@
 package com.scholar.social.util;
 
+import java.util.Date;
+
 public class Comment {
     private int id;
     private String userId;
     private String Content;
-    private long time;
+    private Date time;
 
     public int getId() {
         return id;
@@ -33,11 +35,11 @@ public class Comment {
         return this;
     }
 
-    public long getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public Comment setTime(long time) {
+    public Comment setTime(Date time) {
         this.time = time;
         return this;
     }
