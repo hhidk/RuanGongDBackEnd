@@ -1,5 +1,7 @@
 package com.scholar.social.service;
 
+import com.scholar.social.repository.PostRepository;
+import com.scholar.social.repository.ReportRepository;
 import com.scholar.social.util.Post;
 import com.scholar.social.util.SortType;
 import org.springframework.stereotype.Service;
@@ -8,19 +10,22 @@ import java.util.List;
 
 @Service
 public class PostService {
+    private ReportRepository reportRepository;
+
+    private PostRepository postRepository;
+
     public int put(Post post) {
-        // TODO add args and body
-        return -1;
+        return postRepository.put(post);
     }
 
     public boolean report(String userId, int postId, String content) {
-        // TODO add body
-        return false;
+        reportRepository.report(3, content, String.valueOf(postId), userId);
+        return true;
     }
 
     public boolean delete(String userId, int postId) {
-        // TODO add body
-        return false;
+        postRepository.delete(postId);
+        return true;
     }
 
     public List<Post> search(int sectorId, int start, int num, SortType sort, String keyword) {
@@ -30,7 +35,7 @@ public class PostService {
 
     public Post get(String userId, int postId) {
         // TODO add body
-        // TODO add view times
+        postRepository.updateTimes(postId);
         return null;
     }
 }
