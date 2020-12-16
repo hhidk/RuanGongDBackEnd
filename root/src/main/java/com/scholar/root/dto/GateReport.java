@@ -10,6 +10,6 @@ public class GateReport
     UserInfo reporteeInfo;
     UserInfo reporterInfo;
     String reportContent;
-    String reportID;
+    int reportID;
     String trimmedContent;
 }

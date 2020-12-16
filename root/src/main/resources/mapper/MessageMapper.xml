@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scholar.root.mapper.MessageMapper">
+
+    <resultMap id="CommentMessageMap" type="CommentMessage">
+        <!-- id为主键 -->
+        <id column="Message.messageID" property="messageID"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="Message.viewed" property="viewed"/>
+        <result column="User.userID" property="senderID"/>
+        <result column="User.username" property="senderUserName"/>
+        <result column="User.image" property="image"/>
+        <result column="Comment.content" property="replyContent"/>
+        <result column="Comment.commentTime" property="sendTime"/>
+        <result column="Post.postContent" property="originalContent"/>
+    </resultMap>
+
+    <resultMap id="SystemMessageMap" type="SystemMessage">
+        <id column="Message.messageID" property="messageID"/>
+        <result column="Message.type" property="type"/>
+        <result column="Message.sendTime" property="sendTime"/>
+        <result column="Message.content" property="content"/>
+    </resultMap>
+
+    <select id="getCommentMessageByUserID" parameterType="String" resultMap="CommentMessageMap">
+        select Message.messageID, Message.viewed, User.userID, User.username,
+               User.image, Comment.content, Comment.commentTime, Post.postContent
+        from Message, User, Comment, Post
+        where Message.receiverID = #{userID} and User.userID = #{userID} and Message.type = 3
+              and Message.commentID = Comment.postCommentID and Comment.type = 2
+              and Post.postID = Comment.postID;
+    </select>
+
+    <select id="getSystemMessageByUserID" parameterType="String" resultMap="SystemMessageMap">
+        select Message.messageID, Message.type, Message.sendTime, Message.content
+        from Message
+        where Message.receiverID = #{userID};
+    </select>
+
+</mapper>
