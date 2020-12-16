@@ -18,24 +18,17 @@
         <result column="Post.postContent" property="originalContent"/>
     </resultMap>
 
-    <resultMap id="SystemMessageMap" type="SystemMessage">
-        <id column="Message.messageID" property="messageID"/>
-        <result column="Message.type" property="type"/>
-        <result column="Message.sendTime" property="sendTime"/>
-        <result column="Message.content" property="content"/>
-    </resultMap>
-
     <select id="getCommentMessageByUserID" parameterType="String" resultMap="CommentMessageMap">
         select Message.messageID, Message.viewed, User.userID, User.username,
                User.image, Comment.content, Comment.commentTime, Post.postContent
         from Message, User, Comment, Post
-        where Message.receiverID = #{userID} and User.userID = #{userID} and Message.type = 3
+        where Message.receiverID = #{userID} and User.userID = Message.senderID and Message.type = 3
               and Message.commentID = Comment.postCommentID and Comment.type = 2
               and Post.postID = Comment.postID;
     </select>
 
-    <select id="getSystemMessageByUserID" parameterType="String" resultMap="SystemMessageMap">
-        select Message.messageID, Message.type, Message.sendTime, Message.content
+    <select id="getSystemMessageByUserID" parameterType="String" resultType="Message">
+        select *
         from Message
         where Message.receiverID = #{userID};
     </select>

@@ -6,6 +6,7 @@ import lombok.Data;
 public class CommentReport
 {
     String commentContent;
+    String strCommentID;
     int commentID;
     boolean hasRead;
     boolean isTrimmed;
