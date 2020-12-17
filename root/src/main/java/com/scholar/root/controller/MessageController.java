@@ -53,4 +53,26 @@ public class MessageController
         }
     }
 
+    @PostMapping("/deleteMsg")
+    public int deleteMsg(@RequestParam("messageID") String messageID) {
+        try {
+            return messageService.deleteMsg(messageID);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @PostMapping("/replyMsg")
+    public int replyMsg(@RequestParam("messageID") String messageID, @RequestParam("content") String content) {
+        try {
+            return messageService.replyMsg(messageID, content);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
 }
