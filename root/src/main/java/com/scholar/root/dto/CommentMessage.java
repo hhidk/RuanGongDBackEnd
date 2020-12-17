@@ -1,5 +1,8 @@
 package com.scholar.root.dto;
 
+import lombok.Data;
+
+@Data
 public class CommentMessage
 {
     int messageID;

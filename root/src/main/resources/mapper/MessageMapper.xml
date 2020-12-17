@@ -51,4 +51,15 @@
         where Message.receiverID = #{userID} and Message.type = 2 and User.userID = Message.senderID
     </select>
 
+    <delete id="deleteMessageByMessageID" parameterType="String">
+        delete
+        from Message
+        where Message.messageID = #{messageID};
+    </delete>
+
+    <insert id="addMessage" parameterType="Message">
+        insert into Message (senderID, receiverID, viewed, content, type, sendTime, commentID)
+        values (#{senderID}, #{receiverID}, #{viewed}, #{content}, #{type}, #{sendTime}, #{commentID});
+    </insert>
+
 </mapper>

@@ -1,5 +1,8 @@
 package com.scholar.root.pojo;
 
+import lombok.Data;
+
+@Data
 public class Report
 {
     String reportID;
