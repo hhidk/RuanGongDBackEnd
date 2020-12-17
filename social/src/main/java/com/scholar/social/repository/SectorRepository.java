@@ -11,4 +11,7 @@ import java.util.List;
 public interface SectorRepository {
     // TODO get all sectors
     List<Sector> getAll();
+
+    // TODO get tags
+    String getTags(int SectorId);
 }
