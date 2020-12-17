@@ -5,7 +5,7 @@ import java.util.Date;
 public class Comment {
     private int id;
     private String userId;
-    private String Content;
+    private String content;
     private Date time;
 
     public int getId() {
@@ -27,11 +27,11 @@ public class Comment {
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public Comment setContent(String content) {
-        Content = content;
+        this.content = content;
         return this;
     }
 

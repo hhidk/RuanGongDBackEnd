@@ -13,9 +13,7 @@ public interface CommentRepository {
 
     void delete(String userId, int commentId);
 
-    // TODO
     List<Comment> selectByPostId(int postId);
 
-    // TODO
     void deleteByPostId(int postId);
 }
