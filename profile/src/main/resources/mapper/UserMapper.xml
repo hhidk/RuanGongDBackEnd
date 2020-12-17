@@ -12,7 +12,7 @@
     </insert>
     
     <select id="loginUser" parameterType="String" resultType="UserPreview">
-        select userID, username, realName, image, userDegree, userIdentity, organization, emailAddress, phoneNumber
+        select userID, authorID, username, realName, image, userDegree, userIdentity, organization, emailAddress, phoneNumber, introduction
         from User
         where (userID = #{ID} or username = #{ID} or emailAddress = #{ID}) and password = #{password}
         limit 0,1
@@ -30,16 +30,28 @@
         where userID = #{userID}
     </update>
 
+    <select id="getUserByUserID" parameterType="String" resultType="User">
+        select *
+        from User
+        where userID = #{userID}
+    </select>
+
+    <select id="getUserPreviewByUserID" parameterType="String" resultType="UserPreview">
+        select userID, authorID, username, realName, image, userDegree, userIdentity, organization, emailAddress, phoneNumber, introduction
+        from User
+        where userID = #{userID}
+    </select>
+
     <select id="getFollowUsers" parameterType="String" resultType="UserPreview">
-        select User.userID, userIdentity, username, realName, image, userDegree, organization, emailAddress, phoneNumber
+        select User.userID, authorID, username, realName, image, userDegree, userIdentity, organization, emailAddress, phoneNumber, introduction
         from User,Follow
-        where follow.userID = User.userID and followerID = #{userID}
+        where Follow.userID = User.userID and followerID = #{userID}
     </select>
 
     <select id="getFollowers" parameterType="String" resultType="UserPreview">
-        select User.userID, userIdentity, username, realName, image, userDegree, organization, emailAddress, phoneNumber
+        select User.userID, authorID, username, realName, image, userDegree, userIdentity, organization, emailAddress, phoneNumber, introduction
         from User,Follow
-        where followerID = User.userID and follow.userID = #{userID}
+        where followerID = User.userID and Follow.userID = #{userID}
     </select>
 
     <insert id="addFollow" parameterType="String">

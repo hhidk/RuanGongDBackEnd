@@ -35,6 +35,11 @@ public interface UserMapper {
     User getUserByUserID(String userID);
 
     /*
+     * 通过userID获取UserPreview信息
+     */
+    UserPreview getUserPreviewByUserID(String userID);
+
+    /*
     * 修改User信息
     */
     int updateUser(User user);

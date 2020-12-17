@@ -13,6 +13,10 @@ public class UserSpaceService {
     @Autowired
     private UserMapper userMapper;
 
+    public UserPreview getUserInformation(String userID) throws Exception {
+        return userMapper.getUserPreviewByUserID(userID);
+    }
+
     public List<UserPreview> getFollowingList(String userID) throws Exception {
         return userMapper.getFollowUsers(userID);
     }
