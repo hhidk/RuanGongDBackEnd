@@ -32,7 +32,7 @@ public class LiteratureController {
     }
 
     @PostMapping("/editLiterature")
-    public boolean editLiterature(@RequestParam int literatureID, @RequestParam String url) {
+    public boolean editLiterature(@RequestParam String literatureID, @RequestParam String url) {
         try {
             return literatureService.editLiterature(literatureID, url);
         } catch (Exception e) {

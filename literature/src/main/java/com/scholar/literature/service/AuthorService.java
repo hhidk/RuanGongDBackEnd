@@ -2,6 +2,7 @@ package com.scholar.literature.service;
 
 import com.scholar.literature.controller.AuthorController;
 import com.scholar.literature.pojo.Author;
+import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,8 @@ public class AuthorService {
     RestHighLevelClient client;
     public List<Author> getAuthors(String authorName){
         // TODO: 12/15/20
+        SearchRequest searchRequest = new SearchRequest("authors");
+
 
         return null;
     }

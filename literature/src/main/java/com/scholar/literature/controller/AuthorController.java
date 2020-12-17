@@ -22,7 +22,7 @@ public class AuthorController {
     @RequestMapping(value = "/getAuthors",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public Map<String,Object> getAuthors (@RequestParam String name){
         try {
-            return null;
+            return null; // authorService.getAuthors(name);
         }catch (Exception e){
             e.printStackTrace();
             return null;

@@ -60,7 +60,7 @@ public class Literature {
         issue = obj == null ? null : (String) obj;
 
         obj = map.get("n_citation");
-        n_citation = obj == null ? null : (int) obj;
+        n_citation = obj == null ? null : (Integer)obj;
 
         obj = map.get("keywords");
         keywords = obj == null ? null : (List<String>) obj;
@@ -75,7 +75,7 @@ public class Literature {
         volume   = obj == null ? null : (String) obj;
 
         obj = map.get("year");
-        year = obj == null ? null : (int) obj;
+        year = obj == null ? null :(Integer)obj;
 
         obj = map.get("issn");
         issn = obj == null ? null : (String) obj;
