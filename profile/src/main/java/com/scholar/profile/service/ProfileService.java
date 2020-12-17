@@ -33,7 +33,7 @@ public class ProfileService {
     }
 
     public int editProfile(String userID, String username, String realName, String image, int userDegree,
-                           String emailAddress, String phoneNumber, String organization) throws Exception {
+                           String emailAddress, String phoneNumber, String organization, String introduction) throws Exception {
         User user = userMapper.getUserByUserID(userID);
         if (userMapper.checkUserName(username) != null) {
             return 1;
@@ -45,6 +45,7 @@ public class ProfileService {
         user.setEmailAddress(emailAddress);
         user.setPhoneNumber(phoneNumber);
         user.setOrganization(organization);
+        user.setIntroduction(introduction);
         userMapper.updateUser(user);
         return 0;
     }
