@@ -6,103 +6,117 @@
 <mapper namespace="com.scholar.root.mapper.ReportMapper">
 
     <resultMap id="ArticleReportMap" type="ArticleReport">
-        <!-- id为主键 -->
-        <id column="Report.reportID" property="reportID"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="Literature.literatureID" property="articleID"/>
-        <result column="Literature.title" property="articleTitle"/>
-        <result column="Report.status" property="hasRead"/>
-        <result column="Report.content" property="reportContent"/>
+
+        <id column="reportID" property="reportID"/>
+
+        <result column="literatureID" property="articleID"/>
+        <result column="title" property="articleTitle"/>
+        <result column="status" property="hasRead"/>
+        <result column="content" property="reportContent"/>
         <association property="reporterInfo" javaType="UserInfo">
-            <result property="userID" column="User.userID"/>
-            <result property="userIdentity" column="User.userIdentity"/>
-            <result property="image" column="User.image"/>
-            <result property="username" column="User.username"/>
-            <result property="realName" column="User.realName"/>
-            <result property="userDegree" column="User.userDegree"/>
+            <result property="userID" column="userID"/>
+            <result property="userIdentity" column="userIdentity"/>
+            <result property="image" column="image"/>
+            <result property="username" column="username"/>
+            <result property="realName" column="realName"/>
+            <result property="userDegree" column="userDegree"/>
         </association>
     </resultMap>
 
     <resultMap id="GateReportMap" type="GateReport">
-        <!-- id为主键 -->
-        <id column="Report.reportID" property="reportID"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="Report.status" property="hasRead"/>
-        <result column="Report.content" property="reportContent"/>
+
+        <id column="reportID" property="reportID"/>
+
+        <result column="status" property="hasRead"/>
+        <result column="content" property="reportContent"/>
+
         <association property="reporteeInfo" javaType="UserInfo">
-            <result property="userID" column="A.userID"/>
-            <result property="userIdentity" column="A.userIdentity"/>
-            <result property="image" column="A.image"/>
-            <result property="username" column="A.username"/>
-            <result property="realName" column="A.realName"/>
-            <result property="userDegree" column="A.userDegree"/>
+            <result property="userID" column="userIDA"/>
+            <result property="userIdentity" column="userIdentityA"/>
+            <result property="image" column="imageA"/>
+            <result property="username" column="usernameA"/>
+            <result property="realName" column="realNameA"/>
+            <result property="userDegree" column="userDegreeA"/>
         </association>
+
         <association property="reporterInfo" javaType="UserInfo">
-            <result property="userID" column="B.userID"/>
-            <result property="userIdentity" column="B.userIdentity"/>
-            <result property="image" column="B.image"/>
-            <result property="username" column="B.username"/>
-            <result property="realName" column="B.realName"/>
-            <result property="userDegree" column="B.userDegree"/>
+            <result property="userID" column="userIDB"/>
+            <result property="userIdentity" column="userIdentityB"/>
+            <result property="image" column="imageB"/>
+            <result property="username" column="usernameB"/>
+            <result property="realName" column="realNameB"/>
+            <result property="userDegree" column="userDegreeB"/>
         </association>
+
     </resultMap>
 
     <resultMap id="CommentReportMap" type="CommentReport">
-        <!-- id为主键 -->
-        <id column="Report.reportID" property="reportID"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="Comment.postCommentID" property="strCommentID"/>
-        <result column="Comment.content" property="commentContent"/>
-        <result column="Report.status" property="hasRead"/>
-        <result column="Report.content" property="reportContent"/>
+
+        <id column="reportID" property="reportID"/>
+
+        <result column="postCommentID" property="strCommentID"/>
+        <result column="commentContent" property="commentContent"/>
+        <result column="status" property="hasRead"/>
+        <result column="reportContent" property="reportContent"/>
+
         <association property="reporterInfo" javaType="UserInfo">
-            <result property="userID" column="User.userID"/>
-            <result property="userIdentity" column="User.userIdentity"/>
-            <result property="image" column="User.image"/>
-            <result property="username" column="User.username"/>
-            <result property="realName" column="User.realName"/>
-            <result property="userDegree" column="User.userDegree"/>
+            <result property="userID" column="userID"/>
+            <result property="userIdentity" column="userIdentity"/>
+            <result property="image" column="image"/>
+            <result property="username" column="username"/>
+            <result property="realName" column="realName"/>
+            <result property="userDegree" column="userDegree"/>
         </association>
+
     </resultMap>
 
     <resultMap id="PostReportMap" type="PostReport">
-        <!-- id为主键 -->
-        <id column="Report.reportID" property="reportID"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="Post.postID" property="strPostID"/>
-        <result column="Post.postContent" property="postContent"/>
-        <result column="Report.status" property="hasRead"/>
-        <result column="Report.content" property="reportContent"/>
+
+        <id column="reportID" property="reportID"/>
+
+        <result column="postID" property="strPostID"/>
+        <result column="postContent" property="postContent"/>
+        <result column="status" property="hasRead"/>
+        <result column="content" property="reportContent"/>
+
         <association property="reporterInfo" javaType="UserInfo">
-            <result property="userID" column="User.userID"/>
-            <result property="userIdentity" column="User.userIdentity"/>
-            <result property="image" column="User.image"/>
-            <result property="username" column="User.username"/>
-            <result property="realName" column="User.realName"/>
-            <result property="userDegree" column="User.userDegree"/>
+            <result property="userID" column="userID"/>
+            <result property="userIdentity" column="userIdentity"/>
+            <result property="image" column="image"/>
+            <result property="username" column="username"/>
+            <result property="realName" column="realName"/>
+            <result property="userDegree" column="userDegree"/>
         </association>
+
     </resultMap>
 
     <select id="getArticleReportByReportID" parameterType="int" resultMap="ArticleReportMap">
-        select Literature.literatureID, Literature.title, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
+        select Literature.literatureID, Literature.title, Report.status, Report.content, Report.reportID,
+               User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Literature, User
-        where Report.reportID = #{reportID} and Report.type = 1 and Literature.literatureID = Report.reporteeID and User.userID = Report.reporterID;
+        where Report.reportID = #{reportID} and Report.type = 1 and Literature.literatureID = Report.reporteeID
+              and User.userID = Report.reporterID;
     </select>
 
     <select id="getGateReportByReportID" parameterType="int" resultMap="GateReportMap">
-        select Report.status, Report.content, Report.reportID, A.userID, A.userIdentity, A.image, A.username, A.realName, A.userDegree, B.userID, B.userIdentity, B.image, B.username, B.realName, B.userDegree
+        select Report.status, Report.content, Report.reportID, A.userID userIDA, A.userIdentity userIdentityA, A.image imageA,
+               A.username usernameA, A.realName realNameA, A.userDegree userDegreeA, B.userID userIDB, B.userIdentity userIdentityB,
+               B.image imageB, B.username usernameB, B.realName realNameB, B.userDegree userDegreeB
         from Report, User A, User B
         where Report.reportID = #{reportID} and Report.type = 4 and A.userID = Report.reporteeID and B.userID = #{reportID};
     </select>
 
     <select id="getCommentReportByReportID" parameterType="int" resultMap="CommentReportMap">
-        select Comment.postCommentID, Comment.content, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
+        select Comment.postCommentID, Comment.content commentContent, Report.status, Report.content reportContent,
+               Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Comment, User
-        where Report.reportID = #{reportID} and Report.type = 2 and Comment.postCommentID = Report.reporteeID and User.userID = Report.reporterID;
+        where Report.reportID = #{reportID} and Report.type = 2 and Comment.postCommentID = Report.reporteeID
+              and User.userID = Report.reporterID;
     </select>
 
     <select id="getPostReportByReportID" parameterType="int" resultMap="PostReportMap">
-        select Post.postID, Post.postContent, Report.status, Report.content, Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
+        select Post.postID, Post.postContent, Report.status, Report.content, Report.reportID, User.userID,
+               User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Post, User
         where Report.reportID = #{reportID} and Report.type = 3 and Post.postID = Report.reporteeID and User.userID = Report.reporterID;
     </select>
