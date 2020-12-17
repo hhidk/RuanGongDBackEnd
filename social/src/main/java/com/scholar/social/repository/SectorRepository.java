@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface SectorRepository {
-    // TODO get all sectors
     List<Sector> getAll();
+
+    String getTags(int SectorId);
 }
