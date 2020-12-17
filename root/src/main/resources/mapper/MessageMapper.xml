@@ -7,27 +7,27 @@
 
     <resultMap id="CommentMessageMap" type="CommentMessage">
         <!-- id为主键 -->
-        <id column="Message.messageID" property="messageID"/>
+        <id column="messageID" property="messageID"/>
         <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="Message.viewed" property="viewed"/>
-        <result column="User.userID" property="senderID"/>
-        <result column="User.username" property="senderUserName"/>
-        <result column="User.image" property="image"/>
-        <result column="Comment.content" property="replyContent"/>
-        <result column="Comment.commentTime" property="sendTime"/>
-        <result column="Post.postContent" property="originalContent"/>
+        <result column="viewed" property="viewed"/>
+        <result column="userID" property="senderID"/>
+        <result column="username" property="senderUserName"/>
+        <result column="image" property="image"/>
+        <result column="content" property="replyContent"/>
+        <result column="commentTime" property="sendTime"/>
+        <result column="postContent" property="originalContent"/>
     </resultMap>
 
     <resultMap id="ConsultMessageMap" type="ConsultMessage">
         <!-- id为主键 -->
-        <id column="Message.messageID" property="messageID"/>
+        <id column="messageID" property="messageID"/>
         <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
-        <result column="Message.viewed" property="viewed"/>
-        <result column="Message.sendTime" property="sendTime"/>
-        <result column="Message.content" property="content"/>
-        <result column="User.userID" property="senderID"/>
-        <result column="User.username" property="senderUserName"/>
-        <result column="User.image" property="image"/>
+        <result column="userID" property="senderID"/>
+        <result column="username" property="senderUserName"/>
+        <result column="image" property="image"/>
+        <result column="sendTime" property="sendTime"/>
+        <result column="content" property="content"/>
+        <result column="viewed" property="viewed"/>
     </resultMap>
 
     <select id="getCommentMessageByUserID" parameterType="String" resultMap="CommentMessageMap">
@@ -48,7 +48,7 @@
     <select id="getConsultMessageByUserID" parameterType="String" resultMap="ConsultMessageMap">
         select Message.messageID, Message.viewed, Message.sendTime, Message.content, User.userID, User.username, User.image
         from Message, User
-        where Message.receiverID = #{userID} and Message.type = 2 and User.userID = Message.senderID
+        where Message.receiverID = #{userID} and Message.type = 2 and User.userID = Message.senderID;
     </select>
 
     <delete id="deleteMessageByMessageID" parameterType="String">
@@ -56,6 +56,12 @@
         from Message
         where Message.messageID = #{messageID};
     </delete>
+
+    <select id="getMessageByMessageID" parameterType="String" resultType="Message">
+        select *
+        from Message
+        where Message.messageID = #{messageID};
+    </select>
 
     <insert id="addMessage" parameterType="Message">
         insert into Message (senderID, receiverID, viewed, content, type, sendTime, commentID)
