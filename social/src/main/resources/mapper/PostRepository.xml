@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scholar.social.repository.ReportRepository">
+    <insert id="report"
+            parameterType="com.scholar.social.util.Post"
+            useGeneratedKeys="true"
+            keyProperty="postID"
+    >
+        INSERT INTO Post(
+        referenceDocID,
+        postContent,
+        postTime,
+        posterID,
+        title
+        )
+        VALUES (
+        #{citeId},
+        #{content},
+        now(),
+        #{userId},
+        #{title}
+        )
+    </insert>
+    <select id="get" parameterType="com.scholar.social.util.Post">
+        SELECT postID         as postId,
+               referenceDocID as citeId,
+               postContent    as content,
+               postTime       as createTime,
+               sectorID       as sectorId,
+               title          as title
+        FROM Post
+        WHERE postId = #{postId}
+    </select>
+    <update id="putTags">
+        UPDATE Post
+        <set>
+            tags = #{tags}
+        </set>
+        <where>
+            postID = #{postId}
+        </where>
+    </update>
+    <select id="getTags">
+        SELECT tags
+        FROM Post
+        WHERE postID = #{postId}
+    </select>
+    <delete id="delete">
+        DELETE FROM Post WHERE postID = #{postId}
+    </delete>
+    <update id="updateTimes">
+        UPDATE Post
+        <set>
+            viewTimes = viewTimes + 1
+        </set>
+        <where>
+            postID = #{postId}
+        </where>
+    </update>
+    <select id="search" resultType="com.scholar.social.util.Post">
+        SELECT postID         as postId,
+               referenceDocID as citeId,
+               postContent    as content,
+               postTime       as createTime,
+               sectorID       as sectorId,
+               title          as title
+        FROM Post
+        WHERE sectorID = #{sectorId}
+          AND (title LIKE CONCAT(CONCAT('%', #{keyword}), '%') OR tags LIKE CONCAT(CONCAT('%', #{text}), '%'))
+    </select>
+</mapper>
