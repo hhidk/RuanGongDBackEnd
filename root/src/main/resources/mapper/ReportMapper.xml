@@ -6,9 +6,9 @@
 <mapper namespace="com.scholar.root.mapper.ReportMapper">
 
     <resultMap id="ArticleReportMap" type="ArticleReport">
-        <!-- id为主键 -->
+
         <id column="reportID" property="reportID"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+
         <result column="literatureID" property="articleID"/>
         <result column="title" property="articleTitle"/>
         <result column="status" property="hasRead"/>
@@ -24,9 +24,9 @@
     </resultMap>
 
     <resultMap id="GateReportMap" type="GateReport">
-        <!-- id为主键 -->
+
         <id column="reportID" property="reportID"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+
         <result column="status" property="hasRead"/>
         <result column="content" property="reportContent"/>
 
@@ -51,13 +51,14 @@
     </resultMap>
 
     <resultMap id="CommentReportMap" type="CommentReport">
-        <!-- id为主键 -->
+
         <id column="reportID" property="reportID"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+
         <result column="postCommentID" property="strCommentID"/>
         <result column="commentContent" property="commentContent"/>
         <result column="status" property="hasRead"/>
         <result column="reportContent" property="reportContent"/>
+
         <association property="reporterInfo" javaType="UserInfo">
             <result property="userID" column="userID"/>
             <result property="userIdentity" column="userIdentity"/>
@@ -66,16 +67,18 @@
             <result property="realName" column="realName"/>
             <result property="userDegree" column="userDegree"/>
         </association>
+
     </resultMap>
 
     <resultMap id="PostReportMap" type="PostReport">
-        <!-- id为主键 -->
+
         <id column="reportID" property="reportID"/>
-        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+
         <result column="postID" property="strPostID"/>
         <result column="postContent" property="postContent"/>
         <result column="status" property="hasRead"/>
         <result column="content" property="reportContent"/>
+
         <association property="reporterInfo" javaType="UserInfo">
             <result property="userID" column="userID"/>
             <result property="userIdentity" column="userIdentity"/>
@@ -84,6 +87,7 @@
             <result property="realName" column="realName"/>
             <result property="userDegree" column="userDegree"/>
         </association>
+
     </resultMap>
 
     <select id="getArticleReportByReportID" parameterType="int" resultMap="ArticleReportMap">
