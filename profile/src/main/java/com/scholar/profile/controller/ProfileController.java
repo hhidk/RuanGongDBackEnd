@@ -40,9 +40,10 @@ public class ProfileController {
     public int editProfile(@RequestParam("userID") String userID, @RequestParam("username") String username,
                            @RequestParam("realName") String realName, @RequestParam("image") String image,
                            @RequestParam("userDegree") int userDegree, @RequestParam("emailAddress") String emailAddress,
-                           @RequestParam("phoneNumber") String phoneNumber, @RequestParam("organization") String organization) {
+                           @RequestParam("phoneNumber") String phoneNumber, @RequestParam("organization") String organization,
+                           @RequestParam("introduction") String introduction) {
         try {
-            return profileService.editProfile(userID, username, realName, image, userDegree, emailAddress, phoneNumber, organization);
+            return profileService.editProfile(userID, username, realName, image, userDegree, emailAddress, phoneNumber, organization, introduction);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
