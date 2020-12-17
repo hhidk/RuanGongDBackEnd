@@ -14,7 +14,7 @@
     <select id="loginUser" parameterType="String" resultType="UserPreview">
         select userID, username, realName, image, userDegree, userIdentity, organization, emailAddress, phoneNumber
         from User
-        where userID = #{ID} or username = #{ID} or emailAddress = #{ID}
+        where (userID = #{ID} or username = #{ID} or emailAddress = #{ID}) and password = #{password}
         limit 0,1
     </select>
 

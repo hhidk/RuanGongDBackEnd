@@ -22,7 +22,7 @@ public interface UserMapper {
      * 通过userID/username/emailAddress获得UserPreview信息
      * 用户登录
      */
-    UserPreview loginUser(String ID);
+    UserPreview loginUser(String ID, String password);
 
     /*
     * 检查是否有重复用户名

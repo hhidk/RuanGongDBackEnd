@@ -29,7 +29,7 @@ public class ProfileService {
     }
 
     public UserPreview login(String ID, String password) throws Exception {
-        return userMapper.loginUser(ID);
+         return userMapper.loginUser(ID, password);
     }
 
     public int editProfile(String userID, String username, String realName, String image, int userDegree,
