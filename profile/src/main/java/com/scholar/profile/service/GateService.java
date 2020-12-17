@@ -23,7 +23,7 @@ public class GateService {
         return 0;
     }
 
-    public int applicate(String userID, String authorID, String emailAddress, String content) {
+    public int apply(String userID, String authorID, String emailAddress, String content) {
         if (userMapper.checkIsAuthor(userID) != null) {
             return 2;
         }
