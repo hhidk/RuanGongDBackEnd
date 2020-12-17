@@ -18,4 +18,12 @@
         limit 0,1
     </select>
 
+    <select id="getUserRecentApplication" parameterType="String" resultType="Application">
+        select *
+        from Application
+        where userID = #{userID}
+        order by applicationID desc
+        limit 0,1
+    </select>
+
 </mapper>

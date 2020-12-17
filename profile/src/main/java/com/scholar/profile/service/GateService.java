@@ -14,7 +14,7 @@ public class GateService {
     @Autowired
     private ApplicationMapper applicationMapper;
 
-    public int followUser(String followerID, String userID, int option) {
+    public int followUser(String followerID, String userID, int option) throws Exception {
         if (option == 1) {
             userMapper.addFollow(followerID, userID);
         } else {
@@ -23,7 +23,7 @@ public class GateService {
         return 0;
     }
 
-    public int apply(String userID, String authorID, String emailAddress, String content) {
+    public int apply(String userID, String authorID, String emailAddress, String content) throws Exception {
         if (userMapper.checkIsAuthor(userID) != null) {
             return 2;
         }
@@ -33,6 +33,10 @@ public class GateService {
         Application application = new Application(userID, authorID, emailAddress, content);
         applicationMapper.addApplication(application);
         return 0;
+    }
+
+    public int getApplyStatus(String userID) throws Exception {
+        return applicationMapper.getUserRecentApplication(userID).getStatus();
     }
 
 }

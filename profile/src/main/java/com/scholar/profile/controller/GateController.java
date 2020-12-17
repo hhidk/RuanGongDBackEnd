@@ -52,4 +52,14 @@ public class GateController {
         }
     }
 
+    @RequestMapping("getApplyStatus")
+    public int getApplyStatus(@RequestParam("userID") String userID) {
+        try {
+            return getApplyStatus(userID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }

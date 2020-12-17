@@ -14,4 +14,6 @@ public interface ApplicationMapper {
      * 获取用户是否有未被处理的认证
      */
     Application getUserPendingApplication(String userID);
+
+    Application getUserRecentApplication(String userID);
 }
