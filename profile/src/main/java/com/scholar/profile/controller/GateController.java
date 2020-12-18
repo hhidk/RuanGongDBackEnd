@@ -73,4 +73,14 @@ public class GateController {
         }
     }
 
+    @RequestMapping("/getIntroFollowStatus")
+    public int getIntroFollowStatus(@RequestParam("followerID") String followerID, @RequestParam("userID") String userID) {
+        try {
+            return gateService.getIntroFollowStatus(followerID, userID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }
