@@ -8,9 +8,7 @@ import com.scholar.social.util.Post;
 import com.scholar.social.util.PostFormatHelper;
 import com.scholar.social.util.Sector;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,5 +62,12 @@ public class SectorController {
             sectorMapList.add(SectorGenerator.info(sector));
         }
         return Map.of("sectors", sectorMapList);
+    }
+
+    @PostMapping(value = "/getPostNum", produces = "application/json;charset=UTF-8")
+    public Map<String, Object> getTotal(@RequestBody Map<String, Object> body) {
+        int sectorId = (Integer) body.get("sectorId");
+
+        return Map.of("total", String.valueOf(sectorService.getTot(sectorId)));
     }
 }

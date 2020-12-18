@@ -33,4 +33,8 @@ public class SectorService {
         }).collect(Collectors.toList());
         return sectorList;
     }
+
+    public int getTot(int sectorId) {
+        return sectorRepository.getTot(sectorId);
+    }
 }

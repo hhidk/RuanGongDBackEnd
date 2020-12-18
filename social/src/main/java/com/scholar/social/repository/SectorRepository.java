@@ -13,5 +13,10 @@ public interface SectorRepository {
     List<Sector> getAll();
 
     String getTags(@Param("sectorId") int sectorId);
-    // TODO upd counter
+
+    // TODO xml
+    int getTot(@Param("sectorId") int sectorId);
+
+    // TODO xml
+    void setTot(@Param("sectorId") int sectorId, @Param("tot") int tot);
 }

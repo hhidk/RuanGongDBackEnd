@@ -94,21 +94,19 @@ public class PostInfoController {
         return Map.of("posts", postMapList);
     }
 
-    @PostMapping(value = "/getPostNum", produces = "application/json;charset=UTF-8")
-    public Map<String, Object> getTotal(@RequestBody Map<String, Object> body) {
-        // TODO get sector post num
+    @PostMapping(value = "/getUserPosts", produces = "application/json;charset=UTF-8")
+    public Map<String, Object> getPostsByUserId(@RequestBody Map<String, Object> body) {
+        String userId = parseUserId(body);
+        List<Post> postList = postService.getPostsByUserId(userId);
+        // TODO parse all info
         return null;
     }
 
     @PostMapping(value = "/getUserPosts", produces = "application/json;charset=UTF-8")
-    public Map<String, Object> getPosts(@RequestBody Map<String, Object> body) {
-        // TODO get posts of a user
-        return null;
-    }
-
-    @PostMapping(value = "/getUserPosts", produces = "application/json;charset=UTF-8")
-    public Map<String, Object> getFollowingPosts(@RequestBody Map<String, Object> body) {
-        // TODO get posts of a users' following
+    public Map<String, Object> getPostsByFollowing(@RequestBody Map<String, Object> body) {
+        String userId = parseUserId(body);
+        List<Post> postList = postService.getPostsByFollowing(userId);
+        // TODO parse all info
         return null;
     }
 }

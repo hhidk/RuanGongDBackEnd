@@ -1,8 +1,6 @@
 package com.scholar.social.service;
 
-import com.scholar.social.repository.CommentRepository;
-import com.scholar.social.repository.PostRepository;
-import com.scholar.social.repository.ReportRepository;
+import com.scholar.social.repository.*;
 import com.scholar.social.util.Post;
 import com.scholar.social.util.PostFormatHelper;
 import com.scholar.social.util.SortType;
@@ -19,36 +17,52 @@ public class PostService {
     private final ReportRepository reportRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
+    private final FollowRepository followRepository;
+    private final SectorRepository sectorRepository;
 
     @Autowired
     public PostService(ReportRepository reportRepository,
                        PostRepository postRepository,
-                       CommentRepository commentRepository) {
+                       CommentRepository commentRepository,
+                       FollowRepository followRepository,
+                       SectorRepository sectorRepository) {
         this.reportRepository = reportRepository;
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
+        this.followRepository = followRepository;
+        this.sectorRepository = sectorRepository;
     }
 
     public int put(Post post) {
         int postId = postRepository.put(post);
         postRepository.putTags(postId, String.join(";", post.getTags()));
+        int sectorId = post.getSectorId();
+        int tot = sectorRepository.getTot(sectorId) + 1;
+        sectorRepository.setTot(sectorId, tot);
         return postId;
     }
 
     public boolean delete(String userId, int postId) {
+        Post post = postRepository.get(postId);
+        int sectorId = post.getSectorId();
+        int tot = sectorRepository.getTot(sectorId) - 1;
+        sectorRepository.setTot(sectorId, tot);
         commentRepository.deleteByPostId(postId);
         postRepository.delete(postId);
         return true;
     }
 
     public boolean report(String userId, int postId, String content) {
-        // TODO add post content to repost title
-        reportRepository.report(3, content, String.valueOf(postId), userId);
+        Post post = postRepository.get(postId);
+        reportRepository.report(3, content, String.valueOf(postId), userId, post.getContent());
         return true;
     }
 
     public List<Post> search(int sectorId, int start, int num, SortType sort, String keyword) {
         List<Post> postList = postRepository.search(sectorId, keyword);
+        if (start >= postList.size()) {
+            return List.of();
+        }
         postList = postList.stream().map(this::getFullPostInfo).collect(Collectors.toList());
         switch (sort) {
             case TITLE:
@@ -69,7 +83,6 @@ public class PostService {
                 postList.sort(Comparator.comparingInt(post -> post.getComments().size()));
                 break;
         }
-        // TODO check start <= postList.size()
         return postList.subList(start, Math.min(postList.size(), start + num));
     }
 
@@ -85,5 +98,15 @@ public class PostService {
         postRepository.updateTimes(postId);
         Post post = postRepository.get(postId);
         return getFullPostInfo(post);
+    }
+
+    public List<Post> getPostsByUserId(String userId) {
+        // TODO
+        return null;
+    }
+
+    public List<Post> getPostsByFollowing(String userId) {
+        // TODO
+        return null;
     }
 }
