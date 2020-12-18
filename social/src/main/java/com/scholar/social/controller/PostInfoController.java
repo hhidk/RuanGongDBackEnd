@@ -10,10 +10,7 @@ import com.scholar.social.util.Post;
 import com.scholar.social.util.SortType;
 import com.scholar.social.util.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -95,5 +92,23 @@ public class PostInfoController {
         }
 
         return Map.of("posts", postMapList);
+    }
+
+    @PostMapping(value = "/getPostNum", produces = "application/json;charset=UTF-8")
+    public Map<String, Object> getTotal(@RequestBody Map<String, Object> body) {
+        // TODO get sector post num
+        return null;
+    }
+
+    @PostMapping(value = "/getUserPosts", produces = "application/json;charset=UTF-8")
+    public Map<String, Object> getPosts(@RequestBody Map<String, Object> body) {
+        // TODO get posts of a user
+        return null;
+    }
+
+    @PostMapping(value = "/getUserPosts", produces = "application/json;charset=UTF-8")
+    public Map<String, Object> getFollowingPosts(@RequestBody Map<String, Object> body) {
+        // TODO get posts of a users' following
+        return null;
     }
 }

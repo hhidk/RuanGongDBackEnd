@@ -13,4 +13,5 @@ public interface SectorRepository {
     List<Sector> getAll();
 
     String getTags(@Param("sectorId") int sectorId);
+    // TODO upd counter
 }

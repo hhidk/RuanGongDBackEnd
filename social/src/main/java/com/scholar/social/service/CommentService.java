@@ -21,6 +21,7 @@ public class CommentService {
     }
 
     public boolean report(String userId, int commentId, String content) {
+        // TODO add comment content to report title
         reportRepository.report(2, content, String.valueOf(commentId), userId);
         return true;
     }

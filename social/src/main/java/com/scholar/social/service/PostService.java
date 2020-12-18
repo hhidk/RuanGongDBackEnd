@@ -42,6 +42,7 @@ public class PostService {
     }
 
     public boolean report(String userId, int postId, String content) {
+        // TODO add post content to repost title
         reportRepository.report(3, content, String.valueOf(postId), userId);
         return true;
     }
@@ -68,6 +69,7 @@ public class PostService {
                 postList.sort(Comparator.comparingInt(post -> post.getComments().size()));
                 break;
         }
+        // TODO check start <= postList.size()
         return postList.subList(start, Math.min(postList.size(), start + num));
     }
 
