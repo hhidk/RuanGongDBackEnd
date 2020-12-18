@@ -69,4 +69,15 @@
         WHERE sectorID = #{sectorId}
           AND (title LIKE CONCAT(CONCAT('%', #{keyword}), '%') OR tags LIKE CONCAT(CONCAT('%', #{text}), '%'))
     </select>
+    <select id="getByUserId" resultType="com.scholar.social.util.Post">
+
+        SELECT postID         as postId,
+               referenceDocID as citeId,
+               postContent    as content,
+               postTime       as createTime,
+               sectorID       as sectorId,
+               title          as title
+        FROM Post
+        WHERE posterID = #{userId}
+    </select>
 </mapper>

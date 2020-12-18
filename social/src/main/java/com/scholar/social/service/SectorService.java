@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,5 +37,9 @@ public class SectorService {
 
     public int getTot(int sectorId) {
         return sectorRepository.getTot(sectorId);
+    }
+
+    public Map<Integer, String> getSectorNameMap() {
+        return sectorRepository.getNameMap();
     }
 }

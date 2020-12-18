@@ -23,4 +23,6 @@ public interface PostRepository {
     void updateTimes(@Param("postId") int postId);
 
     List<Post> search(@Param("sectorId") int sectorId, @Param("keyword") String keyword);
+
+    List<Post> getByUserId(@Param("userId") String userId);
 }

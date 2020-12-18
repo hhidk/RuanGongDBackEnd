@@ -4,6 +4,7 @@ import com.scholar.social.generator.CommentGenerator;
 import com.scholar.social.generator.PostGenerator;
 import com.scholar.social.generator.UserGenerator;
 import com.scholar.social.service.PostService;
+import com.scholar.social.service.SectorService;
 import com.scholar.social.service.UserService;
 import com.scholar.social.util.Comment;
 import com.scholar.social.util.Post;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static com.scholar.social.util.ControllerParser.*;
 import static com.scholar.social.util.TimeFormat.format;
@@ -27,12 +29,15 @@ import static com.scholar.social.util.TimeFormat.format;
 public class PostInfoController {
     private final PostService postService;
     private final UserService userService;
+    private final SectorService sectorService;
 
     @Autowired
     public PostInfoController(PostService postService,
-                              UserService userService) {
+                              UserService userService,
+                              SectorService sectorService) {
         this.postService = postService;
         this.userService = userService;
+        this.sectorService = sectorService;
     }
 
     @RequestMapping(value = "/getPostInfo",
@@ -89,6 +94,7 @@ public class PostInfoController {
                 postMap.putAll(UserGenerator.userInfo(editor, "editor"));
                 postMap.put("editTime", format(latest.getTime()));
             }
+            postMapList.add(postMap);
         }
 
         return Map.of("posts", postMapList);
@@ -98,15 +104,25 @@ public class PostInfoController {
     public Map<String, Object> getPostsByUserId(@RequestBody Map<String, Object> body) {
         String userId = parseUserId(body);
         List<Post> postList = postService.getPostsByUserId(userId);
-        // TODO parse all info
-        return null;
+        return formatPostList(postList);
     }
 
-    @PostMapping(value = "/getUserPosts", produces = "application/json;charset=UTF-8")
+    private Map<String, Object> formatPostList(List<Post> postList) {
+        Map<Integer, String> sectorNameMap = sectorService.getSectorNameMap();
+        List<Map<String, Object>> postMapList = postList.stream()
+                .map(post -> {
+                    Map<String, Object> postMap = PostGenerator.basicInfo(post);
+                    postMap.put("sectorName", sectorNameMap.get(post.getSectorId()));
+                    return postMap;
+                })
+                .collect(Collectors.toList());
+        return Map.of("posts", postMapList);
+    }
+
+    @PostMapping(value = "/getFollowedPosts", produces = "application/json;charset=UTF-8")
     public Map<String, Object> getPostsByFollowing(@RequestBody Map<String, Object> body) {
         String userId = parseUserId(body);
         List<Post> postList = postService.getPostsByFollowing(userId);
-        // TODO parse all info
-        return null;
+        return formatPostList(postList);
     }
 }

@@ -4,9 +4,10 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
-public interface MessageRepository {
-    void put(@Param("senderId") String senderId, @Param("receiverId") String receiverId,
-             @Param("content") String content);
+public interface UserFollowRepository {
+    List<String> getFollowing(@Param("userId") String userId);
 }

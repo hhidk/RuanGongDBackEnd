@@ -20,4 +20,12 @@
     <delete id="deleteByPostId">
         DELETE FROM Comment WHERE postID = #{postId}
     </delete>
+    <select id="select" resultType="com.scholar.social.util.Comment">
+        SELECT postCommentID as id,
+               userID        as userId,
+               commentTime   as time,
+               content       as content
+        FROM Comment
+        WHERE postCommentID = #{commentID}
+    </select>
 </mapper>

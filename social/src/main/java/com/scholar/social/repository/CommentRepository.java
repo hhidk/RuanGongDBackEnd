@@ -15,7 +15,6 @@ public interface CommentRepository {
 
     void delete(@Param("userId") String userId, @Param("commentId") int commentId);
 
-    // TODO select comment
     Comment select(@Param("commentId") int commentId);
 
     List<Comment> selectByPostId(@Param("postId") int postId);

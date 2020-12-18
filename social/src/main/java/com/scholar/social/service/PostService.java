@@ -17,20 +17,20 @@ public class PostService {
     private final ReportRepository reportRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
-    private final FollowRepository followRepository;
     private final SectorRepository sectorRepository;
+    private final UserFollowRepository userFollowRepository;
 
     @Autowired
     public PostService(ReportRepository reportRepository,
                        PostRepository postRepository,
                        CommentRepository commentRepository,
-                       FollowRepository followRepository,
-                       SectorRepository sectorRepository) {
+                       SectorRepository sectorRepository,
+                       UserFollowRepository userFollowRepository) {
         this.reportRepository = reportRepository;
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
-        this.followRepository = followRepository;
         this.sectorRepository = sectorRepository;
+        this.userFollowRepository = userFollowRepository;
     }
 
     public int put(Post post) {
@@ -101,12 +101,18 @@ public class PostService {
     }
 
     public List<Post> getPostsByUserId(String userId) {
-        // TODO
-        return null;
+        List<Post> postList = postRepository.getByUserId(userId);
+        postList = postList.stream().map(this::getFullPostInfo).collect(Collectors.toList());
+        return postList;
     }
 
     public List<Post> getPostsByFollowing(String userId) {
-        // TODO
-        return null;
+        List<String> followingUserId = userFollowRepository.getFollowing(userId);
+        return followingUserId.stream()
+                .flatMap(id ->
+                        postRepository.getByUserId(id).stream()
+                )
+                .map(this::getFullPostInfo)
+                .collect(Collectors.toList());
     }
 }

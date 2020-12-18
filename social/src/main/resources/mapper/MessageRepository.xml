@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scholar.social.repository.MessageRepository">
+    <insert id="put">
+        INSERT INTO Message (senderID, receiverID, viewed, content, type, sendTime)
+        VALUES (#{senderId}, #{receiverId}, false, #{content}, 2, now())
+    </insert>
+</mapper>
