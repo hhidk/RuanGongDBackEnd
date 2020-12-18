@@ -9,7 +9,7 @@ public class Report
     int type;
     String content;
     boolean status;
-    String adminID;
-    String reply;
+    String title;
     String reporteeID;
+    String reporterID;
 }

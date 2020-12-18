@@ -42,7 +42,7 @@
     <select id="getSystemMessageByUserID" parameterType="String" resultType="Message">
         select *
         from Message
-        where Message.receiverID = #{userID} and Message.type = 1;
+        where Message.receiverID = #{userID} and (Message.type = 1 or Message.type = 4 or Message.type = 5 or Message.type = 6 or Message.type = 7);
     </select>
 
     <select id="getConsultMessageByUserID" parameterType="String" resultMap="ConsultMessageMap">
@@ -65,7 +65,7 @@
 
     <insert id="addMessage" parameterType="Message">
         insert into Message (senderID, receiverID, viewed, content, type, sendTime, commentID)
-        values (#{senderID}, #{receiverID}, #{viewed}, #{content}, #{type}, #{sendTime}, #{commentID});
+        values (#{senderID}, #{receiverID}, #{viewed}, #{content}, #{type}, now(), #{commentID});
     </insert>
 
 </mapper>

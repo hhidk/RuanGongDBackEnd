@@ -61,4 +61,37 @@ public class ReportController
         }
     }
 
+    @PostMapping("/approveReport")
+    public int approveReport(@RequestParam("reportID") int reportID) {
+        try {
+            return reportService.approveReport(reportID);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @PostMapping("/rejectReport")
+    public int rejectReport(@RequestParam("reportID") int reportID, @RequestParam("msgContent") String msgContent) {
+        try {
+            return reportService.rejectReport(reportID, msgContent);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @PostMapping("/deleteReport")
+    public int deleteReport(@RequestParam("reportID") int reportID) {
+        try {
+            return reportService.deleteReport(reportID);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
 }
