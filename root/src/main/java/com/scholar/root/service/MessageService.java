@@ -7,7 +7,6 @@ import com.scholar.root.pojo.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,14 +39,12 @@ public class MessageService
 
         Message originalMessage = messageMapper.getMessageByMessageID(messageID);
         Message replyMessage = new Message();
-        Date date = new Date();
 
         replyMessage.setSenderID(originalMessage.getReceiverID());
         replyMessage.setReceiverID(originalMessage.getSenderID());
         replyMessage.setViewed(false);
         replyMessage.setContent(content);
         replyMessage.setType(2);
-        replyMessage.setSendTime(date.toString());
         replyMessage.setCommentID(originalMessage.getMessageID());
 
         return messageMapper.addMessage(replyMessage);

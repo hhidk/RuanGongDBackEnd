@@ -4,6 +4,7 @@ import com.scholar.root.dto.ArticleReport;
 import com.scholar.root.dto.CommentReport;
 import com.scholar.root.dto.GateReport;
 import com.scholar.root.dto.PostReport;
+import com.scholar.root.pojo.Report;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -21,4 +22,8 @@ public interface ReportMapper
     List<CommentReport> getCommentReportByReportID(@Param("reportID") int reportID);
 
     List<PostReport> getPostReportByReportID(@Param("reportID") int reportID);
+
+    Report getReportByReportID(@Param("reportID") int reportID);
+
+    int deleteReportByReportID(@Param("reportID") int reportID);
 }

@@ -9,7 +9,7 @@
 
         <id column="reportID" property="reportID"/>
 
-        <result column="literatureID" property="articleID"/>
+        <result column="reporteeID" property="articleID"/>
         <result column="title" property="articleTitle"/>
         <result column="status" property="hasRead"/>
         <result column="content" property="reportContent"/>
@@ -91,11 +91,10 @@
     </resultMap>
 
     <select id="getArticleReportByReportID" parameterType="int" resultMap="ArticleReportMap">
-        select Literature.literatureID, Literature.title, Report.status, Report.content, Report.reportID,
+        select Report.reporteeID, Report.title, Report.status, Report.content, Report.reportID,
                User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Literature, User
-        where Report.reportID = #{reportID} and Report.type = 1 and Literature.literatureID = Report.reporteeID
-              and User.userID = Report.reporterID;
+        where Report.reportID = #{reportID} and Report.type = 1 and User.userID = Report.reporterID;
     </select>
 
     <select id="getGateReportByReportID" parameterType="int" resultMap="GateReportMap">
@@ -120,5 +119,17 @@
         from Report, Post, User
         where Report.reportID = #{reportID} and Report.type = 3 and Post.postID = Report.reporteeID and User.userID = Report.reporterID;
     </select>
+
+    <select id="getReportByReportID" parameterType="int" resultType="Report">
+        select *
+        from Report
+        where Report.reportID = #{reportID};
+    </select>
+
+    <delete id="deleteReportByReportID" parameterType="int">
+        delete
+        from Report
+        where reportID = #{reportID};
+    </delete>
 
 </mapper>
