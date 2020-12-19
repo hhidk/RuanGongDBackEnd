@@ -6,7 +6,7 @@ import java.util.List;
 public class Post {
     int postId;
     List<String> tags;
-    int citeId;
+    String citeId;
     List<Comment> comments;
     private String userId;
     private String title;
@@ -87,11 +87,11 @@ public class Post {
         return this;
     }
 
-    public int getCiteId() {
+    public String getCiteId() {
         return citeId;
     }
 
-    public Post setCiteId(int citeId) {
+    public Post setCiteId(String citeId) {
         this.citeId = citeId;
         return this;
     }

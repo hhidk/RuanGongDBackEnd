@@ -53,7 +53,7 @@ public class PostController {
         String content = parseContent(form);
         int sectorId = parseSectorId(form);
         List<String> tags = (List<String>) form.get("postTags");
-        int citeId = Integer.parseInt((String) form.get("citeId"));
+        String citeId = (String) form.get("citeId");
         Post post = new Post();
         post = post.setUserId(userId)
                 .setCiteId(citeId)

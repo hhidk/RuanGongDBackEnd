@@ -17,7 +17,6 @@ public class PostRepositoryTests {
     @BeforeEach
     void preparePost() {
         Post post = new Post()
-                .setCiteId(-1)
                 .setContent("bbb")
                 .setSectorId(1)
                 .setUserId("9474EA29")
@@ -36,7 +35,6 @@ public class PostRepositoryTests {
     @Test
     void testModify() {
         Post post = new Post()
-                .setCiteId(-1)
                 .setContent("aaa")
                 .setSectorId(1)
                 .setUserId("9474EA29")
@@ -55,7 +53,7 @@ public class PostRepositoryTests {
     void testGet() {
         Post post = postRepository.get(prePostId);
         String tags = postRepository.getTags(post.getPostId());
-        Assert.isTrue(post.getCiteId() == -1, "failed in citeId");
+        Assert.isNull(post.getCiteId(), "failed in citeId");
         Assert.isTrue(post.getPostId() == prePostId, "failed in postId");
         Assert.isTrue(post.getContent().equals("bbb"), "failed in content");
         Assert.isTrue(post.getTitle().equals("QTitle"), "failed in title");
