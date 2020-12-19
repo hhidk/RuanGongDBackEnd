@@ -11,4 +11,10 @@
         where postID = #{postID};
     </delete>
 
+    <select id="getPostContentByPostID" parameterType="int" resultType="String">
+        select postContent
+        from Post
+        where postID = #{postID};
+    </select>
+
 </mapper>
