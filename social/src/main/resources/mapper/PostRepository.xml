@@ -2,33 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.scholar.social.repository.PostRepository">
-    <insert id="report"
+    <insert id="put"
             parameterType="com.scholar.social.util.Post"
             useGeneratedKeys="true"
-            keyProperty="postID"
+            keyProperty="postId"
     >
         INSERT INTO Post(
         referenceDocID,
         postContent,
         postTime,
         posterID,
-        title
+        title,
+        sectorID
         )
         VALUES (
         #{citeId},
         #{content},
         now(),
         #{userId},
-        #{title}
+        #{title},
+        #{sectorId}
         )
     </insert>
-    <select id="get" parameterType="com.scholar.social.util.Post">
+    <select id="get" resultType="com.scholar.social.util.Post">
         SELECT postID         as postId,
                referenceDocID as citeId,
                postContent    as content,
                postTime       as createTime,
                sectorID       as sectorId,
-               title          as title
+               title          as title,
+               posterID       as userId,
+               viewTimes      as viewNum
         FROM Post
         WHERE postId = #{postId}
     </select>
@@ -41,7 +45,7 @@
             postID = #{postId}
         </where>
     </update>
-    <select id="getTags">
+    <select id="getTags" resultType="java.lang.String">
         SELECT tags
         FROM Post
         WHERE postID = #{postId}
@@ -64,19 +68,22 @@
                postContent    as content,
                postTime       as createTime,
                sectorID       as sectorId,
-               title          as title
+               title          as title,
+               posterID       as userId,
+               viewTimes      as viewNum
         FROM Post
         WHERE sectorID = #{sectorId}
-          AND (title LIKE CONCAT(CONCAT('%', #{keyword}), '%') OR tags LIKE CONCAT(CONCAT('%', #{text}), '%'))
+          AND (title LIKE CONCAT(CONCAT('%', #{keyword}), '%') OR tags LIKE CONCAT(CONCAT('%', #{keyword}), '%'))
     </select>
     <select id="getByUserId" resultType="com.scholar.social.util.Post">
-
         SELECT postID         as postId,
                referenceDocID as citeId,
                postContent    as content,
                postTime       as createTime,
                sectorID       as sectorId,
-               title          as title
+               title          as title,
+               posterID       as userId,
+               viewTimes      as viewNum
         FROM Post
         WHERE posterID = #{userId}
     </select>

@@ -34,7 +34,8 @@ public class PostService {
     }
 
     public int put(Post post) {
-        int postId = postRepository.put(post);
+        postRepository.put(post);
+        int postId = post.getPostId();
         postRepository.putTags(postId, String.join(";", post.getTags()));
         int sectorId = post.getSectorId();
         int tot = sectorRepository.getTot(sectorId) + 1;

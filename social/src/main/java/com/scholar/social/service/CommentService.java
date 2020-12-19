@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
-    private ReportRepository reportRepository;
+    private final ReportRepository reportRepository;
 
     @Autowired
-    public CommentService(CommentRepository commentRepository) {
+    public CommentService(CommentRepository commentRepository,
+                          ReportRepository reportRepository) {
         this.commentRepository = commentRepository;
+        this.reportRepository = reportRepository;
     }
 
     public boolean put(String userId, int postId, String content) {
