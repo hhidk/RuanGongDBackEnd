@@ -20,13 +20,13 @@ import java.util.Map;
 @Service
 public class SearchService {
     @Autowired
-    RestHighLevelClient client;
+    RestHighLevelClient restHighLevelClient;
 
     private static final Logger log = LoggerFactory.getLogger(SearchService.class);
 
 
     public Map<String, Object> advancedSearch(List<SearchItem> list, int start, int end) {
-// TODO: 12/15/20  
+        // TODO: 12/15/20
         return null;
     }
 

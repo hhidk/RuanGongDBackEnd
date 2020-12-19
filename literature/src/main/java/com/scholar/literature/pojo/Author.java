@@ -3,8 +3,11 @@ package com.scholar.literature.pojo;
 
 
 
+import com.carrotsearch.hppc.HashOrderMixing;
+
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 
 public class Author implements Serializable {
@@ -18,41 +21,26 @@ public class Author implements Serializable {
     private List<Pub> pubs;
     private List<Tag> tags;
 
-    public void setH_index(int h_index) {
-        this.h_index = h_index;
+    public Author(Map<String,Object> map){
+        Object obj;
+        obj = map.get("n_citation");
+        n_citation = obj == null ? 0 : (Integer)obj;
+        obj = map.get("h_index");
+        h_index = obj == null ? 0 : (Integer)obj;
+        obj = map.get("n_pubs");
+        n_pubs = obj == null ? 0 : (Integer)obj;
+        id = (String)map.get("id");
+        name = (String)map.get("name");
+        orgs= (String)map.get("id");
+        position = (String) map.get("position");
+        pubs = (List<Pub>) map.get("pubs");
+        tags = (List<Tag>) map.get("tags");
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public void setN_citation(int n_citation) {
-        this.n_citation = n_citation;
-    }
 
-    public void setN_pubs(int n_pubs) {
-        this.n_pubs = n_pubs;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public void setOrgs(String orgs) {
-        this.orgs = orgs;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public void setPubs(List<Pub> pubs) {
-        this.pubs = pubs;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
 
     public int getH_index() {
         return h_index;

@@ -19,7 +19,7 @@ public class AuthorController {
     @Autowired
     AuthorService authorService;
 
-    @RequestMapping(value = "/getAuthors",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/getAuthors",produces = "application/json;charset=UTF-8")
     public Map<String,Object> getAuthors (@RequestParam String name){
         try {
             return null; // authorService.getAuthors(name);

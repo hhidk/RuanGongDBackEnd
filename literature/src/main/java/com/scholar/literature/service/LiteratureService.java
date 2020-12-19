@@ -27,23 +27,25 @@ public class LiteratureService {
 
     private static final Logger log = LoggerFactory.getLogger(LiteratureService.class);
 
-
-    public Literature getLiterature(String literatureID) throws IOException {
+    public Map<String,Object> getLiterature(String literatureID) throws IOException {
         // TODO: 12/15/20
         log.info("In func: getLiterature Trying to get literature {}",literatureID);
         try {
             GetRequest getRequest = new GetRequest("literature",literatureID);
             GetResponse getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
-            Map<String,Object> source ;
-            if (getResponse.isExists()){
+            Map<String,Object> map = getResponse.getSource();
+            if (map==null){
+                log.info("source is null");
+            }if (getResponse.isExists()){
                 log.info("In func: literature that id="+literatureID+"is found");
-                return  new Literature(getResponse.getSourceAsMap());
+                return new Literature(map).retGetmap();
             }else {
                 log.info("In func: literature that id="+literatureID+"is not found");
                 return null;
             }
         }catch (Exception e){
             log.error("Error getting literature id="+literatureID);
+            e.printStackTrace();
             return null;
         }
     }
@@ -53,8 +55,7 @@ public class LiteratureService {
         // TODO: 12/15/20
         log.info("In func:editLiterature : Trying to update url {}",literatureID);
         try {  Map<String,Object>jsonMap =new HashMap<>();
-            List<String>l=List.of(url);
-            jsonMap.put("url",l);
+            jsonMap.put("pdf",url);
             UpdateRequest updateRequest = new UpdateRequest("literature",literatureID).doc(jsonMap);
             UpdateResponse response = restHighLevelClient.update(updateRequest,RequestOptions.DEFAULT);
             if (response.getResult() ==DocWriteResponse.Result.UPDATED){
@@ -75,10 +76,19 @@ public class LiteratureService {
     public boolean addLiterature(Literature obj) {
         // TODO: 12/15/20
 
-
-
         return false;
     }
+
+    public Map<String ,Object>getRelation(String venue){
+        // TODO: 12/19/20
+        return null;
+    }
+
+    public Map<String ,Object>deleteLiterature(String literatureID){
+        // TODO: 12/19/20
+        return null;
+    }
+
 
     public List<Literature> getMyLiterature(String userID) {
         // TODO: 12/15/20

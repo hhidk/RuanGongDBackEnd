@@ -1,9 +1,17 @@
 package com.scholar.literature.pojo;
 
+import java.util.Map;
+
 public class LitAuthor {
     String name;
     String id;
     String orgs;
+public LitAuthor(Map<String,Object> map){
+    name=(String) map.get("name");
+    id=(String)map.get("id");
+    orgs=(String) map.get("orgs");
+}
+
 
     public void setName(String name) {
         this.name = name;
