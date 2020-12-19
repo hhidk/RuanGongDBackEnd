@@ -11,4 +11,10 @@
         values(#{content}, #{postID}, #{userID}, #{type}, current_time())
     </insert>
 
+    <select id="getCommentByLiteratureID" parameterType="String" resultType="Comment">
+        select *
+        from Comment
+        where type = 1 and postID = #{literatureID}
+    </select>
+
 </mapper>

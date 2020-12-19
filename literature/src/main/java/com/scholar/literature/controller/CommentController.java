@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class CommentController {
@@ -23,6 +25,16 @@ public class CommentController {
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    @RequestMapping("/getComment")
+    public List<Comment> getComment(String literatureID) {
+        try {
+            return commentService.getComment(literatureID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
