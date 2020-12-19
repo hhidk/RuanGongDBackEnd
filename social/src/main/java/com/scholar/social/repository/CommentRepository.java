@@ -10,14 +10,14 @@ import java.util.List;
 @Repository
 @Mapper
 public interface CommentRepository {
-    void insert(@Param("userId") String userId, @Param("postId") int postId,
+    void insert(@Param("userId") String userId, @Param("postId") String postId,
                 @Param("content") String content);
 
     void delete(@Param("userId") String userId, @Param("commentId") int commentId);
 
     Comment select(@Param("commentId") int commentId);
 
-    List<Comment> selectByPostId(@Param("postId") int postId);
+    List<Comment> selectByPostId(@Param("postId") String postId);
 
     void deleteByPostId(@Param("postId") int postId);
 }

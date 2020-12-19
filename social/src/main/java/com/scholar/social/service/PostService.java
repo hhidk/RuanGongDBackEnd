@@ -88,7 +88,7 @@ public class PostService {
 
     private Post getFullPostInfo(Post post) {
         int postId = post.getPostId();
-        post.setComments(commentRepository.selectByPostId(postId));
+        post.setComments(commentRepository.selectByPostId(String.valueOf(postId)));
         String tags = postRepository.getTags(postId);
         post.setTags(Arrays.asList(tags.split(";")));
         return post;

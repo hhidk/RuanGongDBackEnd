@@ -16,9 +16,10 @@
                content       as content
         FROM Comment
         WHERE postID = #{postId}
+          AND type = 2
     </select>
     <delete id="deleteByPostId">
-        DELETE FROM Comment WHERE postID = #{postId}
+        DELETE FROM Comment WHERE postID = #{postId} AND type = 2
     </delete>
     <select id="select" resultType="com.scholar.social.util.Comment">
         SELECT postCommentID as id,
@@ -27,5 +28,6 @@
                content       as content
         FROM Comment
         WHERE postCommentID = #{commentID}
+          AND type = 2
     </select>
 </mapper>

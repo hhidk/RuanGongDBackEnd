@@ -17,7 +17,7 @@ public class CommentService {
     }
 
     public boolean put(String userId, int postId, String content) {
-        commentRepository.insert(userId, postId, content);
+        commentRepository.insert(userId, String.valueOf(postId), content);
         return true;
     }
 
