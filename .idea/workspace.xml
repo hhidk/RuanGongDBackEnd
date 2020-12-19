@@ -5,15 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64213711-cf03-432b-8017-2bf67046e3b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/bean/ElasticConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/literature/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/config/ElasticSearchConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/controller/AuthorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/controller/AuthorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/controller/LiteratureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/controller/LiteratureController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/controller/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/pojo/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/pojo/Author.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/pojo/LitAuthor.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/pojo/LitAuthor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/pojo/Literature.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/pojo/Literature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/service/AuthorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/service/AuthorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/service/LiteratureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/service/LiteratureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/service/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/service/SearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/literature/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/literature/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/hhidk/RuanGongDBackEnd" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1lSzL0JpEw87K7DTkK9cn4i8NM3" />
   <component name="ProjectViewState">
@@ -22,19 +50,25 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mysql" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../21push-a" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/mysql" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.LiteratureApplication">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -46,6 +80,71 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LiteratureApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="literature" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scholar.literature.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scholar.literature" />
+      <option name="MAIN_CLASS_NAME" value="com.scholar.literature.LiteratureApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LiteratureApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="literature" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scholar.literature.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scholar.literature" />
+      <option name="MAIN_CLASS_NAME" value="com.scholar.literature.LiteratureApplicationTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LiteratureApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="literature" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.scholar.literature.LiteratureApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfileApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="profile" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.scholar.profile.ProfileApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RootApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="root" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.scholar.root.RootApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SocialApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="social" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.scholar.social.SocialApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.LiteratureApplicationTests" />
+        <item itemvalue="JUnit.LiteratureApplicationTests.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -56,6 +155,10 @@
       <option name="presentableId" value="Default" />
       <updated>1607605223120</updated>
       <workItem from="1607605226962" duration="3276000" />
+      <workItem from="1608012864053" duration="55590000" />
+      <workItem from="1608185752972" duration="13157000" />
+      <workItem from="1608351662066" duration="6007000" />
+      <workItem from="1608375167447" duration="15491000" />
     </task>
     <servers />
   </component>
@@ -72,5 +175,18 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/literature/src/main/java/com/scholar/literature/pojo/Literature.java</url>
+          <line>21</line>
+          <properties field="keywords" class="com.scholar.literature.pojo.Literature" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
