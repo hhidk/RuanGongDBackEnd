@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,6 +41,12 @@ public class SectorService {
     }
 
     public Map<Integer, String> getSectorNameMap() {
-        return sectorRepository.getNameMap();
+        List<Sector> sectorList = sectorRepository.getAll();
+        Map<Integer, String> nameMap = new HashMap<>();
+        for (Sector s :
+                sectorList) {
+            nameMap.put(s.getId(), s.getName());
+        }
+        return nameMap;
     }
 }
