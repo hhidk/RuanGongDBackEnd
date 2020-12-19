@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scholar.literature.mapper.CollectMapper">
+
+    <insert id="addCollect" parameterType="String">
+        insert
+        into UserLiterature(userID, literatureID, literatureTitle, collectTime)
+        values(#{userID}, #{literatureID}, #{literatureTitle}, current_date() )
+    </insert>
+
+    <delete id="deleteCollect" parameterType="String">
+        delete
+        from UserLiterature
+        where userID = #{userID} and literatureID = #{literatureID}
+    </delete>
+
+</mapper>
