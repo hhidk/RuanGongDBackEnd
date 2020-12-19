@@ -52,10 +52,31 @@ public class GateController {
         }
     }
 
-    @RequestMapping("getApplyStatus")
+    @RequestMapping("/getApplyStatus")
     public int getApplyStatus(@RequestParam("userID") String userID) {
         try {
-            return getApplyStatus(userID);
+            return gateService.getApplyStatus(userID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @RequestMapping("/reportGate")
+    public int reportGate(@RequestParam("userID") String userID, @RequestParam("authorID") String authorID,
+                          @RequestParam("content") String content) {
+        try {
+            return gateService.reportGate(userID, authorID, content);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @RequestMapping("/getIntroFollowStatus")
+    public int getIntroFollowStatus(@RequestParam("followerID") String followerID, @RequestParam("userID") String userID) {
+        try {
+            return gateService.getIntroFollowStatus(followerID, userID);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

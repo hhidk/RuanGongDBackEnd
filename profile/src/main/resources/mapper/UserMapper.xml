@@ -72,4 +72,10 @@
         where userID = #{userID}
     </select>
 
+    <select id="checkIsFollowed" parameterType="String" resultType="String">
+        select userID
+        from Follow
+        where followerID = #{followerID} and userID = #{userID}
+    </select>
+
 </mapper>

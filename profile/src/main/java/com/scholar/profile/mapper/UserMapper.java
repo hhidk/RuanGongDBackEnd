@@ -69,4 +69,6 @@ public interface UserMapper {
      */
     String checkIsAuthor(String userID);
 
+    String checkIsFollowed(String followerID, String userID);
+
 }

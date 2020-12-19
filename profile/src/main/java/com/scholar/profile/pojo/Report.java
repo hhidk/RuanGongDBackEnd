@@ -8,8 +8,12 @@ public class Report {
     private int type;
     private String content;
     private int status;
-    private String adminID;
-    private String reply;
     private String reporterID;
     private String reporteeID;
+
+    public Report(String reporterID, String reporteeID, String content) {
+        this.reporterID = reporterID;
+        this.reporteeID = reporteeID;
+        this.content = content;
+    }
 }

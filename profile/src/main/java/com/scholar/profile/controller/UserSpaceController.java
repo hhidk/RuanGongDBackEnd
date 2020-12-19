@@ -1,5 +1,6 @@
 package com.scholar.profile.controller;
 
+import com.scholar.profile.dto.LiteraturePreview;
 import com.scholar.profile.dto.UserPreview;
 import com.scholar.profile.service.UserSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,16 @@ public class UserSpaceController {
     public List<UserPreview> getFollowersList(@RequestParam("userID") String userID) {
         try {
             return userSpaceService.getFollowersList(userID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @RequestMapping("/getFavorLiteratures")
+    public List<LiteraturePreview> getFavorLiteratures(@RequestParam("userID") String userID) {
+        try {
+            return userSpaceService.getFavorLiteratures(userID);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
