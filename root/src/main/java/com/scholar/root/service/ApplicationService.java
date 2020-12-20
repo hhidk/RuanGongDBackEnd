@@ -35,7 +35,7 @@ public class ApplicationService
         message.setSenderID(application.getUserID());
         message.setReceiverID(application.getUserID());
         message.setViewed(false);
-        message.setContent(application.getContent());
+        message.setContent(application.getRealName());
         message.setType(6);
         messageMapper.addMessage(message);
 
@@ -49,7 +49,7 @@ public class ApplicationService
         message.setSenderID(application.getUserID());
         message.setReceiverID(application.getUserID());
         message.setViewed(false);
-        message.setContent(application.getContent());
+        message.setContent(application.getRealName());
         message.setType(7);
         messageMapper.addMessage(message);
 

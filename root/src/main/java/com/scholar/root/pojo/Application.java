@@ -11,4 +11,5 @@ public class Application
     String emailAddress;
     String content;
     int status;
+    String realName;
 }
