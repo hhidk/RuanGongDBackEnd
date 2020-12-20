@@ -27,7 +27,7 @@
                commentTime   as time,
                content       as content
         FROM Comment
-        WHERE postCommentID = #{commentID}
+        WHERE postCommentID = #{commentId}
           AND type = 2
     </select>
 </mapper>

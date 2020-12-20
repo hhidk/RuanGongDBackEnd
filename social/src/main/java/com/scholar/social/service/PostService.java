@@ -48,7 +48,7 @@ public class PostService {
         int sectorId = post.getSectorId();
         int tot = sectorRepository.getTot(sectorId) - 1;
         sectorRepository.setTot(sectorId, tot);
-        commentRepository.deleteByPostId(postId);
+        commentRepository.deleteByPostId(String.valueOf(postId));
         postRepository.delete(postId);
         return true;
     }

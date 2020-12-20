@@ -19,5 +19,5 @@ public interface CommentRepository {
 
     List<Comment> selectByPostId(@Param("postId") String postId);
 
-    void deleteByPostId(@Param("postId") int postId);
+    void deleteByPostId(@Param("postId") String postId);
 }
