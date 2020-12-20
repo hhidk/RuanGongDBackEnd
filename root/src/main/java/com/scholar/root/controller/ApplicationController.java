@@ -1,11 +1,14 @@
 package com.scholar.root.controller;
 
+import com.scholar.root.dto.GateApplication;
 import com.scholar.root.service.ApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -34,6 +37,17 @@ public class ApplicationController
         catch (Exception e)  {
             e.printStackTrace();
             return 0;
+        }
+    }
+
+    @PostMapping("/getAllGateApplication")
+    public List<GateApplication> getAllGateApplication() {
+        try {
+            return applicationService.getAllGateApplication();
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return null;
         }
     }
 

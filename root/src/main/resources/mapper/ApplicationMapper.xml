@@ -5,10 +5,37 @@
 
 <mapper namespace="com.scholar.root.mapper.ApplicationMapper">
 
+    <resultMap id="GateApplicationMap" type="GateApplication">
+        <!-- id为主键 -->
+        <id column="applicationID" property="applicationID"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="userID" property="userID"/>
+        <result column="username" property="userName"/>
+        <result column="image" property="imgPath"/>
+        <result column="userDegree" property="userDegree"/>
+        <result column="authorID" property="authorID"/>
+        <result column="emailAddress" property="emailAddress"/>
+        <result column="content" property="content"/>
+        <result column="status" property="status"/>
+        <result column="realName" property="realName"/>
+    </resultMap>
+
     <select id="getApplicationByApplicationID" parameterType="int" resultType="Application">
         select *
         from Application
         where applicationID = #{applicationID};
+    </select>
+
+    <update id="setApplicationStatus" parameterType="Map">
+        update Application
+        set status = #{status}
+        where applicationID = #{application};
+    </update>
+
+    <select id="getAllGateApplication" resultMap="GateApplicationMap">
+        select applicationID, User.userID, username, image, userDegree, Application.authorID, User.emailAddress, content, status, realName
+        from Application, User
+        where User.userID = Application.userID;
     </select>
 
 </mapper>
