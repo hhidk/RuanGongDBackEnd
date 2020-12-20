@@ -22,8 +22,17 @@ public class LiteratureController {
     @Autowired
     LiteratureService literatureService;
 
-    @PostMapping(value = "/testget", produces = "application/json;charset=UTF-8")
-    public Map<String, Object> testget(@RequestBody String literatureID) {
+    @PostMapping(value = "/getRelation")
+    public Map<String, Object> getRelation(@RequestParam String venue) {
+        try {
+            return literatureService.getRelation(venue);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    @PostMapping(value = "/getLiterature")
+    public Map<String, Object> getLiterature(@RequestParam String literatureID) {
         try {
             return literatureService.getLiterature(literatureID);
         } catch (Exception e) {
@@ -31,28 +40,18 @@ public class LiteratureController {
             return null;
         }
     }
-    @PostMapping(value = "/getLiterature", produces = "application/json;charset=UTF-8")
-    public Map<String, Object> getLiterature(@RequestBody Map<String ,Object> body) {
-        log.info("body is {}",body);
-        try {
-            return literatureService.getLiterature((String) body.get("literatureID"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
-    @PostMapping(value = "/editLiterature", produces = "application/json;charset=UTF-8")
-    public boolean editLiterature(@RequestBody Map<String ,Object> body) {
+    @PostMapping(value = "/editLiterature")
+    public boolean editLiterature(@RequestParam String Lid,@RequestParam String url,@RequestParam String userID) {
         try {
-            return literatureService.editLiterature((String) body.get("literatureID"),(String)body.get("url"));
+            return literatureService.editLiterature(Lid,url);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
-    @PostMapping(value = "/addLiterature", produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/addLiterature")
     public boolean addLiterature(@RequestBody Literature literature){
         try {
             return literatureService.addLiterature(literature);
@@ -62,8 +61,18 @@ public class LiteratureController {
         }
     }
 
-    @PostMapping(value = "/getMyLiterature", produces = "application/json;charset=UTF-8")
-    public List <Literature> getMyLiteratureList(@RequestParam String userID){
+    @PostMapping(value = "/deleteLiterature")
+    public boolean deleteLiterature(@RequestParam String literatureID){
+        try {
+           return literatureService.deleteLiterature(literatureID);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @PostMapping(value = "/getMyLiterature")
+    public List <Map<String,Object>> getMyLiteratureList(@RequestParam String userID){
         try {
             return literatureService.getMyLiterature(userID);
         }catch (Exception e){

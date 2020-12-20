@@ -12,20 +12,34 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(value = "*",maxAge = 3600)
+@CrossOrigin(value = "*", maxAge = 3600)
 public class AuthorController {
     private static final Logger log = LoggerFactory.getLogger(AuthorController.class);
 
     @Autowired
     AuthorService authorService;
 
-    @PostMapping(value = "/getAuthors",produces = "application/json;charset=UTF-8")
-    public Map<String,Object> getAuthors (@RequestParam String name){
+    @PostMapping(value = "/getRelatedAuthor")
+    public List<String> getRelatedAuthor(@RequestParam String venue) {
         try {
-            return null; // authorService.getAuthors(name);
-        }catch (Exception e){
+            return authorService.getRelatedAuthor(venue);
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
+    @PostMapping(value = "/getAuthors")
+    public List<Map<String, Object>> getAuthors(@RequestParam String name) {
+        try {
+            return authorService.getAuthors(name);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }
+
+

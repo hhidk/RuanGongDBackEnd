@@ -6,6 +6,7 @@ package com.scholar.literature.pojo;
 import com.carrotsearch.hppc.HashOrderMixing;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,10 +34,27 @@ public class Author implements Serializable {
         name = (String)map.get("name");
         orgs= (String)map.get("id");
         position = (String) map.get("position");
-        pubs = (List<Pub>) map.get("pubs");
-        tags = (List<Tag>) map.get("tags");
+        loadPub(map);
+        loadTag(map);
     }
-
+    private void loadPub(Map<String,Object>map){
+        this.pubs=new ArrayList<>();
+        ArrayList<Map<String,Object>> ls=(ArrayList<Map<String, Object>>) map.get("pubs");
+        if (ls!=null){
+            for (Map<String, Object> l : ls) {
+                pubs.add(new Pub(l));
+            }
+        }
+    }
+    private void loadTag(Map<String ,Object>map){
+        this.tags=new ArrayList<>();
+        ArrayList<Map<String,Object>> ls=(ArrayList<Map<String, Object>>) map.get("tags");
+        if (ls!=null){
+            for (Map<String, Object> l : ls) {
+                tags.add(new Tag(l));
+            }
+        }
+    }
 
 
 
