@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface ReportRepository {
     void report(@Param("type") int type, @Param("content") String content,
-                @Param("targetId") String targetId, @Param("reportId") String reporterId,
+                @Param("targetId") String targetId, @Param("reporterId") String reporterId,
                 @Param("title") String title);
 }

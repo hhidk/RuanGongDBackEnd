@@ -50,6 +50,7 @@ public class CommentRepositoryTests {
         comments = commentRepository.selectByPostId(String.valueOf(prePostId));
         Assert.isTrue(comments.size() == 3, "failed in getByPostId");
         Comment comment = comments.get(0);
+        Assert.isTrue(comment.getContent().equals("1"), "not content");
 //        long current = System.currentTimeMillis();
 //        Assert.isTrue(
 //                Math.abs(comment.getTime().getTime() - current) <= 1000 * 60

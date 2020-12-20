@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.scholar.social.repository.ReportRepository">
     <insert id="report">
-        INSERT INTO Report(type, content, status, reporteeID, reporterID)
-        VALUES (#{type}, #{content}, 0, #{targetId}, #{reporterId})
+        INSERT INTO Report(type, content, status, reporteeID, reporterID, title)
+        VALUES (#{type}, #{content}, 0, #{targetId}, #{reporterId}, #{title})
     </insert>
 </mapper>
