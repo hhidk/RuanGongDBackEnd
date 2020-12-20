@@ -15,7 +15,7 @@
         <result column="image" property="image"/>
         <result column="content" property="replyContent"/>
         <result column="commentTime" property="sendTime"/>
-        <result column="postContent" property="originalContent"/>
+        <result column="postID" property="postID"/>
     </resultMap>
 
     <resultMap id="ConsultMessageMap" type="ConsultMessage">
@@ -32,11 +32,10 @@
 
     <select id="getCommentMessageByUserID" parameterType="String" resultMap="CommentMessageMap">
         select Message.messageID, Message.viewed, User.userID, User.username,
-               User.image, Comment.content, Comment.commentTime, Post.postContent
-        from Message, User, Comment, Post
+               User.image, Comment.content, Comment.commentTime, Comment.postID
+        from Message, User, Comment
         where Message.receiverID = #{userID} and User.userID = Message.senderID and Message.type = 3
               and Message.commentID = Comment.postCommentID and Comment.type = 2
-              and Post.postID = Comment.postID;
     </select>
 
     <select id="getSystemMessageByUserID" parameterType="String" resultType="Message">

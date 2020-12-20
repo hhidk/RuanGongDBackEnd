@@ -3,6 +3,7 @@ package com.scholar.root.service;
 import com.scholar.root.dto.CommentMessage;
 import com.scholar.root.dto.ConsultMessage;
 import com.scholar.root.mapper.MessageMapper;
+import com.scholar.root.mapper.PostMapper;
 import com.scholar.root.pojo.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,15 @@ public class MessageService
 
     @Autowired
     private MessageMapper messageMapper;
+    @Autowired
+    private PostMapper postMapper;
 
     public List<CommentMessage> getCommentMsg(String userID) {
         List<CommentMessage> list = messageMapper.getCommentMessageByUserID(userID);
+        for(CommentMessage commentMessage : list)
+        {
+            commentMessage.setOriginalContent(postMapper.getPostContentByPostID(Integer.parseInt(commentMessage.getPostID())));
+        }
         return list;
     }
 

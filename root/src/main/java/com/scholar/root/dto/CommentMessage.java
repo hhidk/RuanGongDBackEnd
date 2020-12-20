@@ -13,4 +13,5 @@ public class CommentMessage
     String originalContent;
     String replyContent;
     boolean viewed;
+    String postID;
 }
