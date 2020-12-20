@@ -74,9 +74,9 @@ public class GateController {
     }
 
     @RequestMapping("/getIntroFollowStatus")
-    public int getIntroFollowStatus(@RequestParam("followerID") String followerID, @RequestParam("userID") String userID) {
+    public int getIntroFollowStatus(@RequestParam("userID") String userID, @RequestParam("authorID") String authorID) {
         try {
-            return gateService.getIntroFollowStatus(followerID, userID);
+            return gateService.getIntroFollowStatus(userID, authorID);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

@@ -74,6 +74,11 @@ public interface UserMapper {
      */
     String checkIsAuthor(String userID);
 
+    /**
+     * 查看门户是否已被认领
+     */
+    String checkIsUser(String authorID);
+
     String checkIsFollowed(String followerID, String userID);
 
 }

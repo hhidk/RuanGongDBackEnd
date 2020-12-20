@@ -50,11 +50,14 @@ public class GateService {
         return reportMapper.addReport(report);
     }
 
-    public int getIntroFollowStatus(String followerID, String userID) throws Exception {
-        String authorID = userMapper.checkIsAuthor(followerID);
-        String followAuthorID = userMapper.checkIsAuthor(userID);
-        if (authorID != null && authorID.equals(followAuthorID)) {
+    public int getIntroFollowStatus(String followerID, String authorID) throws Exception {
+        String myAuthorID = userMapper.checkIsAuthor(followerID);
+        String userID = userMapper.checkIsUser(authorID);
+        if (myAuthorID != null && myAuthorID.equals(authorID)) {
             return 0;
+        }
+        if (userID == null) {
+            return 3;
         }
         String flag = userMapper.checkIsFollowed(followerID, userID);
         if (flag != null) {

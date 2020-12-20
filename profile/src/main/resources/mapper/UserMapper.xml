@@ -78,6 +78,12 @@
         where userID = #{userID}
     </select>
 
+    <select id="checkIsUser" parameterType="String">
+        select userID
+        from User
+        where authorID = #{authorID}
+    </select>
+
     <select id="checkIsFollowed" parameterType="String" resultType="String">
         select userID
         from Follow
