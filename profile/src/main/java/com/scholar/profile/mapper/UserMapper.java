@@ -30,6 +30,11 @@ public interface UserMapper {
     String checkUserName(String username);
 
     /*
+     * 检查是否有重复邮箱
+     */
+    String checkEmailAddress(String emailAddress);
+
+    /*
     * 通过userID获取User信息
     */
     User getUserByUserID(String userID);

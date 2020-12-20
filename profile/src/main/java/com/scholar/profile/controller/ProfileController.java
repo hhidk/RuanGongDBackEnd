@@ -37,13 +37,32 @@ public class ProfileController {
     }
 
     @RequestMapping("/editProfile")
-    public int editProfile(@RequestParam("userID") String userID, @RequestParam("username") String username,
-                           @RequestParam("realName") String realName, @RequestParam("image") String image,
-                           @RequestParam("userDegree") int userDegree, @RequestParam("emailAddress") String emailAddress,
-                           @RequestParam("phoneNumber") String phoneNumber, @RequestParam("organization") String organization,
-                           @RequestParam("introduction") String introduction) {
+    public int editProfile(@RequestParam("userID") String userID, @RequestParam("realName") String realName,
+                           @RequestParam("image") String image, @RequestParam("userDegree") int userDegree,
+                           @RequestParam("phoneNumber") String phoneNumber,
+                           @RequestParam("organization") String organization) {
         try {
-            return profileService.editProfile(userID, username, realName, image, userDegree, emailAddress, phoneNumber, organization, introduction);
+            return profileService.editProfile(userID, realName, image, userDegree, phoneNumber, organization);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @RequestMapping("/editUserName")
+    public int editUserName(@RequestParam("userID") String userID, @RequestParam("username") String username) {
+        try {
+            return profileService.editUserName(userID, username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @RequestMapping("/editUserEmailAddress")
+    public int editUserEmailAddress(String userID, String emailAddress) {
+        try {
+            return profileService.editUserEmailAddress(userID, emailAddress);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
