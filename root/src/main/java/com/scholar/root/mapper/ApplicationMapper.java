@@ -1,18 +1,15 @@
 package com.scholar.root.mapper;
 
+import com.scholar.root.pojo.Application;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Map;
-
 @Mapper
 @Repository
-public interface UserMapper
+public interface ApplicationMapper
 {
 
-    int setNormalUser(@Param("userID") String userID);
-
-    int setAuthor(Map<String, Object> map);
+    Application getApplicationByApplicationID(@Param("applicationID") int applicationID);
 
 }
