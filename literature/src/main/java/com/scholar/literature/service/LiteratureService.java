@@ -157,4 +157,15 @@ public class LiteratureService {
         }
     }
 
+    public Map<String, Object> getStats(String literatureID) throws Exception {
+        List<Integer> collectTimes = new ArrayList<>();
+        // List<Integer> readTimes = new ArrayList<>();
+        List<Integer> commentTimes = new ArrayList<>();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("collectTimes", collectTimes);
+        map.put("commentTimes", commentTimes);
+        return map;
+    }
+
 }

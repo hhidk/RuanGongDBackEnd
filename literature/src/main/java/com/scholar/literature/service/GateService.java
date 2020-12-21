@@ -28,6 +28,7 @@ public class GateService {
         User user = userMapper.getUserByAuthorID();
         if (user == null) {
             // todo: 在author表中查找authorID对应的author，并把信息填入User类。
+            user = new User(0);
             log.info("In func: getAuthorInformation Trying to get literature {}", authorID);
             try {
                 GetRequest getRequest = new GetRequest("authors", authorID);
