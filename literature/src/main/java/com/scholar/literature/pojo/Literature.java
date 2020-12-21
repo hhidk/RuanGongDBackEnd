@@ -47,9 +47,16 @@ public class Literature {
 
     public Map<String, Object> retRelationMap() {
         Map<String, Object> ret = new HashMap<>();
+        List<Map<String, Object>> authorlist = new ArrayList<>();
         ret.put("literatureID", this.id);
         ret.put("title", this.title);
-        ret.put("authors", this.authors.stream().map(LitAuthor::getId).collect(Collectors.toList()));
+        for (LitAuthor author : authors) {
+            Map<String, Object> ma = new HashMap<>();
+            ma.put("authorID", author.getId());
+            ma.put("realName", author.getName());
+            authorlist.add(ma);
+        }
+        ret.put("authors",authorlist);
         ret.put("abstract", this.abstracts);
         ret.put("keyWord", this.keywords);
         ret.put("year", this.year);
