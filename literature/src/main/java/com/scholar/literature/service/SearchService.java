@@ -74,8 +74,6 @@ public class SearchService {
 
     private Map<String, Object> resultDeal(SearchResponse response) {
         try {
-
-
             int count = 0;
             int sum = 0;
             Map<String, Object> retmap = new HashMap<>();
@@ -110,7 +108,7 @@ public class SearchService {
                     //count times that years appear
                     tmp = years.get(y);
                     if (tmp == null) {
-                        years.put(y, 0);
+                        years.put(y, 1);
                     } else {
                         years.put(y, tmp + 1);
                     }
@@ -119,7 +117,7 @@ public class SearchService {
                     //count times that venues appear
                     tmp = venues.get(v);
                     if (tmp == null) {
-                        venues.put(v, 0);
+                        venues.put(v, 1);
                     } else {
                         venues.put(v, tmp + 1);
                     }
@@ -131,7 +129,7 @@ public class SearchService {
                     if (n != null) {
                         tmp = authors.get(n);
                         if (tmp == null) {
-                            authors.put(n, 0);
+                            authors.put(n, 1);
                         } else {
                             authors.put(n, tmp + 1);
                         }
@@ -150,7 +148,8 @@ public class SearchService {
             for (Map.Entry<String, Integer> list_author : list_authors) {
                 if (count < 5) {
                     Map<String, Object> tmp_author = new HashMap<>();
-                    tmp_author.put(list_author.getKey(), list_author.getValue());
+                    tmp_author.put("key",list_author.getKey());
+                    tmp_author.put("value", list_author.getValue());
                     author.add(tmp_author);
                     count++;
                 } else {
@@ -158,7 +157,8 @@ public class SearchService {
                 }
             }
             Map<String, Object> tmp_author = new HashMap<>();
-            tmp_author.put("others", sum);
+            tmp_author.put("key","others");
+            tmp_author.put("value", sum);
             author.add(tmp_author);
             sum = 0;
             count = 0;
@@ -167,7 +167,8 @@ public class SearchService {
             for (Map.Entry<String, Integer> ves : list_venue) {
                 if (count < 5) {
                     Map<String, Object> tmp_venue = new HashMap<>();
-                    tmp_venue.put(ves.getKey(), ves.getValue());
+                    tmp_venue.put("key", ves.getKey());
+                    tmp_venue.put("value",ves.getValue());
                     venue.add(tmp_venue);
                     count++;
                 } else {
@@ -175,7 +176,8 @@ public class SearchService {
                 }
             }
             Map<String, Object> tmp_venue = new HashMap<>();
-            tmp_venue.put("others", sum);
+            tmp_venue.put("key", "others");
+            tmp_venue.put("value",sum);
             venue.add(tmp_venue);
             sum = 0;
             count = 0;
@@ -184,7 +186,8 @@ public class SearchService {
             for (Map.Entry<Integer, Integer> entry : list_year) {
                 if (count < 5) {
                     Map<String, Object> tmp_year = new HashMap<>();
-                    tmp_year.put(entry.getKey().toString(), entry.getValue());
+                    tmp_year.put("key",entry.getKey().toString());
+                    tmp_year.put("value",entry.getValue());
                     year.add(tmp_year);
                     count++;
                 } else {
@@ -192,7 +195,8 @@ public class SearchService {
                 }
             }
             Map<String, Object> tmp_year = new HashMap<>();
-            tmp_year.put("others", sum);
+            tmp_year.put("key","others");
+            tmp_year.put("value", sum);
             year.add(tmp_year);
 
             litsort.sort(Comparator.comparing(Literature::getN_citation));
