@@ -6,10 +6,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 
 public class Literature {
     private String id;
@@ -220,7 +221,6 @@ public class Literature {
     public String getAbstracts() {
         return abstracts;
     }
-
 
 }
 /**

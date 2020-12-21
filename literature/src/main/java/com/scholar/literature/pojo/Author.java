@@ -1,10 +1,5 @@
-package com.scholar.literature.pojo;
-
-
-
-
+package com.scholar.literature.pojo
 import com.carrotsearch.hppc.HashOrderMixing;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,4 +90,5 @@ public class Author implements Serializable {
     public List<Tag> getTags() {
         return tags;
     }
+
 }

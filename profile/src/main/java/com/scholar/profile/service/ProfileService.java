@@ -29,22 +29,37 @@ public class ProfileService {
     }
 
     public UserPreview login(String ID, String password) throws Exception {
-        return userMapper.loginUser(ID);
+         return userMapper.loginUser(ID, password);
     }
 
-    public int editProfile(String userID, String username, String realName, String image, int userDegree,
-                           String emailAddress, String phoneNumber, String organization) throws Exception {
+    public int editProfile(String userID, String realName, String image, int userDegree,
+                           String phoneNumber, String organization) throws Exception {
+        User user = userMapper.getUserByUserID(userID);
+        user.setRealName(realName);
+        user.setImage(image);
+        user.setUserDegree(userDegree);
+        user.setPhoneNumber(phoneNumber);
+        user.setOrganization(organization);
+        userMapper.updateUser(user);
+        return 0;
+    }
+
+    public int editUserName(String userID, String username) throws Exception {
         User user = userMapper.getUserByUserID(userID);
         if (userMapper.checkUserName(username) != null) {
             return 1;
         }
         user.setUsername(username);
-        user.setRealName(realName);
-        user.setImage(image);
-        user.setUserDegree(userDegree);
+        userMapper.updateUser(user);
+        return 0;
+    }
+
+    public int editUserEmailAddress(String userID, String emailAddress) throws Exception {
+        User user = userMapper.getUserByUserID(userID);
+        if (userMapper.checkEmailAddress(emailAddress) != null) {
+            return 1;
+        }
         user.setEmailAddress(emailAddress);
-        user.setPhoneNumber(phoneNumber);
-        user.setOrganization(organization);
         userMapper.updateUser(user);
         return 0;
     }

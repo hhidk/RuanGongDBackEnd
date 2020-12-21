@@ -6,11 +6,12 @@ import lombok.Data;
 public class CommentReport
 {
     String commentContent;
-    String commentID;
+    String strCommentID;
+    int commentID;
     boolean hasRead;
     boolean isTrimmed;
     UserInfo reporterInfo;
     String reportContent;
-    String reportID;
+    int reportID;
     String trimmedContent;
 }

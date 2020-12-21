@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scholar.root.mapper.MessageMapper">
+
+    <resultMap id="CommentMessageMap" type="CommentMessage">
+        <!-- id为主键 -->
+        <id column="messageID" property="messageID"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="viewed" property="viewed"/>
+        <result column="userID" property="senderID"/>
+        <result column="username" property="senderUserName"/>
+        <result column="image" property="image"/>
+        <result column="content" property="replyContent"/>
+        <result column="commentTime" property="sendTime"/>
+        <result column="postID" property="postID"/>
+    </resultMap>
+
+    <resultMap id="ConsultMessageMap" type="ConsultMessage">
+        <!-- id为主键 -->
+        <id column="messageID" property="messageID"/>
+        <!-- column是数据库表的列名 , property是对应实体类的属性名 -->
+        <result column="userID" property="senderID"/>
+        <result column="username" property="senderUserName"/>
+        <result column="image" property="image"/>
+        <result column="sendTime" property="sendTime"/>
+        <result column="content" property="content"/>
+        <result column="viewed" property="viewed"/>
+    </resultMap>
+
+    <select id="getCommentMessageByUserID" parameterType="String" resultMap="CommentMessageMap">
+        select Message.messageID, Message.viewed, User.userID, User.username,
+               User.image, Comment.content, Comment.commentTime, Comment.postID
+        from Message, User, Comment
+        where Message.receiverID = #{userID} and User.userID = Message.senderID and Message.type = 3
+              and Message.commentID = Comment.postCommentID and Comment.type = 2
+    </select>
+
+    <select id="getSystemMessageByUserID" parameterType="String" resultType="Message">
+        select *
+        from Message
+        where Message.receiverID = #{userID} and (Message.type = 1 or Message.type = 4 or Message.type = 5 or Message.type = 6 or Message.type = 7);
+    </select>
+
+    <select id="getConsultMessageByUserID" parameterType="String" resultMap="ConsultMessageMap">
+        select Message.messageID, Message.viewed, Message.sendTime, Message.content, User.userID, User.username, User.image
+        from Message, User
+        where Message.receiverID = #{userID} and Message.type = 2 and User.userID = Message.senderID;
+    </select>
+
+    <delete id="deleteMessageByMessageID" parameterType="String">
+        delete
+        from Message
+        where Message.messageID = #{messageID};
+    </delete>
+
+    <select id="getMessageByMessageID" parameterType="String" resultType="Message">
+        select *
+        from Message
+        where Message.messageID = #{messageID};
+    </select>
+
+    <insert id="addMessage" parameterType="Message">
+        insert into Message (senderID, receiverID, viewed, content, type, sendTime, commentID)
+        values (#{senderID}, #{receiverID}, #{viewed}, #{content}, #{type}, now(), #{commentID});
+    </insert>
+
+</mapper>

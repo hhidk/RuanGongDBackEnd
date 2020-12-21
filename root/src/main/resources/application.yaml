@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/scholar?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    password: rBq5TScFUt796Wo34d
+    url: jdbc:mysql://185.133.193.251:3306/se?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
 
 mybatis:
-  type-aliases-package: com.scholar.root.pojo
+  type-aliases-package: com.scholar.root.pojo, com.scholar.root.dto
   mapper-locations: classpath:mapper/*.xml
