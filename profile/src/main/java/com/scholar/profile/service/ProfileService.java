@@ -24,6 +24,7 @@ public class ProfileService {
             return 3;
         String userID = UserUtil.generateUserID();
         User user = new User(userID, username, password);
+        user.setImage("http://185.133.193.251:8082/image/deadline2.jpg");
         userMapper.addUser(user);
         return 0;
     }

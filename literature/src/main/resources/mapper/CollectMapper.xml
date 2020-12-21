@@ -17,4 +17,10 @@
         where userID = #{userID} and literatureID = #{literatureID}
     </delete>
 
+    <select id="getCollectCount" parameterType="Map" resultType="int">
+        select count(*)
+        from UserLiterature
+        where literatureID = #{literatureID} and PERIOD_DIFF(date_format(now(), '%Y%m'), date_format(collectTime, '%Y%m')) = #{diff}
+    </select>
+
 </mapper>
