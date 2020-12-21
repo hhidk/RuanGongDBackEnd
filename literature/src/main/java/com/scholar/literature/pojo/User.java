@@ -33,7 +33,7 @@ public class User {
         this.password = null;
         this.phoneNumber = "未知";
         this.emailAddress = "未知";
-        this.image = "http://185.133.193.251:8082/image/deadline2.jpg";
+        this.image = "http://60.205.189.66:8082/image/deadline2.jpg";
         this.introduction = "暂无";
         this.userDegree = 0;
     }
