@@ -37,8 +37,7 @@ public class LiteratureService {
 
     private static final Logger log = LoggerFactory.getLogger(LiteratureService.class);
 
-    public Map<String, Object> getLiterature(String literatureID) throws IOException {
-        // TODO: 12/15/20
+    public Map<String, Object> getLiterature(String literatureID) {
         log.info("In func: getLiterature Trying to get literature {}", literatureID);
         try {
             GetRequest getRequest = new GetRequest("literature", literatureID);
