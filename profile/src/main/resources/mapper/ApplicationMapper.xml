@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.scholar.profile.mapper.ApplicationMapper">
+
+    <insert id="addApplication" parameterType="Application">
+        insert
+        into Application(userID, authorID, status, emailAddress, content)
+        values (#{userID}, #{authorID}, #{status}, #{emailAddress}, #{content})
+    </insert>
+
+    <select id="getUserPendingApplication" parameterType="String" resultType="Application">
+        select *
+        from Application
+        where userID = #{userID} and status = 0
+        limit 0,1
+    </select>
+
+    <select id="getUserRecentApplication" parameterType="String" resultType="Application">
+        select *
+        from Application
+        where userID = #{userID}
+        order by applicationID desc
+        limit 0,1
+    </select>
+
+</mapper>

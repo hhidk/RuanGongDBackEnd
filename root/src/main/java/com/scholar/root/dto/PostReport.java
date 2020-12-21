@@ -9,8 +9,9 @@ public class PostReport
     boolean isTrimmed;
     UserInfo reporterInfo;
     String reportContent;
-    String reportID;
-    String postID;
+    int reportID;
+    String strPostID;
+    int postID;
     String postContent;
     String trimmedContent;
 }
