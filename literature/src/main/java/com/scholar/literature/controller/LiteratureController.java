@@ -81,4 +81,14 @@ public class LiteratureController {
         }
     }
 
+    @RequestMapping("/getStats")
+    public Map<String, Object> getStats(@RequestParam("literatureID") String literatureID) {
+        try {
+            return literatureService.getStats(literatureID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

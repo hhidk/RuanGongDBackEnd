@@ -37,8 +37,7 @@ public class LiteratureService {
 
     private static final Logger log = LoggerFactory.getLogger(LiteratureService.class);
 
-    public Map<String, Object> getLiterature(String literatureID) throws IOException {
-        // TODO: 12/15/20
+    public Map<String, Object> getLiterature(String literatureID) {
         log.info("In func: getLiterature Trying to get literature {}", literatureID);
         try {
             GetRequest getRequest = new GetRequest("literature", literatureID);
@@ -156,6 +155,17 @@ public class LiteratureService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Map<String, Object> getStats(String literatureID) throws Exception {
+        List<Integer> collectTimes = new ArrayList<>();
+        // List<Integer> readTimes = new ArrayList<>();
+        List<Integer> commentTimes = new ArrayList<>();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("collectTimes", collectTimes);
+        map.put("commentTimes", commentTimes);
+        return map;
     }
 
 }
