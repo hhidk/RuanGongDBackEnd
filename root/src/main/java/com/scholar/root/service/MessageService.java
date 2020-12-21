@@ -4,7 +4,9 @@ import com.scholar.root.dto.CommentMessage;
 import com.scholar.root.dto.ConsultMessage;
 import com.scholar.root.mapper.MessageMapper;
 import com.scholar.root.mapper.PostMapper;
+import com.scholar.root.mapper.UserMapper;
 import com.scholar.root.pojo.Message;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ public class MessageService
     private MessageMapper messageMapper;
     @Autowired
     private PostMapper postMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     public List<CommentMessage> getCommentMsg(String userID) {
         List<CommentMessage> list = messageMapper.getCommentMessageByUserID(userID);
@@ -54,6 +58,22 @@ public class MessageService
 
         return messageMapper.addMessage(replyMessage);
 
+    }
+
+    public int sendSysMsg(String content) {
+        List<String> list = userMapper.getAllUser();
+        Message message = new Message();
+        message.setViewed(false);
+        message.setContent(content);
+        message.setType(1);
+        message.setCommentID(0);
+        for (String string : list)
+        {
+            message.setSenderID(string);
+            message.setReceiverID(string);
+            messageMapper.addMessage(message);
+        }
+        return 1;
     }
 
 }

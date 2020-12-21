@@ -72,4 +72,15 @@ public class MessageController
         }
     }
 
+    @PostMapping("/sendSysMsg")
+    public int sendSysMsg(@RequestParam("content") String content) {
+        try {
+            return messageService.sendSysMsg(content);
+        }
+        catch (Exception e)  {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
 }
