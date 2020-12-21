@@ -17,4 +17,10 @@
         where type = 1 and postID = #{literatureID}
     </select>
 
+    <select id="getCommentCount" parameterType="Map" resultType="int">
+        select count(*)
+        from Comment
+        where type = 1 and postID = #{literatureID} and PERIOD_DIFF(date_format(now(), '%Y%m'), date_format(collectTime, '%Y%m')) = #{diff}
+    </select>
+
 </mapper>
