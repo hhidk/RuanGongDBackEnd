@@ -19,7 +19,8 @@
 
     <select id="getAllUser" resultType="String">
         select userID
-        from User;
+        from User
+        where userIdentity = 1 or userIdentity = 0;
     </select>
 
 </mapper>
