@@ -25,4 +25,16 @@ public class User {
         this.realName = realName;
         this.organization = organization;
     }
+
+    public User(int init) {
+        this.userID = null;
+        this.userIdentity = 0;
+        this.username = "未认领";
+        this.password = null;
+        this.phoneNumber = "未知";
+        this.emailAddress = "未知";
+        this.image = "http://185.133.193.251:8082/image/deadline2.jpg";
+        this.introduction = "暂无";
+        this.userDegree = 0;
+    }
 }
