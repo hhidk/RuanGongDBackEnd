@@ -72,13 +72,13 @@
         where followerID = #{followerID} and userID = #{userID}
     </delete>
 
-    <select id="checkIsAuthor" parameterType="String">
+    <select id="checkIsAuthor" parameterType="String" resultType="String">
         select authorID
         from User
         where userID = #{userID}
     </select>
 
-    <select id="checkIsUser" parameterType="String">
+    <select id="checkIsUser" parameterType="String" resultType="String">
         select userID
         from User
         where authorID = #{authorID}

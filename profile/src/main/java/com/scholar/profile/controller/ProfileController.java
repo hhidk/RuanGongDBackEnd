@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @RestController
 @CrossOrigin
@@ -66,6 +69,29 @@ public class ProfileController {
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    @RequestMapping("/postImage")
+    public String postImage(MultipartFile image){
+        try{
+            String dirPath = "/ruangong/image";
+            File dir = new File(dirPath);
+            if(!dir.exists())
+                dir.mkdirs();
+
+            String imageName = image.getOriginalFilename();
+            String filePath = dirPath + "/" + imageName;
+            File savedImg = new File(filePath);
+            image.transferTo(savedImg);
+
+            String url = "http://185.133.193.251:8082/image/" + imageName;
+            return url;
+        }
+        catch (Exception e){
+            System.out.println("图片上传产生异常");
+            e.printStackTrace();
+            return null;
         }
     }
 
