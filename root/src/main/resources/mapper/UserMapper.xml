@@ -17,4 +17,9 @@
         where userID = #{userID};
     </update>
 
+    <select id="getAllUser" resultType="String">
+        select userID
+        from User;
+    </select>
+
 </mapper>
