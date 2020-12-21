@@ -5,6 +5,10 @@
 
 <mapper namespace="com.scholar.literature.mapper.ReportMapper">
 
-
+    <insert id="addReport" parameterType="Report">
+        insert
+        into Report(type, content, status, reporterID, reporteeID, title)
+        values(#{type}, #{content}, #{status}, #{reporterID}, #{reporteeID}, #{title})
+    </insert>
 
 </mapper>
