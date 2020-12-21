@@ -171,7 +171,6 @@ public class LiteratureService {
 
         for(int i = 11; i >= 0; i--)
         {
-            int tmp = (curMonth + 12 - i) % 12;
             param.put("diff", i);
             collectTimes.add(collectMapper.getCollectCount(param));
             commentTimes.add(commentMapper.getCommentCount(param));
