@@ -11,4 +11,10 @@
         where userID = #{userID};
     </update>
 
+    <update id="setAuthor" parameterType="Map">
+        update User
+        set authorID = #{authorID}, userIdentity = 1
+        where userID = #{userID};
+    </update>
+
 </mapper>

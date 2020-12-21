@@ -29,13 +29,11 @@ public class MessageService
     }
 
     public List<Message> getSystemMsg(String userID) {
-        List<Message> list = messageMapper.getSystemMessageByUserID(userID);
-        return list;
+        return messageMapper.getSystemMessageByUserID(userID);
     }
 
     public List<ConsultMessage> getConsultMsg(String userID) {
-        List<ConsultMessage> list = messageMapper.getConsultMessageByUserID(userID);
-        return list;
+        return messageMapper.getConsultMessageByUserID(userID);
     }
 
     public int deleteMsg(String messageID) {

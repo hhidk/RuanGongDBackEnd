@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -21,8 +22,17 @@ public class LiteratureController {
     @Autowired
     LiteratureService literatureService;
 
-    @PostMapping("/getLiterature")
-    public Literature getLiterature(@RequestParam String literatureID) {
+    @PostMapping(value = "/getRelation")
+    public Map<String, Object> getRelation(@RequestParam String venue) {
+        try {
+            return literatureService.getRelation(venue);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    @PostMapping(value = "/getLiterature")
+    public Map<String, Object> getLiterature(@RequestParam String literatureID) {
         try {
             return literatureService.getLiterature(literatureID);
         } catch (Exception e) {
@@ -31,17 +41,17 @@ public class LiteratureController {
         }
     }
 
-    @PostMapping("/editLiterature")
-    public boolean editLiterature(@RequestParam String literatureID, @RequestParam String url) {
+    @PostMapping(value = "/editLiterature")
+    public boolean editLiterature(@RequestParam String Lid,@RequestParam String url,@RequestParam String userID) {
         try {
-            return literatureService.editLiterature(literatureID, url);
+            return literatureService.editLiterature(Lid,url);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
-    @PostMapping("/addLiterature")
+    @PostMapping(value = "/addLiterature")
     public boolean addLiterature(@RequestBody Literature literature){
         try {
             return literatureService.addLiterature(literature);
@@ -51,8 +61,18 @@ public class LiteratureController {
         }
     }
 
-    @PostMapping("/getMyLiterature")
-    public List <Literature> getMyLiteratureList(@RequestParam String userID){
+    @PostMapping(value = "/deleteLiterature")
+    public boolean deleteLiterature(@RequestParam String literatureID){
+        try {
+           return literatureService.deleteLiterature(literatureID);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @PostMapping(value = "/getMyLiterature")
+    public List <Map<String,Object>> getMyLiteratureList(@RequestParam String userID){
         try {
             return literatureService.getMyLiterature(userID);
         }catch (Exception e){

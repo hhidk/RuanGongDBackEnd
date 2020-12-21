@@ -22,7 +22,7 @@ public class SearchController {
     private static final Logger log = LoggerFactory.getLogger(SearchController.class);
 
 
-    @PostMapping("/search")
+    @PostMapping(value = "/search", produces = "application/json;charset=UTF-8")
     public Map<String,Object> simpleSearch(@RequestBody SearchItem detail) {
         //@todo : fix Search logi
         try {
@@ -34,7 +34,7 @@ public class SearchController {
     }
 
 
-    @PostMapping("/advance")
+    @PostMapping(value = "/advance",produces = "application/json;charset=UTF-8")
     public Map<String,Object> advancedSearch(@RequestBody List<SearchItem> detail,
                                            @RequestParam("start") int start, @RequestParam("end") int end) {
         try {

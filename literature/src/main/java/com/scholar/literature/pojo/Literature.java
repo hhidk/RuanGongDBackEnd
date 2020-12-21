@@ -1,7 +1,16 @@
 package com.scholar.literature.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Literature {
     private String id;
@@ -20,69 +29,128 @@ public class Literature {
     private String isbn;
     private String issn;
     private String pdf;
+    private String refMLA = "placeholder";
+    private String refAPA = "placeholder";
     private String abstracts;
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public String getRefMLA() {
+        return refMLA;
+    }
+
+    public String getRefAPA() {
+        return refAPA;
+    }
+
+    public Map<String, Object> retRelationMap() {
+        Map<String, Object> ret = new HashMap<>();
+        ret.put("literatureID", this.id);
+        ret.put("title", this.title);
+        ret.put("authors", this.authors.stream().map(LitAuthor::getId).collect(Collectors.toList()));
+        ret.put("abstract", this.abstracts);
+        ret.put("keyWord", this.keywords);
+        ret.put("year", this.year);
+        ret.put("n_citation", n_citation);
+        return ret;
+    }
+
+    public Map<String, Object> retGetMymap() {
+        Map<String, Object> ret = new HashMap<>();
+        List<Map<String, Object>> authorlist = new ArrayList<>();
+        ret.put("literatureID", this.id);
+        ret.put("title", this.title);
+        ret.put("keyWord", this.keywords);
+        for (LitAuthor author : authors) {
+            Map<String, Object> ma = new HashMap<>();
+            ma.put("authorID", author.getId());
+            ma.put("realName", author.getName());
+            authorlist.add(ma);
+        }
+        ret.put("authors",authorlist);
+        ret.put("venue", this.venue == null ? null : this.venue.getRaw());
+        return ret;
+    }
+    public Map<String,Object>retSearchMap(){
+        Map<String, Object> ret = new HashMap<>();
+        List<Map<String, Object>> authorlist = new ArrayList<>();
+        ret.put("literatureID", this.id);
+        ret.put("title", this.title);
+        for (LitAuthor author : authors) {
+            Map<String, Object> ma = new HashMap<>();
+            ma.put("authorID", author.getId());
+            ma.put("realName", author.getName());
+            authorlist.add(ma);
+        }
+        ret.put("authors",authorlist);
+        ret.put("venue", this.venue == null ? null : this.venue.getRaw());
+        ret.put("year",this.year);
+        ret.put("ciation",this.n_citation);
+        ret.put("MLAformat", this.refMLA);
+        ret.put("APAformat", this.refAPA);
+        return ret;
+    }
+
+    public Map<String, Object> retGetmap() {
+        Map<String, Object> ret = new HashMap<>();
+        Map<String, Object> rret = new HashMap<>();
+        ret.put("literatureID", this.id);
+        ret.put("title", this.title);
+        ret.put("abstract", this.abstracts);
+        ret.put("keyWord", this.keywords);
+        ret.put("authors", this.authors.stream().map(LitAuthor::getId).collect(Collectors.toList()));
+        ret.put("download", this.pdf);
+        ret.put("doi", this.doi);
+        ret.put("MLAformat", this.refMLA);
+        ret.put("APAformat", this.refAPA);
+        ret.put("venue", this.venue == null ? null : this.venue.getRaw());
+        rret.put("literature", ret);
+        return rret;
+    }
+
+    private void parseVenue(Map<String, Object> map) {
+        Map<String, Object> mapve = (Map<String, Object>) map.get("venue");
+        ;
+        if (mapve != null) {
+            venue = new Venue();
+            venue.setRaw((String) mapve.get("raw"));
+            venue.setId(((String) mapve.get("id")));
+        }
+    }
+
+    private void parseAuthors(Map<String, Object> map) {
+        this.authors = new ArrayList<>();
+        ArrayList<Map<String, Object>> ls = (ArrayList<Map<String, Object>>) map.get("authors");
+        if (ls != null) {
+            for (Map<String, Object> l : ls) {
+                authors.add(new LitAuthor(l));
+            }
+        }
+    }
 
     public Literature(Map<String, Object> map) {
         Object obj;
-        Map<String,Object>mapve;
-        obj = map.get("venue");
-
-        if (obj!=null){
-        Object ob;
-            mapve=(Map<String, Object>)obj;
-            venue=new Venue();
-            ob = mapve.get("raw");
-            venue.setRaw(ob==null?null:(String)ob);
-            ob = mapve.get("id");
-            venue.setId((ob==null?null:(String)ob));
-        }
-        obj = map.get("title");
-        title = (obj == null) ? null : (String) obj;
-
-        obj = map.get("authors");
-        authors = obj == null ? null : (List<LitAuthor>) obj;
-
-        obj = map.get("id");
-        id = obj == null ? null : (String) obj;
-
-        obj = map.get("doi");
-        doi = obj == null ? null : (String) obj;
-
-        obj = map.get("url");
-        url = obj == null ? null : (List<String>) obj;
-
-        obj = map.get("issue");
-        issue = obj == null ? null : (String) obj;
-
+        parseVenue(map);
+        parseAuthors(map);
+        title = (String) map.get("title");
+        id = (String) map.get("id");
+        doi = (String) map.get("doi");
+        url = (List<String>) map.get("url");
+        issue = (String) map.get("issue");
         obj = map.get("n_citation");
-        n_citation = obj == null ? null : (Integer)obj;
-
-        obj = map.get("keywords");
-        keywords = obj == null ? null : (List<String>) obj;
-
-        obj = map.get("page_start");
-        page_start = obj == null ? null : (String) obj;
-
-        obj = map.get("page_end");
-        page_end = obj == null ? null : (String) obj;
-
-        obj = map.get("volume");
-        volume   = obj == null ? null : (String) obj;
-
+        n_citation = obj == null ? 0 : (Integer) obj;
+        keywords = (List<String>) map.get("keywords");
+        page_start = (String) map.get("page_start");
+        page_end = (String) map.get("page_end");
+        volume = (String) map.get("volume");
         obj = map.get("year");
-        year = obj == null ? null :(Integer)obj;
-
-        obj = map.get("issn");
-        issn = obj == null ? null : (String) obj;
-
-        obj = map.get("isbn");
-        isbn = obj == null ? null : (String) obj;
-
-        obj = map.get("pdf");
-        pdf = obj == null ? null : (String) obj;
-
-        obj = map.get("abstract");
-        abstracts = obj == null ? null : (String) obj;
+        year = obj == null ? 0 : (Integer) obj;
+        issn = (String) map.get("issn");
+        isbn = (String) map.get("isbn");
+        pdf = (String) map.get("pdf");
+        abstracts = (String) map.get("abstract");
     }
 
 
@@ -157,7 +225,16 @@ public class Literature {
 }
 /**
  * venue:class java.util.HashMap
+ * {
+ * raw:venue name
+ * id :venue id
+ * }
  * authors:class java.util.ArrayList *
+ * {
+ * org,
+ * name,
+ * id
+ * }
  * doi:class java.lang.String *
  * id:class java.lang.String *
  * title:class java.lang.String *
@@ -165,11 +242,14 @@ public class Literature {
  * issn:class java.lang.String
  * issue:class java.lang.String
  * keywords:class java.util.ArrayList
+ * {
+ * keywords
+ * }
  * lang:class java.lang.String
  * n_citation:class java.lang.Integer
  * page_end:class java.lang.String
  * page_start:class java.lang.String
- * pdf:null
+ * pdf:class java.lang.String
  * url:class java.util.ArrayList
  * volume:class java.lang.String
  * year:class java.lang.Integer
