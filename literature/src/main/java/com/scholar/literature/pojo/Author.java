@@ -1,4 +1,4 @@
-package com.scholar.literature.pojo
+package com.scholar.literature.pojo;
 import com.carrotsearch.hppc.HashOrderMixing;
 import java.io.Serializable;
 import java.util.ArrayList;
