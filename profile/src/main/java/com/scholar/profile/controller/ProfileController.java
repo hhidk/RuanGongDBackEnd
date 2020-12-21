@@ -63,9 +63,19 @@ public class ProfileController {
     }
 
     @RequestMapping("/editUserEmailAddress")
-    public int editUserEmailAddress(String userID, String emailAddress) {
+    public int editUserEmailAddress(@RequestParam("userID") String userID, @RequestParam("emailAddress") String emailAddress) {
         try {
             return profileService.editUserEmailAddress(userID, emailAddress);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @RequestMapping("/editUserEmailAddress")
+    public int editUserImage(@RequestParam("userID") String userID, @RequestParam("imgUrl") String image) {
+        try {
+            return profileService.editUserImage(userID, image);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

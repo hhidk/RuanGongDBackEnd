@@ -65,4 +65,11 @@ public class ProfileService {
         return 0;
     }
 
+    public int editUserImage(String userID, String image) throws Exception {
+        User user = userMapper.getUserByUserID(userID);
+        user.setImage(image);
+        userMapper.updateUser(user);
+        return 0;
+    }
+
 }
