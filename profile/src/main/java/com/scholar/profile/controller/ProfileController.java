@@ -72,7 +72,7 @@ public class ProfileController {
         }
     }
 
-    @RequestMapping("/editUserEmailAddress")
+    @RequestMapping("/editUserImage")
     public int editUserImage(@RequestParam("userID") String userID, @RequestParam("imgUrl") String image) {
         try {
             return profileService.editUserImage(userID, image);
