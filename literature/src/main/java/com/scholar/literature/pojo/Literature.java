@@ -103,6 +103,7 @@ public class Literature {
     public Map<String, Object> retGetmap() {
         Map<String, Object> ret = new HashMap<>();
         Map<String, Object> rret = new HashMap<>();
+        ret.put("year",this.year);
         ret.put("literatureID", this.id);
         ret.put("title", this.title);
         ret.put("abstract", this.abstracts);
