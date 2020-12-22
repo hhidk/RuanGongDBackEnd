@@ -34,4 +34,12 @@ public class CollectService {
         }
         return list;
     }
+
+    public int getcollect(String userID, String literatureID) throws Exception {
+        if (collectMapper.checkCollect(userID, literatureID) != null) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 }

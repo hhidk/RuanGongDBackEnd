@@ -38,4 +38,10 @@
         limit 0,1
     </select>
 
+    <select id="checkCollect" parameterType="String" resultType="String">
+        select userID
+        from UserLiterature
+        where literatureID = #{literatureID} and userID = #{userID}
+    </select>
+
 </mapper>

@@ -25,4 +25,6 @@ public interface CollectMapper {
     List<LiteraturePreview> getHighCollect();
 
     LiteraturePreview getLiteratureByLiteratureID(@Param("literatureID") String literatureID);
+
+    String checkCollect(@Param("userID") String userID, @Param("literatureID") String literatureID);
 }

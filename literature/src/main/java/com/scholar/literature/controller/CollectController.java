@@ -40,4 +40,14 @@ public class CollectController {
         }
     }
 
+    @RequestMapping("/getcollect")
+    public int getcollect(@RequestParam("userID") String userID, @RequestParam("literatureID") String literatureID) {
+        try {
+            return collectService.getcollect(userID, literatureID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }
