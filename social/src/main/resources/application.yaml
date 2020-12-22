@@ -13,5 +13,7 @@ mybatis:
 
 logging:
   level:
-    GregTech:
-      TopazBackend: TRACE
+    com:
+      scholar:
+        social: TRACE
+
