@@ -55,10 +55,20 @@ public class AuthorService {
         }
     }
 
-    public List<Integer> getPublishState() {
+    static int stringToSeed(String s) {
+        if (s == null) {
+            return 0;
+        }
+        int hash = 0;
+        for (char c : s.toCharArray()) {
+            hash = 31*hash + c;
+        }
+        return hash;
+    }
+    public List<Integer> getPublishState(String authorID) {
         List<Integer> tmp = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
-            tmp.add((int)(Math.random()*3));
+            tmp.add( stringToSeed(authorID));
         }
         return tmp;
     }

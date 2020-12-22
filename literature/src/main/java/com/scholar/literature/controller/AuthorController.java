@@ -42,7 +42,7 @@ public class AuthorController {
     @PostMapping(value = "/getPublishState")
     public List<Integer>getPublishState(@RequestParam String authorID){
         try {
-            return authorService.getPublishState();
+            return authorService.getPublishState(authorID);
         }catch (Exception e){
             e.printStackTrace();
             return null;
