@@ -17,4 +17,6 @@ logging:
       scholar:
         social:
           service: DEBUG
+          repository:
+            PostRepository: TRACE
 
