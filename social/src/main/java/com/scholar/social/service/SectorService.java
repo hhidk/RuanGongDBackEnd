@@ -7,7 +7,7 @@ import com.scholar.social.util.SortType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +30,8 @@ public class SectorService {
         sectorList = sectorList.stream().peek(sector -> {
             List<Post> postList =
                     postService.search(sector.getId(), 0, 1, SortType.UPDATE_TIME, "");
-            sector.setTags(Collections.singletonList(sectorRepository.getTags(sector.getId())));
+            sector.setTags(
+                    Arrays.asList(sectorRepository.getTags(sector.getId()).split(";")));
             if (postList.size() > 0) sector.setPost(postList.get(0));
         }).collect(Collectors.toList());
         return sectorList;
