@@ -31,7 +31,7 @@ public class GateService {
             user = new User(0);
             log.info("In func: getAuthorInformation Trying to get literature {}", authorID);
             try {
-                GetRequest getRequest = new GetRequest("authors", authorID);
+                GetRequest getRequest = new GetRequest("author", authorID);
                 GetResponse getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
                 Map<String, Object> map = getResponse.getSource();
                 if (map == null) {
