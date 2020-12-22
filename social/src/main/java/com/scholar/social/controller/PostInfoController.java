@@ -26,6 +26,7 @@ import static com.scholar.social.util.TimeFormat.format;
  * for post search and get post info
  */
 @RestController
+@CrossOrigin
 public class PostInfoController {
     private final PostService postService;
     private final UserService userService;
