@@ -10,7 +10,7 @@ import java.util.Map;
 @Mapper
 public interface CollectMapper {
 
-    int addCollect(@Param("userID") String userID, @Param("literatureID") String literatureID, @Param("title") String title);
+    int addCollect(@Param("userID") String userID, @Param("literatureID") String literatureID, @Param("title") String title, @Param("year") String year, @Param("venue") String venue);
 
     int deleteCollect(@Param("userID") String userID, @Param("literatureID") String literatureID);
 

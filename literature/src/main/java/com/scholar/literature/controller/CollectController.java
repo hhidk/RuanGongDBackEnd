@@ -16,9 +16,10 @@ public class CollectController {
 
     @RequestMapping("/collect")
     public int collect(@RequestParam("userID") String userID, @RequestParam("literatureID") String literatureID,
-                       @RequestParam("title") String title, @RequestParam("option") int option) {
+                       @RequestParam("title") String title, @RequestParam("option") int option,
+                       @RequestParam("year") String year, @RequestParam("venue") String venue) {
         try {
-            return collectService.collect(userID, literatureID, title, option);
+            return collectService.collect(userID, literatureID, title, option, year, venue);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
