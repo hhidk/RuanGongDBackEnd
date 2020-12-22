@@ -1,9 +1,11 @@
 package com.scholar.literature.mapper;
 
+import com.scholar.literature.dto.LiteraturePreview;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -17,4 +19,8 @@ public interface CollectMapper {
     // key: literatureID和月份差
     int getCollectCount(Map<String, Object> map);
 
+    /**
+     * 返回收藏量前10的文献列表
+     */
+    List<LiteraturePreview> getHighCollect();
 }

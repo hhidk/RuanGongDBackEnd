@@ -23,4 +23,8 @@
         where literatureID = #{literatureID} and PERIOD_DIFF(date_format(now(), '%Y%m'), date_format(collectTime, '%Y%m')) = #{diff}
     </select>
 
+    <select id="getHighCollect" parameterType="String" resultType="LiteraturePreview">
+
+    </select>
+
 </mapper>

@@ -1,11 +1,15 @@
 package com.scholar.literature.controller;
 
+import com.scholar.literature.dto.LiteraturePreview;
+import com.scholar.literature.pojo.Literature;
 import com.scholar.literature.service.CollectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -23,6 +27,16 @@ public class CollectController {
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    @RequestMapping("/getHighCollect")
+    public List<LiteraturePreview> getHighCollect() {
+        try {
+            return collectService.getHighCollect();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

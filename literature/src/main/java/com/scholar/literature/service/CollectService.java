@@ -1,8 +1,12 @@
 package com.scholar.literature.service;
 
+import com.scholar.literature.dto.LiteraturePreview;
 import com.scholar.literature.mapper.CollectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CollectService {
@@ -17,5 +21,9 @@ public class CollectService {
             collectMapper.deleteCollect(userID, literatureID);
         }
         return 0;
+    }
+
+    public List<LiteraturePreview> getHighCollect() throws Exception {
+        return collectMapper.getHighCollect();
     }
 }
