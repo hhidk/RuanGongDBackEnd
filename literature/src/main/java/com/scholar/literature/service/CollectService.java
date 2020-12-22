@@ -22,7 +22,6 @@ public class CollectService {
         }
         return 0;
     }
-
     public List<LiteraturePreview> getHighCollect() throws Exception {
         return collectMapper.getHighCollect();
     }

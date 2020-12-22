@@ -40,7 +40,7 @@ public class AuthorService {
             SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
             sourceBuilder.query(QueryBuilders.matchQuery("name",authorName));
             sourceBuilder.size(10000);
-            SearchRequest searchRequest = new SearchRequest("authors").source(sourceBuilder);
+            SearchRequest searchRequest = new SearchRequest("author").source(sourceBuilder);
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest,RequestOptions.DEFAULT);
             SearchHits searchHits = searchResponse.getHits();
             for (SearchHit searchHit : searchHits) {
