@@ -27,11 +27,16 @@ public class Author implements Serializable {
         n_pubs = obj == null ? 0 : (Integer)obj;
         id = (String)map.get("id");
         name = (String)map.get("name");
-        orgs= (String)map.get("orgs");
+
         position = (String) map.get("position");
+        loadorgs(map);
         loadPub(map);
         loadTag(map);
     }
+    private void loadorgs(Map<String,Object>map){
+    this.orgs=map.get("orgs").toString();
+    }
+
     private void loadPub(Map<String,Object>map){
         this.pubs=new ArrayList<>();
         ArrayList<Map<String,Object>> ls=(ArrayList<Map<String, Object>>) map.get("pubs");

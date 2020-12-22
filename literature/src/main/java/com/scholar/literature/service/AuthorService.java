@@ -63,12 +63,16 @@ public class AuthorService {
         for (char c : s.toCharArray()) {
             hash = 31*hash + c;
         }
-        return (Math.abs(hash)+i*i)%3;
+        return Math.abs(hash);
     }
+
     public List<Integer> getPublishState(String authorID) {
         List<Integer> tmp = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
-            tmp.add( stringToSeed(authorID,i));
+           Random random= new Random(stringToSeed(authorID,i));
+            tmp.add(
+                    random.nextInt(3)
+            );
         }
         return tmp;
     }
