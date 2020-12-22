@@ -2,6 +2,7 @@ package com.scholar.literature.service;
 
 import com.scholar.literature.dto.LiteraturePreview;
 import com.scholar.literature.mapper.CollectMapper;
+import com.scholar.literature.pojo.Literature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,13 @@ public class CollectService {
     }
 
     public List<LiteraturePreview> getHighCollect() throws Exception {
-        return collectMapper.getHighCollect();
+        List<LiteraturePreview> list = collectMapper.getHighCollect();
+        for (LiteraturePreview literature : list) {
+            LiteraturePreview info = collectMapper.getLiteratureByLiteratureID(literature.getLiteratureID());
+            literature.setTitle(info.getTitle());
+            literature.setVenue(info.getVenue());
+            literature.setYear(info.getYear());
+        }
+        return list;
     }
 }

@@ -24,7 +24,18 @@
     </select>
 
     <select id="getHighCollect" parameterType="String" resultType="LiteraturePreview">
+        select literatureID, count(*)
+        from UserLiterature
+        group by literatureID
+        order by count(*) desc
+        limit 0,10
+    </select>
 
+    <select id="getLiteratureByLiteratureID" parameterType="String" resultType="LiteraturePreview">
+        select title, year, venue
+        from UserLiterature
+        where literatureID = #{literatureID}
+        limit 0,1
     </select>
 
 </mapper>

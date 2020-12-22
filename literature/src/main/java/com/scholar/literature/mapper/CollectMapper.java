@@ -23,4 +23,6 @@ public interface CollectMapper {
      * 返回收藏量前10的文献列表
      */
     List<LiteraturePreview> getHighCollect();
+
+    LiteraturePreview getLiteratureByLiteratureID(@Param("literatureID") String literatureID);
 }
