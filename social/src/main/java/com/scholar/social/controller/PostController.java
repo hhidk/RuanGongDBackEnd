@@ -3,10 +3,7 @@ package com.scholar.social.controller;
 import com.scholar.social.service.PostService;
 import com.scholar.social.util.Post;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +14,7 @@ import static com.scholar.social.util.ControllerParser.*;
  * for posts' CURD
  */
 @RestController
+@CrossOrigin
 public class PostController {
     private final PostService service;
 

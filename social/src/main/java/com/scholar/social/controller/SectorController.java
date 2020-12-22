@@ -21,6 +21,7 @@ import static com.scholar.social.util.TimeFormat.format;
  * for sector get
  */
 @RestController
+@CrossOrigin
 public class SectorController {
 
     private final SectorService sectorService;
