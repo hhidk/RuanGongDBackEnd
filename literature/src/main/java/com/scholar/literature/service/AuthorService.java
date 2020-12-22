@@ -95,7 +95,7 @@ public class AuthorService {
                         new Literature(
                                 searchHit.getSourceAsMap())
                                 .getAuthors()
-                                .stream()
+                                .stream().filter(litAuthor -> litAuthor.getId()!=null)
                                 .map(LitAuthor::getId).collect(Collectors.toList())
                 );
             }
