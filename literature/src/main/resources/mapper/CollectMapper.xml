@@ -7,8 +7,8 @@
 
     <insert id="addCollect" parameterType="String">
         insert
-        into UserLiterature(userID, literatureID, literatureTitle, collectTime)
-        values(#{userID}, #{literatureID}, #{literatureTitle}, current_date() )
+        into UserLiterature(userID, literatureID, title, collectTime, year, venue)
+        values(#{userID}, #{literatureID}, #{title}, current_date(), #{year}, #{venue} )
     </insert>
 
     <delete id="deleteCollect" parameterType="String">
@@ -16,5 +16,15 @@
         from UserLiterature
         where userID = #{userID} and literatureID = #{literatureID}
     </delete>
+
+    <select id="getCollectCount" parameterType="Map" resultType="int">
+        select count(*)
+        from UserLiterature
+        where literatureID = #{literatureID} and PERIOD_DIFF(date_format(now(), '%Y%m'), date_format(collectTime, '%Y%m')) = #{diff}
+    </select>
+
+    <select id="getHighCollect" parameterType="String" resultType="LiteraturePreview">
+
+    </select>
 
 </mapper>

@@ -1,6 +1,8 @@
 package com.scholar.literature.service;
 
 import com.scholar.literature.controller.AuthorController;
+import com.scholar.literature.mapper.CollectMapper;
+import com.scholar.literature.mapper.CommentMapper;
 import com.scholar.literature.pojo.Literature;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -25,20 +27,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class LiteratureService {
     @Autowired
     RestHighLevelClient restHighLevelClient;
+    @Autowired
+    CollectMapper collectMapper;
+    @Autowired
+    CommentMapper commentMapper;
 
     private static final Logger log = LoggerFactory.getLogger(LiteratureService.class);
 
-    public Map<String, Object> getLiterature(String literatureID) throws IOException {
-        // TODO: 12/15/20
+    public Map<String, Object> getLiterature(String literatureID) {
         log.info("In func: getLiterature Trying to get literature {}", literatureID);
         try {
             GetRequest getRequest = new GetRequest("literature", literatureID);
@@ -156,6 +158,28 @@ public class LiteratureService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Map<String, Object> getStats(String literatureID) throws Exception {
+        List<Integer> collectTimes = new ArrayList<>();
+        // List<Integer> readTimes = new ArrayList<>();
+        List<Integer> commentTimes = new ArrayList<>();
+
+        int curMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        Map<String, Object> param = new HashMap<>();
+        param.put("literatureID", literatureID);
+
+        for(int i = 11; i >= 0; i--)
+        {
+            param.put("diff", i);
+            collectTimes.add(collectMapper.getCollectCount(param));
+            commentTimes.add(commentMapper.getCommentCount(param));
+        }
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("collectTimes", collectTimes);
+        map.put("commentTimes", commentTimes);
+        return map;
     }
 
 }

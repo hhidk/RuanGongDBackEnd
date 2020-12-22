@@ -2,6 +2,7 @@ package com.scholar.literature.service;
 
 import com.scholar.literature.controller.AuthorController;
 import com.scholar.literature.pojo.Author;
+import com.scholar.literature.pojo.LitAuthor;
 import com.scholar.literature.pojo.Literature;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
@@ -32,8 +33,8 @@ public class AuthorService {
 
     @Autowired
     RestHighLevelClient restHighLevelClient;
-    public List<Map<String,Object>> getAuthors(String authorName) throws IOException {
-        // TODO: 12/15/20
+    public List<Map<String,Object>> getAuthors(String authorName) {
+
         try {
             List<Map<String,Object>> maps=new ArrayList<>();
             SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
@@ -73,7 +74,7 @@ public class AuthorService {
                         searchHit.getSourceAsMap())
                                 .getAuthors()
                                 .stream()
-                                .map(a->a.getId()).collect(Collectors.toList())
+                                .map(LitAuthor::getId).collect(Collectors.toList())
                         );
             }
             //delete repeated factors
