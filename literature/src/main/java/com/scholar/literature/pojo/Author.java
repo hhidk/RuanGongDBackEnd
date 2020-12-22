@@ -34,7 +34,12 @@ public class Author implements Serializable {
         loadTag(map);
     }
     private void loadorgs(Map<String,Object>map){
-    String s= map.get("orgs").toString();
+    Object ss= map.get("orgs");
+    if (ss==null){
+        this.orgs="unknown";
+        return;
+    }
+    String s =(String) ss;
     if (s.length()<3){
         this.orgs="unknown";
     }else {
