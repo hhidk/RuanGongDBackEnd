@@ -39,7 +39,7 @@ public class Author implements Serializable {
         this.orgs="unknown";
         return;
     }
-    String s =(String) ss;
+    String s = ss.toString();
     if (s.length()<3){
         this.orgs="unknown";
     }else {
