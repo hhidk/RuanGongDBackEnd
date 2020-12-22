@@ -67,7 +67,7 @@ public class SectorController {
 
     @PostMapping(value = "/getPostNum", produces = "application/json;charset=UTF-8")
     public Map<String, Object> getTotal(@RequestBody Map<String, Object> body) {
-        int sectorId = (Integer) body.get("sectorId");
+        int sectorId = Integer.parseInt((String) body.get("sectorId"));
 
         return Map.of("total", String.valueOf(sectorService.getTot(sectorId)));
     }

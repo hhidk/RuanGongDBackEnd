@@ -47,7 +47,7 @@ public class PostInfoController {
         String userId = parseUserId(body);
         int postId = parsePostId(body);
         Post post = postService.get(userId, postId);
-        User user = userService.get(userId);
+        User user = userService.get(post.getUserId());
         Map<String, Object> res = PostGenerator.basicInfo(post);
         res.putAll(UserGenerator.userInfo(user, "creator"));
 
@@ -68,7 +68,7 @@ public class PostInfoController {
         return res;
     }
 
-    @RequestMapping(value = "/search",
+    @RequestMapping(value = "/getPosts",
             method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, Object> search(@RequestBody Map<String, Object> body) {
         int sectorId = parseSectorId(body);
