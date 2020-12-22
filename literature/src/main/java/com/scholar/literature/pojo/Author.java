@@ -27,7 +27,7 @@ public class Author implements Serializable {
         n_pubs = obj == null ? 0 : (Integer)obj;
         id = (String)map.get("id");
         name = (String)map.get("name");
-        orgs= (String)map.get("id");
+        orgs= (String)map.get("orgs");
         position = (String) map.get("position");
         loadPub(map);
         loadTag(map);
