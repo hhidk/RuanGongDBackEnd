@@ -76,12 +76,12 @@ public class LiteratureService {
         ids.add("53e9b46ab7602d9703f6d1d0");
         ids.add("53e99808b7602d970201a17e");
         for (String id : ids) {
+            log.info("getCitation, try to get id= {}",id);
             GetRequest getRequest = new GetRequest("literature", id);
             GetResponse getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
             Map<String, Object> map = getResponse.getSource();
-            if (map == null) {
-            }
             if (getResponse.isExists()) {
+                log.info("literature got = ",id);
                 ret.add(new Literature(map).retGetMymap());
             }
         }

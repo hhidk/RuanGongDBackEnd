@@ -84,16 +84,16 @@ public class LiteratureController {
     }
 
     @RequestMapping("/getHighCitation")
-    public Map<String,Object> getHighCitation() {
+    public Map<String, Object> getHighCitation() {
         try {
-      return (Map<String, Object>) new HashMap<String,Object>().put("ciationList",literatureService.getHighCitation());
+            Map<String, Object> re = new HashMap<String, Object>();
+            re.put("citationList", literatureService.getHighCitation());
+            return re;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
-
-
 
 
     @RequestMapping("/getStats")
