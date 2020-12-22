@@ -18,5 +18,5 @@ logging:
         social:
           service: DEBUG
           repository:
-            PostRepository: TRACE
+            PostRepository: DEBUG
 
