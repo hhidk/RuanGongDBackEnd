@@ -7,8 +7,8 @@
 
     <insert id="addApplication" parameterType="Application">
         insert
-        into Application(userID, authorID, status, emailAddress, content)
-        values (#{userID}, #{authorID}, #{status}, #{emailAddress}, #{content})
+        into Application(userID, authorID, status, realName, emailAddress, content)
+        values (#{userID}, #{authorID}, #{status}, #{realName}, #{emailAddress}, #{content})
     </insert>
 
     <select id="getUserPendingApplication" parameterType="String" resultType="Application">

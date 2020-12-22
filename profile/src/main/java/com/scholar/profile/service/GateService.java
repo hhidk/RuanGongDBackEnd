@@ -27,14 +27,14 @@ public class GateService {
         return 0;
     }
 
-    public int apply(String userID, String authorID, String emailAddress, String content) throws Exception {
+    public int apply(String userID, String authorID, String realName, String emailAddress, String content) throws Exception {
         if (userMapper.checkIsAuthor(userID) != null) {
             return 2;
         }
         if (applicationMapper.getUserPendingApplication(userID) != null) {
             return 1;
         }
-        Application application = new Application(userID, authorID, emailAddress, content);
+        Application application = new Application(userID, authorID, realName, emailAddress, content);
         applicationMapper.addApplication(application);
         return 0;
     }

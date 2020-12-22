@@ -9,5 +9,5 @@ public class LiteraturePreview {
     private String collectTime;
     private String year;
     private String venue;
-    private int collect;
+    private int citation;
 }

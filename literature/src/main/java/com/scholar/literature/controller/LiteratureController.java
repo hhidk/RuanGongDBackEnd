@@ -72,9 +72,9 @@ public class LiteratureController {
     }
 
     @PostMapping(value = "/getMyLiterature")
-    public List <Map<String,Object>> getMyLiteratureList(@RequestParam String userID){
+    public List <Map<String,Object>> getMyLiteratureList(@RequestParam String authorID){
         try {
-            return literatureService.getMyLiterature(userID);
+            return literatureService.getMyLiterature(authorID);
         }catch (Exception e){
             e.printStackTrace();
             return null;

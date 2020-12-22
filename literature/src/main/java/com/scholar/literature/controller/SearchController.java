@@ -24,7 +24,6 @@ public class SearchController {
 
     @PostMapping(value = "/search", produces = "application/json;charset=UTF-8")
     public Map<String,Object> simpleSearch(@RequestBody SearchItem detail) {
-        //@todo : fix Search logi
         try {
             return searchService.search(detail);
         } catch (Exception e) {

@@ -13,6 +13,7 @@ public class ReportService {
 
     public int reportLiterature(String userID, String literatureID, String title, String content) throws Exception {
         Report report = new Report(userID, literatureID, title, content);
+        report.setType(1);
         reportMapper.addReport(report);
         return 0;
     }
