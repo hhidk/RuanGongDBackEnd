@@ -12,46 +12,46 @@ public final class ControllerParser {
         return res;
     }
 
-    public static int parseUserId(Map<String, String> body) {
+    public static String parseUserId(Map<String, Object> body) {
         String userId = "userId";
         if (body.containsKey(userId)) {
-            return Integer.parseInt(body.get(userId));
+            return (String) body.get(userId);
         }
-        return -1;
+        return null;
     }
 
-    public static int parseSectorId(Map<String, String> body) {
+    public static int parseSectorId(Map<String, Object> body) {
         String sectorId = "sectorId";
         if (body.containsKey(sectorId)) {
-            return Integer.parseInt(body.get(sectorId));
+            return Integer.parseInt((String) body.get(sectorId));
         }
         return -1;
     }
 
-    public static int parseCommentId(Map<String, String> body) {
+    public static int parseCommentId(Map<String, Object> body) {
         String commentId0 = "deleteCommentId";
         String commentId1 = "reportCommentId";
         if (body.containsKey(commentId0)) {
-            return Integer.parseInt(body.get(commentId0));
+            return Integer.parseInt((String) body.get(commentId0));
         } else if (body.containsKey(commentId1)) {
-            return Integer.parseInt(body.get(commentId1));
+            return Integer.parseInt((String) body.get(commentId1));
         }
         return -1;
     }
 
-    public static int parsePostId(Map<String, String> body) {
+    public static int parsePostId(Map<String, Object> body) {
         String postId = "postId";
         if (body.containsKey(postId)) {
-            return Integer.parseInt(body.get(postId));
+            return Integer.parseInt((String) body.get(postId));
         }
         return -1;
     }
 
-    public static String parseContent(Map<String, String> body) {
+    public static String parseContent(Map<String, Object> body) {
         List<String> contentList = List.of("commentContent", "reportContent", "postContent");
         for (String contentName : contentList) {
             if (body.containsKey(contentName)) {
-                return body.get(contentName);
+                return (String) body.get(contentName);
             }
         }
         return null;

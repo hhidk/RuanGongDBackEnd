@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scholar.social.repository.FollowRepository">
+    <select id="get" resultType="int">
+        SELECT COUNT(*)
+        FROM FollowSector
+        WHERE sectorID = #{sectorId}
+          AND userID = #{userId}
+    </select>
+    <delete id="unset">
+        DELETE FROM FollowSector
+        WHERE sectorID = #{sectorId}
+        AND userID = #{userId}
+    </delete>
+    <insert id="set">
+        INSERT INTO FollowSector(sectorID,userID)
+        VALUES (#{sectorId},#{userId})
+    </insert>
+</mapper>
