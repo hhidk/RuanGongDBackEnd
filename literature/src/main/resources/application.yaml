@@ -8,6 +8,6 @@ spring:
     url: jdbc:mysql://60.205.189.66:3306/scholar?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
 
 mybatis:
-  type-aliases-package: com.scholar.literature.pojo
+  type-aliases-package: com.scholar.literature.pojo, com.scholar.literature.dto
   mapper-locations: classpath:mapper/*.xml
 
