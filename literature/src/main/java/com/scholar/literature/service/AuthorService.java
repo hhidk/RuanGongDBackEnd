@@ -55,7 +55,7 @@ public class AuthorService {
         }
     }
 
-    static int stringToSeed(String s,int i) {
+    static int stringToSeed(String s) {
         if (s == null) {
             return 0;
         }
@@ -68,8 +68,8 @@ public class AuthorService {
 
     public List<Integer> getPublishState(String authorID) {
         List<Integer> tmp = new ArrayList<>();
+        Random random= new Random(stringToSeed(authorID));
         for (int i = 0; i < 12; i++) {
-           Random random= new Random(stringToSeed(authorID,i));
             tmp.add(
                     random.nextInt(3)
             );
