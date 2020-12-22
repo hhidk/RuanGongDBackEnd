@@ -24,7 +24,7 @@
     </select>
 
     <select id="getHighCollect" parameterType="String" resultType="LiteraturePreview">
-        select literatureID, count(*)
+        select literatureID, count(*) citation
         from UserLiterature
         group by literatureID
         order by count(*) desc
