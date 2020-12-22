@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -26,4 +27,6 @@ public interface ReportMapper
     Report getReportByReportID(@Param("reportID") int reportID);
 
     int deleteReportByReportID(@Param("reportID") int reportID);
+
+    int setReportStatus(@Param("reportID") int reportID);
 }

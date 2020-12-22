@@ -10,7 +10,9 @@ import com.scholar.root.pojo.Report;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReportService
@@ -188,6 +190,8 @@ public class ReportService
 
         }
 
+        reportMapper.setReportStatus(reportID);
+
         return ret;
 
     }
@@ -206,6 +210,8 @@ public class ReportService
         message.setType(5);
         message.setCommentID(0);
         ret = ret & messageMapper.addMessage(message);
+
+        reportMapper.setReportStatus(reportID);
 
         return ret;
 
