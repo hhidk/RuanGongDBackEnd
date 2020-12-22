@@ -4,6 +4,8 @@ import com.scholar.social.repository.*;
 import com.scholar.social.util.Post;
 import com.scholar.social.util.PostFormatHelper;
 import com.scholar.social.util.SortType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PostService {
+    private static final Logger log = LoggerFactory.getLogger(PostService.class);
     private final ReportRepository reportRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
@@ -62,6 +65,7 @@ public class PostService {
 
     public List<Post> search(int sectorId, int start, int num, SortType sort, String keyword) {
         List<Post> postList = postRepository.search(sectorId, keyword);
+        log.debug("size: {}, start: {}, num: {}", postList.size(), start, num);
         if (start >= postList.size()) {
             return List.of();
         }
