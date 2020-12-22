@@ -93,7 +93,7 @@
     <select id="getArticleReportByReportID" resultMap="ArticleReportMap">
         select Report.reporteeID, Report.title, Report.status, Report.content, Report.reportID,
                User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
-        from Report, Literature, User
+        from Report, User
         where Report.type = 1 and User.userID = Report.reporterID and Report.status = 0;
     </select>
 
@@ -102,7 +102,7 @@
                A.username usernameA, A.realName realNameA, A.userDegree userDegreeA, B.userID userIDB, B.userIdentity userIdentityB,
                B.image imageB, B.username usernameB, B.realName realNameB, B.userDegree userDegreeB
         from Report, User A, User B
-        where Report.type = 4 and A.userID = Report.reporteeID and B.userID = #{reportID} and Report.status = 0;
+        where Report.type = 4 and A.userID = Report.reporteeID and B.userID = Report.reporterID and Report.status = 0;
     </select>
 
     <select id="getCommentReportByReportID" resultMap="CommentReportMap">
