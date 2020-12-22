@@ -44,7 +44,7 @@ public class SearchService {
             sb.query(bq);
             sb.size(10000);
             SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-            return resultDeal(response);
+            return resultDeal(response,start,end);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -64,7 +64,7 @@ public class SearchService {
             sb.size(10000);
             //parse
             SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-            return resultDeal(response);
+            return resultDeal(response,-1,-1);
         } catch (Exception e) {
             e.printStackTrace();
             log.error("unknown err");
@@ -72,7 +72,7 @@ public class SearchService {
         }
     }
 
-    private Map<String, Object> resultDeal(SearchResponse response) {
+    private Map<String, Object> resultDeal(SearchResponse response,int start,int end) {
         try {
             int count = 0;
             int sum = 0;
@@ -143,7 +143,9 @@ public class SearchService {
             list_year.sort(Map.Entry.comparingByValue());
             List<Map.Entry<String, Integer>> list_authors = new ArrayList<>(authors.entrySet());
             list_authors.sort(Map.Entry.comparingByValue());
-
+            Collections.reverse(list_venue);
+            Collections.reverse(list_year);
+            Collections.reverse(list_authors);
             //package author
             for (Map.Entry<String, Integer> list_author : list_authors) {
                 if (count < 5) {
@@ -246,7 +248,7 @@ public class SearchService {
         // TODO: unhandled FI
         switch (s) {
             case "SU": {
-                return "keywords";
+                return "title";
             }
             case "KY": {
                 return "keywords";
