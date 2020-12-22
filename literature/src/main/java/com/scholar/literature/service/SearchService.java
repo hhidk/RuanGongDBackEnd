@@ -143,7 +143,9 @@ public class SearchService {
             list_year.sort(Map.Entry.comparingByValue());
             List<Map.Entry<String, Integer>> list_authors = new ArrayList<>(authors.entrySet());
             list_authors.sort(Map.Entry.comparingByValue());
-
+            Collections.reverse(list_venue);
+            Collections.reverse(list_year);
+            Collections.reverse(list_authors);
             //package author
             for (Map.Entry<String, Integer> list_author : list_authors) {
                 if (count < 5) {
