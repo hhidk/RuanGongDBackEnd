@@ -15,13 +15,13 @@ import java.util.List;
 @Repository
 public interface ReportMapper
 {
-    List<ArticleReport> getArticleReportByReportID(@Param("reportID") int reportID);
+    List<ArticleReport> getArticleReportByReportID();
 
-    List<GateReport> getGateReportByReportID(@Param("reportID") int reportID);
+    List<GateReport> getGateReportByReportID();
 
-    List<CommentReport> getCommentReportByReportID(@Param("reportID") int reportID);
+    List<CommentReport> getCommentReportByReportID();
 
-    List<PostReport> getPostReportByReportID(@Param("reportID") int reportID);
+    List<PostReport> getPostReportByReportID();
 
     Report getReportByReportID(@Param("reportID") int reportID);
 

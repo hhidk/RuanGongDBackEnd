@@ -18,9 +18,9 @@ public class ReportController
     private ReportService reportService;
 
     @PostMapping("/getArticleReports")
-    public List<ArticleReport> getArticleReports(@RequestParam("reportID") int reportID) {
+    public List<ArticleReport> getArticleReports() {
         try {
-            return reportService.getArticleReports(reportID);
+            return reportService.getArticleReports();
         }
         catch (Exception e)  {
             e.printStackTrace();
@@ -29,9 +29,9 @@ public class ReportController
     }
 
     @PostMapping("/getGateReports")
-    public List<GateReport> getGateReports(@RequestParam("reportID") int reportID) {
+    public List<GateReport> getGateReports() {
         try {
-            return reportService.getGateReports(reportID);
+            return reportService.getGateReports();
         }
         catch (Exception e)  {
             e.printStackTrace();
@@ -40,9 +40,9 @@ public class ReportController
     }
 
     @PostMapping("/getCommentReports")
-    public List<CommentReport> getCommentReports(@RequestParam("reportID") int reportID) {
+    public List<CommentReport> getCommentReports() {
         try {
-            return reportService.getCommentReports(reportID);
+            return reportService.getCommentReports();
         }
         catch (Exception e)  {
             e.printStackTrace();
@@ -51,9 +51,9 @@ public class ReportController
     }
 
     @PostMapping("/getPostReports")
-    public List<PostReport> getPostReports(@RequestParam("reportID") int reportID) {
+    public List<PostReport> getPostReports() {
         try {
-            return reportService.getPostReports(reportID);
+            return reportService.getPostReports();
         }
         catch (Exception e)  {
             e.printStackTrace();
