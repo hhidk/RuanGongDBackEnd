@@ -94,7 +94,7 @@
         select Report.reporteeID, Report.title, Report.status, Report.content, Report.reportID,
                User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Literature, User
-        where Report.type = 1 and User.userID = Report.reporterID;
+        where Report.type = 1 and User.userID = Report.reporterID and Report.status = 0;
     </select>
 
     <select id="getGateReportByReportID" resultMap="GateReportMap">
@@ -102,7 +102,7 @@
                A.username usernameA, A.realName realNameA, A.userDegree userDegreeA, B.userID userIDB, B.userIdentity userIdentityB,
                B.image imageB, B.username usernameB, B.realName realNameB, B.userDegree userDegreeB
         from Report, User A, User B
-        where Report.type = 4 and A.userID = Report.reporteeID and B.userID = #{reportID};
+        where Report.type = 4 and A.userID = Report.reporteeID and B.userID = #{reportID} and Report.status = 0;
     </select>
 
     <select id="getCommentReportByReportID" resultMap="CommentReportMap">
@@ -110,14 +110,14 @@
                Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Comment, User
         where Report.type = 2 and Comment.postCommentID = Report.reporteeID
-              and User.userID = Report.reporterID;
+              and User.userID = Report.reporterID and Report.status = 0;
     </select>
 
     <select id="getPostReportByReportID" resultMap="PostReportMap">
         select Post.postID, Post.postContent, Report.status, Report.content, Report.reportID, User.userID,
                User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Post, User
-        where Report.type = 3 and Post.postID = Report.reporteeID and User.userID = Report.reporterID;
+        where Report.type = 3 and Post.postID = Report.reporteeID and User.userID = Report.reporterID and Report.status = 0;
     </select>
 
     <select id="getReportByReportID" parameterType="int" resultType="Report">
@@ -131,5 +131,11 @@
         from Report
         where reportID = #{reportID};
     </delete>
+
+    <update id="setReportStatus" parameterType="String">
+        update Report
+        set status = 1
+        where reportID = #{reportID};
+    </update>
 
 </mapper>
