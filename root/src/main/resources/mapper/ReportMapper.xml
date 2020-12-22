@@ -132,7 +132,7 @@
         where reportID = #{reportID};
     </delete>
 
-    <update id="setReportStatus" parameterType="String">
+    <update id="setReportStatus" parameterType="int">
         update Report
         set status = 1
         where reportID = #{reportID};
