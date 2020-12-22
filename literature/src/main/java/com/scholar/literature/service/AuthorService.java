@@ -55,7 +55,7 @@ public class AuthorService {
         }
     }
 
-    static int stringToSeed(String s) {
+    static int stringToSeed(String s,int i) {
         if (s == null) {
             return 0;
         }
@@ -63,12 +63,12 @@ public class AuthorService {
         for (char c : s.toCharArray()) {
             hash = 31*hash + c;
         }
-        return hash;
+        return (Math.abs(hash)+i)%3;
     }
     public List<Integer> getPublishState(String authorID) {
         List<Integer> tmp = new ArrayList<>();
         for (int i = 0; i < 12; i++) {
-            tmp.add( stringToSeed(authorID));
+            tmp.add( stringToSeed(authorID,i*19260817));
         }
         return tmp;
     }
