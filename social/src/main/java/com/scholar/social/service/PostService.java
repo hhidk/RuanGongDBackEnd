@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,6 +72,7 @@ public class PostService {
                 break;
             case CREATE_TIME:
                 postList.sort(Comparator.comparingLong(post -> post.getCreateTime().getTime()));
+                Collections.reverse(postList);
                 break;
             case UPDATE_TIME:
                 postList = postList.stream().map(PostFormatHelper::new)
@@ -79,9 +81,11 @@ public class PostService {
                         ))
                         .map(PostFormatHelper::getPost)
                         .collect(Collectors.toList());
+                Collections.reverse(postList);
                 break;
             case REPLY_NUM:
                 postList.sort(Comparator.comparingInt(post -> post.getComments().size()));
+                Collections.reverse(postList);
                 break;
         }
         return postList.subList(start, Math.min(postList.size(), start + num));
