@@ -8,7 +8,7 @@
     <insert id="addUser" parameterType="User">
         insert
         into User(userID, userIdentity, username, password, image, phoneNumber, emailAddress, organization, introduction, realName, userDegree)
-        values (#{userID}, #{userIdentity}, #{username}, #{password}, #{image}, #{phoneNumber, #{emailAddress}, #{organization}, #{introduction}, #{realName}, #{userDegree})
+        values (#{userID}, #{userIdentity}, #{username}, #{password}, #{image}, #{phoneNumber}, #{emailAddress}, #{organization}, #{introduction}, #{realName}, #{userDegree})
     </insert>
     
     <select id="loginUser" parameterType="String" resultType="UserPreview">
