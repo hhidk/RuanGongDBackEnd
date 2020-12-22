@@ -38,7 +38,7 @@ public class Author implements Serializable {
     if (s.length()<3){
         this.orgs="unknown";
     }else {
-        this.orgs=s.substring(1,s.length()-2);
+        this.orgs=s.substring(1,s.length()-1);
     }
     }
 
