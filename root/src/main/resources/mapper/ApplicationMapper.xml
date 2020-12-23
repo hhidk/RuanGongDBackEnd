@@ -23,7 +23,8 @@
     <select id="getApplicationByApplicationID" parameterType="int" resultType="Application">
         select *
         from Application
-        where applicationID = #{applicationID};
+        where applicationID = #{applicationID}
+        order by Application.applicationID desc;
     </select>
 
     <update id="setApplicationStatus" parameterType="Map">
@@ -33,9 +34,10 @@
     </update>
 
     <select id="getAllGateApplication" resultMap="GateApplicationMap">
-        select applicationID, User.userID, username, image, userDegree, Application.authorID, User.emailAddress, content, status, realName
+        select applicationID, User.userID, username, image, userDegree, Application.authorID, User.emailAddress, content, status, Application.realName
         from Application, User
-        where User.userID = Application.userID;
+        where User.userID = Application.userID
+        order by applicationID desc;
     </select>
 
 </mapper>

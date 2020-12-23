@@ -36,18 +36,22 @@
         from Message, User, Comment
         where Message.receiverID = #{userID} and User.userID = Message.senderID and Message.type = 3
               and Message.commentID = Comment.postCommentID and Comment.type = 2
+        order by Message.sendTime desc;
     </select>
 
     <select id="getSystemMessageByUserID" parameterType="String" resultType="Message">
         select *
         from Message
-        where Message.receiverID = #{userID} and (Message.type = 1 or Message.type = 4 or Message.type = 5 or Message.type = 6 or Message.type = 7);
+        where Message.receiverID = #{userID} and (Message.type = 1 or Message.type = 4 or Message.type = 5
+              or Message.type = 6 or Message.type = 7)
+        order by Message.sendTime desc;
     </select>
 
     <select id="getConsultMessageByUserID" parameterType="String" resultMap="ConsultMessageMap">
         select Message.messageID, Message.viewed, Message.sendTime, Message.content, User.userID, User.username, User.image
         from Message, User
-        where Message.receiverID = #{userID} and Message.type = 2 and User.userID = Message.senderID;
+        where Message.receiverID = #{userID} and Message.type = 2 and User.userID = Message.senderID
+        order by Message.sendTime desc;
     </select>
 
     <delete id="deleteMessageByMessageID" parameterType="String">
