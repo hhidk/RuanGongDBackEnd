@@ -25,7 +25,7 @@ public class MessageController {
     public Map<String, String> put(@RequestBody Map<String, Object> body) {
         String senderId = (String) body.get("senderId");
         String receiverId = (String) body.get("receiverId");
-        String content = (String) body.get("content");
+        String content = (String) body.get("text");
         boolean result = messageService.put(senderId, receiverId, content);
         return response(result);
     }
