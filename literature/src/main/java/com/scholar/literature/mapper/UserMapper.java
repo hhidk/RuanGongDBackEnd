@@ -12,5 +12,5 @@ public interface UserMapper {
      * 根据authorID在user表中查找
      */
     User getUserByAuthorID();
-
+    User getUserByUserID();
 }
