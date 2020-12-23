@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scholar.social.repository.CommentRepository">
+    <insert id="insert">
+        insert into Comment(content, postID, userID, type, commentTime)
+        values (#{content}, #{postId}, #{userId}, 2, now())
+    </insert>
+    <delete id="delete">
+        delete from Comment where postCommentID = #{commentId}
+    </delete>
+    <select id="selectByPostId" resultType="com.scholar.social.util.Comment">
+        SELECT postCommentID as id,
+               userID        as userId,
+               commentTime   as time,
+               content       as content
+        FROM Comment
+        WHERE postID = #{postId}
+          AND type = 2
+    </select>
+    <delete id="deleteByPostId">
+        DELETE FROM Comment WHERE postID = #{postId} AND type = 2
+    </delete>
+    <select id="select" resultType="com.scholar.social.util.Comment">
+        SELECT postCommentID as id,
+               userID        as userId,
+               commentTime   as time,
+               content       as content
+        FROM Comment
+        WHERE postCommentID = #{commentId}
+    </select>
+</mapper>

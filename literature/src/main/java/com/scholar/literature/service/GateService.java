@@ -25,7 +25,7 @@ public class GateService {
     private RestHighLevelClient restHighLevelClient;
     private static final Logger log = LoggerFactory.getLogger(GateService.class);
     public User getAuthorInformation(String authorID) {
-        User user = userMapper.getUserByAuthorID();
+        User user = userMapper.getUserByAuthorID(authorID);
         if (user == null) {
             // todo: 在author表中查找authorID对应的author，并把信息填入User类。
             user = new User(0);

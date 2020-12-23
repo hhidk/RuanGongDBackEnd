@@ -24,7 +24,7 @@ public class ProfileService {
             return 3;
         String userID = UserUtil.generateUserID();
         User user = new User(userID, username, password);
-        user.setImage("http://185.133.193.251:8082/image/deadline2.jpg");
+        user.setImage("http://60.205.189.66:8082/image/deadline2.jpg");
         userMapper.addUser(user);
         return 0;
     }
@@ -61,6 +61,13 @@ public class ProfileService {
             return 1;
         }
         user.setEmailAddress(emailAddress);
+        userMapper.updateUser(user);
+        return 0;
+    }
+
+    public int editUserImage(String userID, String image) throws Exception {
+        User user = userMapper.getUserByUserID(userID);
+        user.setImage(image);
         userMapper.updateUser(user);
         return 0;
     }

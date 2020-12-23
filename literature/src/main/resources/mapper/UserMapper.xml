@@ -6,7 +6,7 @@
 <mapper namespace="com.scholar.literature.mapper.UserMapper">
 
     <select id="getUserByAuthorID" parameterType="String" resultType="User">
-        select *
+        select userID, authorID, userIdentity, username, phoneNumber, emailAddress, image, organization, introduction, realName, userDegree
         from User
         where authorID = #{authorID}
     </select>
@@ -16,4 +16,5 @@
         from User
         where userID = #{userID}
     </select>
+
 </mapper>

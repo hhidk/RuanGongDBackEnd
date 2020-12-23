@@ -6,7 +6,7 @@
 <mapper namespace="com.scholar.profile.mapper.FavoriteMapper">
 
     <select id="getFavoriteByUserID" parameterType="String" resultType="LiteraturePreview">
-        select literatureID, literatureTitle
+        select literatureID, title, year, venue
         from UserLiterature
         where userID = #{userID}
     </select>

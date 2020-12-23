@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @RestController
 @CrossOrigin
@@ -60,9 +63,19 @@ public class ProfileController {
     }
 
     @RequestMapping("/editUserEmailAddress")
-    public int editUserEmailAddress(String userID, String emailAddress) {
+    public int editUserEmailAddress(@RequestParam("userID") String userID, @RequestParam("emailAddress") String emailAddress) {
         try {
             return profileService.editUserEmailAddress(userID, emailAddress);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @RequestMapping("/editUserImage")
+    public int editUserImage(@RequestParam("userID") String userID, @RequestParam("imgUrl") String image) {
+        try {
+            return profileService.editUserImage(userID, image);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

@@ -12,7 +12,7 @@ import java.util.Map;
 @Mapper
 public interface CollectMapper {
 
-    int addCollect(@Param("userID") String userID, @Param("literatureID") String literatureID, @Param("title") String title, @Param("year") String year, @Param("venue") String venue);
+    int addCollect(@Param("userID") String userID, @Param("literatureID") String literatureID, @Param("title") String title, @Param("year") String year, @Param("venue") String venue, @Param("realName") String realName);
 
     int deleteCollect(@Param("userID") String userID, @Param("literatureID") String literatureID);
 
@@ -23,4 +23,8 @@ public interface CollectMapper {
      * 返回收藏量前10的文献列表
      */
     List<LiteraturePreview> getHighCollect();
+
+    LiteraturePreview getLiteratureByLiteratureID(@Param("literatureID") String literatureID);
+
+    String checkCollect(@Param("userID") String userID, @Param("literatureID") String literatureID);
 }

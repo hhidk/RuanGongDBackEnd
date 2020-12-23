@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scholar.social.repository.SectorRepository">
+    <select id="getAll" resultType="com.scholar.social.util.Sector">
+        SELECT sectorID as id,
+               name     as name,
+               counter  as tot
+        FROM Sector
+    </select>
+    <select id="getTags" resultType="java.lang.String">
+        SELECT tags
+        FROM Sector
+        WHERE sectorID = #{sectorId}
+    </select>
+    <select id="getTot" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM Post
+        WHERE sectorID = #{sectorId}
+    </select>
+    <update id="setTot">
+        UPDATE Sector
+        <set>
+            counter = #{tot}
+        </set>
+        <where>
+            sectorID = #{sectorId}
+        </where>
+    </update>
+</mapper>

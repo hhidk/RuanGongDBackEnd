@@ -10,20 +10,23 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
 public interface ReportMapper
 {
-    List<ArticleReport> getArticleReportByReportID(@Param("reportID") int reportID);
+    List<ArticleReport> getArticleReportByReportID();
 
-    List<GateReport> getGateReportByReportID(@Param("reportID") int reportID);
+    List<GateReport> getGateReportByReportID();
 
-    List<CommentReport> getCommentReportByReportID(@Param("reportID") int reportID);
+    List<CommentReport> getCommentReportByReportID();
 
-    List<PostReport> getPostReportByReportID(@Param("reportID") int reportID);
+    List<PostReport> getPostReportByReportID();
 
     Report getReportByReportID(@Param("reportID") int reportID);
 
     int deleteReportByReportID(@Param("reportID") int reportID);
+
+    int setReportStatus(@Param("reportID") int reportID);
 }

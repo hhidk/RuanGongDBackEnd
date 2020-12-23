@@ -21,9 +21,10 @@ public class CollectController {
     @RequestMapping("/collect")
     public int collect(@RequestParam("userID") String userID, @RequestParam("literatureID") String literatureID,
                        @RequestParam("title") String title, @RequestParam("option") int option,
-                       @RequestParam("year") String year, @RequestParam("venue") String venue) {
+                       @RequestParam("year") String year, @RequestParam("venue") String venue,
+                       @RequestParam("realName") String realName) {
         try {
-            return collectService.collect(userID, literatureID, title, option, year, venue);
+            return collectService.collect(userID, literatureID, title, option, year, venue, realName);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -37,6 +38,16 @@ public class CollectController {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @RequestMapping("/getcollect")
+    public int getcollect(@RequestParam("userID") String userID, @RequestParam("literatureID") String literatureID) {
+        try {
+            return collectService.getcollect(userID, literatureID);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 
