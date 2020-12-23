@@ -14,7 +14,7 @@
         FROM User
         WHERE userID = #{userId}
     </select>
-    <select id="getIdent">
+    <select id="getIdent" resultType="java.lang.Integer">
         SELECT userIdentity
         FROM User
         WHERE userID = #{userId}
