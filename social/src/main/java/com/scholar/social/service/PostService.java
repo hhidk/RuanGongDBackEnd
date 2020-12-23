@@ -4,16 +4,20 @@ import com.scholar.social.repository.*;
 import com.scholar.social.util.Post;
 import com.scholar.social.util.PostFormatHelper;
 import com.scholar.social.util.SortType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class PostService {
+    private static final Logger log = LoggerFactory.getLogger(PostService.class);
     private final ReportRepository reportRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
@@ -61,6 +65,7 @@ public class PostService {
 
     public List<Post> search(int sectorId, int start, int num, SortType sort, String keyword) {
         List<Post> postList = postRepository.search(sectorId, keyword);
+        log.debug("size: {}, start: {}, num: {}", postList.size(), start, num);
         if (start >= postList.size()) {
             return List.of();
         }
@@ -71,6 +76,7 @@ public class PostService {
                 break;
             case CREATE_TIME:
                 postList.sort(Comparator.comparingLong(post -> post.getCreateTime().getTime()));
+                Collections.reverse(postList);
                 break;
             case UPDATE_TIME:
                 postList = postList.stream().map(PostFormatHelper::new)
@@ -79,9 +85,11 @@ public class PostService {
                         ))
                         .map(PostFormatHelper::getPost)
                         .collect(Collectors.toList());
+                Collections.reverse(postList);
                 break;
             case REPLY_NUM:
                 postList.sort(Comparator.comparingInt(post -> post.getComments().size()));
+                Collections.reverse(postList);
                 break;
         }
         return postList.subList(start, Math.min(postList.size(), start + num));
