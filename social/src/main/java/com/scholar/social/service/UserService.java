@@ -17,4 +17,12 @@ public class UserService {
     public User get(String userId) {
         return userRepository.get(userId);
     }
+
+    public String getAuthorId(String userId) {
+        return userRepository.getAuthorId(userId);
+    }
+
+    public int getIdent(String userId) {
+        return userRepository.getIdent(userId);
+    }
 }

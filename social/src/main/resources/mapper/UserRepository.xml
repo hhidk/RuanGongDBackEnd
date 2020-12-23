@@ -9,4 +9,14 @@
         from User
         where userId = #{userId}
     </select>
+    <select id="getAuthorId" resultType="java.lang.String">
+        SELECT authorID
+        FROM User
+        WHERE userID = #{userId}
+    </select>
+    <select id="getIdent">
+        SELECT userIdentity
+        FROM User
+        WHERE userID = #{userId}
+    </select>
 </mapper>
