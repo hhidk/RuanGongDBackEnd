@@ -70,6 +70,7 @@ public class Literature {
         ret.put("literatureID", this.id);
         ret.put("title", this.title);
         ret.put("keyWord", this.keywords);
+        ret.put("citation",this.n_citation);
         for (LitAuthor author : authors) {
             Map<String, Object> ma = new HashMap<>();
             ma.put("authorID", author.getId());
@@ -120,7 +121,6 @@ public class Literature {
 
     private void parseVenue(Map<String, Object> map) {
         Map<String, Object> mapve = (Map<String, Object>) map.get("venue");
-        ;
         if (mapve != null) {
             venue = new Venue();
             venue.setRaw((String) mapve.get("raw"));
@@ -133,7 +133,9 @@ public class Literature {
         ArrayList<Map<String, Object>> ls = (ArrayList<Map<String, Object>>) map.get("authors");
         if (ls != null) {
             for (Map<String, Object> l : ls) {
-                authors.add(new LitAuthor(l));
+               if (l.get("id")!=null){
+                    authors.add(new LitAuthor(l));
+                }
             }
         }
     }

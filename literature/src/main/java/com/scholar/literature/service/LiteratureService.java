@@ -3,18 +3,23 @@ package com.scholar.literature.service;
 import com.scholar.literature.controller.AuthorController;
 import com.scholar.literature.mapper.CollectMapper;
 import com.scholar.literature.mapper.CommentMapper;
+import com.scholar.literature.mapper.UserMapper;
 import com.scholar.literature.pojo.Literature;
+import com.scholar.literature.pojo.User;
 import org.elasticsearch.action.DocWriteResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.Index;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
@@ -37,6 +42,9 @@ public class LiteratureService {
     CollectMapper collectMapper;
     @Autowired
     CommentMapper commentMapper;
+    @Autowired
+    UserMapper userMapper;
+
 
     private static final Logger log = LoggerFactory.getLogger(LiteratureService.class);
 
@@ -81,7 +89,7 @@ public class LiteratureService {
             GetResponse getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
             Map<String, Object> map = getResponse.getSource();
             if (getResponse.isExists()) {
-                log.info("literature got = ",id);
+                log.info("literature got = {}",id);
                 ret.add(new Literature(map).retGetMymap());
             }
         }
@@ -113,10 +121,41 @@ public class LiteratureService {
         return false;
     }
 
-    public boolean addLiterature(Literature obj) {
+    public int addLiterature(Map<String,Object> map,String userID) {
+        User user = userMapper.getUserByUserID();
+        log.info("try to add new Literature");
+        List<Map<String,Object>>authors = new ArrayList<>();
+        Map<String,Object>author =new HashMap<>();
+        author.put("id",user.getAuthorID());
+        author.put("name", user.getRealName());
+        authors.add(author);
+        Map<String,Object>venue = new HashMap<>();
+        venue.put("raw",map.get("raw"));
+        Map<String,Object> jsonMap = new HashMap<>();
 
-
-        return false;
+        jsonMap.put("abstract",map.get("abstract"));
+        jsonMap.put("pdf",map.get("url"));
+        jsonMap.put("authors",authors);
+        jsonMap.put("venue",venue);
+        jsonMap.put("title",map.get("title"));
+        jsonMap.put("year",Integer.parseInt((String)map.get("year")));
+        jsonMap.put("n_citation",Integer.parseInt((String) map.get("citation")));
+        IndexRequest indexRequest = new IndexRequest("literature");
+        indexRequest.source(jsonMap);
+        try {
+            IndexResponse response=restHighLevelClient.index(indexRequest,RequestOptions.DEFAULT);
+            if (response.getResult()== DocWriteResponse.Result.CREATED){
+                log.info("created successfully");
+                return 0;
+            }else {
+                log.error("create failed,resutl is {}",response.status());
+                return -1;
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+            log.error("create failed");
+            return -1;
+        }
     }
 
     public Map<String, Object> getRelation(String venue) {
@@ -186,7 +225,7 @@ public class LiteratureService {
         }
     }
 
-    public Map<String, Object> getStats(String literatureID) throws Exception {
+    public Map<String, Object> getStats(String literatureID) {
         List<Integer> collectTimes = new ArrayList<>();
         // List<Integer> readTimes = new ArrayList<>();
         List<Integer> commentTimes = new ArrayList<>();
