@@ -78,6 +78,7 @@ public class LiteratureController {
 
     @PostMapping(value = "/getMyLiterature")
     public List<Map<String, Object>> getMyLiteratureList(@RequestParam String authorID) {
+        log.error("get is called");
         try {
             return literatureService.getMyLiterature(authorID);
         } catch (Exception e) {
