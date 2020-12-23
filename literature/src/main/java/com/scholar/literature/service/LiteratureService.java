@@ -209,7 +209,7 @@ public class LiteratureService {
             List<Map<String, Object>> ret = new ArrayList<>();
             SearchRequest searchRequest = new SearchRequest("literature");
             SearchSourceBuilder sb = new SearchSourceBuilder().size(10000);
-            sb.query(QueryBuilders.matchQuery("authors.id", authorID));
+            sb.query(QueryBuilders.termQuery("authors.id", authorID));
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
             SearchHits searchHits = searchResponse.getHits();
             for (SearchHit searchHit : searchHits) {
