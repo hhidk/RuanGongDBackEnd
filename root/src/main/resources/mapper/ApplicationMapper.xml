@@ -34,7 +34,7 @@
     </update>
 
     <select id="getAllGateApplication" resultMap="GateApplicationMap">
-        select applicationID, User.userID, username, image, userDegree, Application.authorID, User.emailAddress, content, status, Application.realName
+        select applicationID, User.userID, username, image, userDegree, Application.authorID, Application.emailAddress, content, status, Application.realName
         from Application, User
         where User.userID = Application.userID
         order by applicationID desc;
