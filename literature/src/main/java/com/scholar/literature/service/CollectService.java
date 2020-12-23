@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CollectService {
@@ -15,9 +17,9 @@ public class CollectService {
     @Autowired
     private CollectMapper collectMapper;
 
-    public int collect(String userID, String literatureID, String title, int option, String year, String venue) throws Exception {
+    public int collect(String userID, String literatureID, String title, int option, String year, String venue, String realName) throws Exception {
         if (option == 1) {
-            collectMapper.addCollect(userID, literatureID, title, year, venue);
+            collectMapper.addCollect(userID, literatureID, title, year, venue, realName);
         } else {
             collectMapper.deleteCollect(userID, literatureID);
         }
@@ -31,6 +33,9 @@ public class CollectService {
             literature.setTitle(info.getTitle());
             literature.setVenue(info.getVenue());
             literature.setYear(info.getYear());
+            Map<String, Object> map = new HashMap<>();
+            map.put("realName", info.getRealName());
+            literature.setAuthors(map);
         }
         return list;
     }
