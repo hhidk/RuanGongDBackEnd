@@ -1,6 +1,7 @@
 package com.scholar.literature.controller;
 
 import com.scholar.literature.dto.SearchItem;
+import com.scholar.literature.mapper.UserMapper;
 import com.scholar.literature.pojo.Literature;
 import com.scholar.literature.service.LiteratureService;
 import com.scholar.literature.service.SearchService;
@@ -22,6 +23,8 @@ public class LiteratureController {
 
     @Autowired
     LiteratureService literatureService;
+
+
 
     @PostMapping(value = "/getRelation")
     public Map<String, Object> getRelation(@RequestParam String venue) {
@@ -54,12 +57,12 @@ public class LiteratureController {
     }
 
     @PostMapping(value = "/addLiterature")
-    public boolean addLiterature(@RequestBody Literature literature) {
+    public int addLiterature(@RequestParam Map<String,Object> createLiForm, @RequestParam String userID) {
         try {
-            return literatureService.addLiterature(literature);
+            return literatureService.addLiterature(createLiForm,userID);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 
@@ -86,7 +89,7 @@ public class LiteratureController {
     @RequestMapping("/getHighCitation")
     public Map<String, Object> getHighCitation() {
         try {
-            Map<String, Object> re = new HashMap<String, Object>();
+            Map<String, Object> re = new HashMap<>();
             re.put("citationList", literatureService.getHighCitation());
             return re;
         } catch (Exception e) {

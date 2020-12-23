@@ -2,6 +2,7 @@ package com.scholar.literature.dto;
 
 import lombok.Data;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -12,6 +13,6 @@ public class LiteraturePreview {
     private String year;
     private String venue;
     private String realName;
-    private Map authors;
+    private List<Map> authors;
     private int citation;
 }

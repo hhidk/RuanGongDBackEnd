@@ -32,9 +32,11 @@ public class CollectService {
             literature.setTitle(info.getTitle());
             literature.setVenue(info.getVenue());
             literature.setYear(info.getYear());
+            List<Map> authors = new ArrayList<>();
             Map<String, Object> map = new HashMap<>();
             map.put("realName", info.getRealName());
-            literature.setAuthors(map);
+            authors.add(map);
+            literature.setAuthors(authors);
         }
         return list;
     }
