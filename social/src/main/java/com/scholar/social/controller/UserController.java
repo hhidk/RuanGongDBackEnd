@@ -27,6 +27,7 @@ public class UserController {
         String userId = parseUserId(body);
         String authorId = userService.getAuthorId(userId);
         int ident = userService.getIdent(userId);
-        return Map.of("userIdentity", String.valueOf(ident), "authorID", authorId);
+        return Map.of("userIdentity", String.valueOf(ident), "authorID",
+                authorId == null ? "" : authorId);
     }
 }
