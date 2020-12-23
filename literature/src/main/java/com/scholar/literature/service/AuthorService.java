@@ -1,5 +1,6 @@
 package com.scholar.literature.service;
 
+
 import com.scholar.literature.controller.AuthorController;
 import com.scholar.literature.pojo.Author;
 import com.scholar.literature.pojo.LitAuthor;
@@ -37,7 +38,7 @@ public class AuthorService {
             List<Map<String, Object>> maps = new ArrayList<>();
             SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
             sourceBuilder.query(QueryBuilders.matchQuery("name", authorName));
-            sourceBuilder.size(10000);
+            sourceBuilder.size(100000);
             SearchRequest searchRequest = new SearchRequest("author").source(sourceBuilder);
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
             SearchHits searchHits = searchResponse.getHits();

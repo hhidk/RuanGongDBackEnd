@@ -30,6 +30,7 @@ public class ApplicationService
         Map<String, Object> map = new HashMap<>();
         map.put("userID", application.getUserID());
         map.put("authorID", application.getAuthorID());
+        map.put("realName", application.getRealName());
         userMapper.setAuthor(map);
 
         //发消息

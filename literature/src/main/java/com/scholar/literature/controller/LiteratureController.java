@@ -56,7 +56,7 @@ public class LiteratureController {
         }
     }
 
-    @PostMapping(value = "/addLiterature")
+    @PostMapping(value = "/addLiterature", produces = "application/json;charset=UTF-8")
     public int addLiterature(@RequestParam Map<String,Object> createLiForm, @RequestParam String userID) {
         try {
             return literatureService.addLiterature(createLiForm,userID);
