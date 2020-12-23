@@ -30,13 +30,13 @@
     <update id="setApplicationStatus" parameterType="Map">
         update Application
         set status = #{status}
-        where applicationID = #{application};
+        where applicationID = #{applicationID};
     </update>
 
     <select id="getAllGateApplication" resultMap="GateApplicationMap">
         select applicationID, User.userID, username, image, userDegree, Application.authorID, Application.emailAddress, content, status, Application.realName
         from Application, User
-        where User.userID = Application.userID and status = 0
+        where User.userID = Application.userID and Application.status = 0
         order by applicationID desc;
     </select>
 
