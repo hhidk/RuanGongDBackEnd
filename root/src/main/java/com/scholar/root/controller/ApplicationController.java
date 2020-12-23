@@ -2,6 +2,7 @@ package com.scholar.root.controller;
 
 import com.scholar.root.dto.GateApplication;
 import com.scholar.root.service.ApplicationService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,9 +31,9 @@ public class ApplicationController
     }
 
     @PostMapping("/rejectApplication")
-    public int rejectApplication(@RequestParam("applicationID") int applicationID) {
+    public int rejectApplication(@RequestParam("applicationID") int applicationID, @Param("msgContent") String msgContent) {
         try {
-            return applicationService.rejectApplication(applicationID);
+            return applicationService.rejectApplication(applicationID, msgContent);
         }
         catch (Exception e)  {
             e.printStackTrace();
