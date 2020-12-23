@@ -30,10 +30,10 @@ public class SectorService {
         sectorList = sectorList.stream().peek(sector -> {
             List<Post> postList =
                     postService
-                            .search(sector.getId(), 0, sector.getTot(), SortType.UPDATE_TIME, "");
+                            .search(sector.getId(), 0, 1, SortType.UPDATE_TIME, "");
             sector.setTags(
                     Arrays.asList(sectorRepository.getTags(sector.getId()).split(";")));
-            sector.setTot(postList.size());
+            sector.setTot(sectorRepository.getTot(sector.getId()));
             if (postList.size() > 0) sector.setPost(postList.get(0));
         }).collect(Collectors.toList());
         return sectorList;

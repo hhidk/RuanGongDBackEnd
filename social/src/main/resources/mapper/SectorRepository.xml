@@ -14,8 +14,8 @@
         WHERE sectorID = #{sectorId}
     </select>
     <select id="getTot" resultType="java.lang.Integer">
-        SELECT counter
-        FROM Sector
+        SELECT COUNT(*)
+        FROM Post
         WHERE sectorID = #{sectorId}
     </select>
     <update id="setTot">
