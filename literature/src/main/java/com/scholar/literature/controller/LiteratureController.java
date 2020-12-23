@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +32,7 @@ public class LiteratureController {
             return null;
         }
     }
+
     @PostMapping(value = "/getLiterature")
     public Map<String, Object> getLiterature(@RequestParam String literatureID) {
         try {
@@ -42,9 +44,9 @@ public class LiteratureController {
     }
 
     @PostMapping(value = "/editLiterature")
-    public boolean editLiterature(@RequestParam String Lid,@RequestParam String url,@RequestParam String userID) {
+    public boolean editLiterature(@RequestParam String Lid, @RequestParam String url, @RequestParam String userID) {
         try {
-            return literatureService.editLiterature(Lid,url);
+            return literatureService.editLiterature(Lid, url);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -52,34 +54,47 @@ public class LiteratureController {
     }
 
     @PostMapping(value = "/addLiterature")
-    public boolean addLiterature(@RequestBody Literature literature){
+    public boolean addLiterature(@RequestBody Literature literature) {
         try {
             return literatureService.addLiterature(literature);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
     @PostMapping(value = "/deleteLiterature")
-    public boolean deleteLiterature(@RequestParam String literatureID){
+    public boolean deleteLiterature(@RequestParam String literatureID) {
         try {
-           return literatureService.deleteLiterature(literatureID);
-        }catch (Exception e){
+            return literatureService.deleteLiterature(literatureID);
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
     @PostMapping(value = "/getMyLiterature")
-    public List <Map<String,Object>> getMyLiteratureList(@RequestParam String authorID){
+    public List<Map<String, Object>> getMyLiteratureList(@RequestParam String authorID) {
         try {
             return literatureService.getMyLiterature(authorID);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
+    @RequestMapping("/getHighCitation")
+    public Map<String, Object> getHighCitation() {
+        try {
+            Map<String, Object> re = new HashMap<String, Object>();
+            re.put("citationList", literatureService.getHighCitation());
+            return re;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     @RequestMapping("/getStats")
     public Map<String, Object> getStats(@RequestParam("literatureID") String literatureID) {

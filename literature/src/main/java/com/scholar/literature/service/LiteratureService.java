@@ -62,6 +62,32 @@ public class LiteratureService {
             return null;
         }
     }
+    public  List<Map<String,Object>> getHighCitation() throws IOException {
+        List<Map<String,Object>> ret= new ArrayList<>();
+        List<String>ids=new ArrayList<>();
+        ids.add("53e9986eb7602d97020ab93b");
+        ids.add("53e9b2c6b7602d9703d6da9e");
+        ids.add("53e9b8f5b7602d97044da476");
+        ids.add("53e9bb52b7602d9704790954");
+        ids.add("53e9b4d4b7602d9703ff7208");
+        ids.add("53e9bcc1b7602d97049412d4");
+        ids.add("53e99d73b7602d970262b052");
+        ids.add("53e99b86b7602d970242fa01");
+        ids.add("53e9b46ab7602d9703f6d1d0");
+        ids.add("53e99808b7602d970201a17e");
+        for (String id : ids) {
+            log.info("getCitation, try to get id= {}",id);
+            GetRequest getRequest = new GetRequest("literature", id);
+            GetResponse getResponse = restHighLevelClient.get(getRequest, RequestOptions.DEFAULT);
+            Map<String, Object> map = getResponse.getSource();
+            if (getResponse.isExists()) {
+                log.info("literature got = ",id);
+                ret.add(new Literature(map).retGetMymap());
+            }
+        }
+        return ret;
+    }
+
 
 
     public boolean editLiterature(String literatureID, String url) {

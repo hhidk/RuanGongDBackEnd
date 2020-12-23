@@ -224,20 +224,20 @@ public class SearchService {
         }
     }
 
-    private BoolQueryBuilder parseQuery(BoolQueryBuilder qb, SearchItem item) throws Exception {
+    private void parseQuery(BoolQueryBuilder qb, SearchItem item) throws Exception {
         String s = matchKeyword(item.getType());
         String value = item.getValue();
         switch (item.getLogical()) {
             case "NOT":
-                qb.mustNot(QueryBuilders.matchQuery(s, value));
-                return qb;
+                qb.mustNot(QueryBuilders.termQuery(s, value));
+                return;
             case "AND":
-                qb.must(QueryBuilders.matchQuery(s, value));
-                return qb;
+                qb.must(QueryBuilders.termQuery(s, value));
+                return;
             case "OR":
             case "NULL":
-                qb.should(QueryBuilders.matchQuery(s, value));
-                return qb;
+                qb.should(QueryBuilders.termQuery(s, value));
+                return;
             default:
                 log.error("illegal logical: {}", item.getLogical());
                 throw new Exception("illegal bool keyword");
