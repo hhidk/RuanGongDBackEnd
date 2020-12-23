@@ -206,10 +206,11 @@ public class LiteratureService {
 
     public List<Map<String, Object>> getMyLiterature(String authorID) {
         try {
+            log.warn("getMyLiterature is callled ,author ID is {} ",authorID);
             List<Map<String, Object>> ret = new ArrayList<>();
             SearchRequest searchRequest = new SearchRequest("literature");
             SearchSourceBuilder sb = new SearchSourceBuilder().size(10000);
-            sb.query(QueryBuilders.termQuery("authors.id", authorID));
+            sb.query(QueryBuilders.matchPhraseQuery("authors.id", authorID));
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
             SearchHits searchHits = searchResponse.getHits();
             for (SearchHit searchHit : searchHits) {
