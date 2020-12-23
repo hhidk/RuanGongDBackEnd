@@ -122,7 +122,7 @@ public class LiteratureService {
     }
 
     public int addLiterature(Map<String,Object> map,String userID) {
-        User user = userMapper.getUserByUserID();
+        User user = userMapper.getUserByUserID(userID);
         log.info("try to add new Literature");
         List<Map<String,Object>>authors = new ArrayList<>();
         Map<String,Object>author =new HashMap<>();
