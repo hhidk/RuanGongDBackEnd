@@ -115,7 +115,7 @@ public class PostInfoController {
                     Map<String, Object> postMap = PostGenerator.basicInfo(post);
                     postMap.put("sectorName", sectorNameMap.get(post.getSectorId()));
                     User user = userService.get(post.getUserId());
-                    postMap.putAll(UserGenerator.userInfo(user, "create"));
+                    postMap.putAll(UserGenerator.userInfo(user, "creator"));
                     return postMap;
                 })
                 .collect(Collectors.toList());
