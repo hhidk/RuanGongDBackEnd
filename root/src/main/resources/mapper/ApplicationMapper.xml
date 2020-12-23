@@ -30,7 +30,7 @@
     <update id="setApplicationStatus" parameterType="Map">
         update Application
         set status = #{status}
-        where applicationID = #{application};
+        where applicationID = #{applicationID};
     </update>
 
     <select id="getAllGateApplication" resultMap="GateApplicationMap">
