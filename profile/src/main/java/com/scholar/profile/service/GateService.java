@@ -47,7 +47,8 @@ public class GateService {
         Report report = new Report(userID, authorID, content);
         report.setType(4);
         report.setStatus(0);
-        return reportMapper.addReport(report);
+        reportMapper.addReport(report);
+        return 0;
     }
 
     public int getIntroFollowStatus(String followerID, String authorID) throws Exception {

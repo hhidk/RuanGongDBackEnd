@@ -50,14 +50,14 @@ public class ApplicationService
         return 1;
     }
 
-    public int rejectApplication(int applicationID) {
+    public int rejectApplication(int applicationID, String msgContent) {
 
         Application application = applicationMapper.getApplicationByApplicationID(applicationID);
         Message message = new Message();
         message.setSenderID(application.getUserID());
         message.setReceiverID(application.getUserID());
         message.setViewed(false);
-        message.setContent(application.getRealName());
+        message.setContent(msgContent);
         message.setType(7);
         messageMapper.addMessage(message);
 
