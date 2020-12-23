@@ -7,8 +7,8 @@
 
     <insert id="addCollect" parameterType="String">
         insert
-        into UserLiterature(userID, literatureID, title, collectTime, year, venue)
-        values(#{userID}, #{literatureID}, #{title}, current_date(), #{year}, #{venue} )
+        into UserLiterature(userID, literatureID, title, collectTime, year, venue, realName)
+        values(#{userID}, #{literatureID}, #{title}, current_date(), #{year}, #{venue}, #{realName})
     </insert>
 
     <delete id="deleteCollect" parameterType="String">
@@ -32,7 +32,7 @@
     </select>
 
     <select id="getLiteratureByLiteratureID" parameterType="String" resultType="LiteraturePreview">
-        select title, year, venue
+        select title, year, venue, realName
         from UserLiterature
         where literatureID = #{literatureID}
         limit 0,1
