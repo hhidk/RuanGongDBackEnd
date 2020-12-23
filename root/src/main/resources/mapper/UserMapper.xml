@@ -13,7 +13,7 @@
 
     <update id="setAuthor" parameterType="Map">
         update User
-        set authorID = #{authorID}, userIdentity = 1
+        set authorID = #{authorID}, userIdentity = 1, realName = #{realName}
         where userID = #{userID};
     </update>
 
