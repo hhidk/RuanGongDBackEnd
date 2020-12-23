@@ -8,6 +8,8 @@ public class Comment {
     private String content;
     private String postID;
     private String userID;
+    private String username;
+    private String image;
     private int type;
     private String commentTime;
 

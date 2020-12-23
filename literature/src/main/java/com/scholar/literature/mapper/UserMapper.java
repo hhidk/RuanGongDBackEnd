@@ -13,4 +13,6 @@ public interface UserMapper {
      */
     User getUserByAuthorID(String authorID);
 
+    User getUserByUserID(String userID);
+
 }

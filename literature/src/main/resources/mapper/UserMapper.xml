@@ -11,4 +11,10 @@
         where authorID = #{authorID}
     </select>
 
+    <select id="getUserByUserID" parameterType="String" resultType="User">
+        select *
+        from User
+        where userID = #{userID}
+    </select>
+
 </mapper>
