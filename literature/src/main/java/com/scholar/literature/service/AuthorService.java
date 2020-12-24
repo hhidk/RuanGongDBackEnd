@@ -88,6 +88,7 @@ public class AuthorService {
             SearchSourceBuilder sb = new SearchSourceBuilder().size(10000);
             sb.size(10000);
             sb.query(QueryBuilders.matchQuery("venue.raw", venue));
+            searchRequest.source(sb);
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
             SearchHits searchHits = searchResponse.getHits();
             for (SearchHit searchHit : searchHits) {
