@@ -54,17 +54,23 @@
         order by Message.sendTime desc;
     </select>
 
-    <delete id="deleteMessageByMessageID" parameterType="String">
+    <delete id="deleteMessageByMessageID" parameterType="int">
         delete
         from Message
         where Message.messageID = #{messageID};
     </delete>
 
-    <select id="getMessageByMessageID" parameterType="String" resultType="Message">
+    <select id="getMessageByMessageID" parameterType="int" resultType="Message">
         select *
         from Message
         where Message.messageID = #{messageID};
     </select>
+
+    <update id="setMessageViewed" parameterType="int">
+        update Message
+        set viewed = 1
+        where messageID = #{messageID};
+    </update>
 
     <insert id="addMessage" parameterType="Message">
         insert into Message (senderID, receiverID, viewed, content, type, sendTime, commentID)

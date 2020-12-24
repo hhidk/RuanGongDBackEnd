@@ -19,9 +19,11 @@ public interface MessageMapper
 
     List<ConsultMessage> getConsultMessageByUserID(@Param("userID") String userID);
 
-    int deleteMessageByMessageID(@Param("messageID") String messageID);
+    int deleteMessageByMessageID(@Param("messageID") int messageID);
 
-    Message getMessageByMessageID(@Param("messageID") String messageID);
+    Message getMessageByMessageID(@Param("messageID") int messageID);
+
+    int setMessageViewed(@Param("messageID") int messageID);
 
     int addMessage(Message message);
 }
