@@ -17,7 +17,7 @@ logging:
       scholar:
         social:
           controller: DEBUG
-#          service: DEBUG
+          service: DEBUG
 #          repository:
 #            PostRepository: DEBUG
 
