@@ -28,13 +28,17 @@ public class SectorService {
     public List<Sector> getAllSectors() {
         List<Sector> sectorList = sectorRepository.getAll();
         sectorList = sectorList.stream().peek(sector -> {
-            List<Post> postList =
-                    postService
-                            .search(sector.getId(), 0, 1, SortType.UPDATE_TIME, "");
             sector.setTags(
                     Arrays.asList(sectorRepository.getTags(sector.getId()).split(";")));
             sector.setTot(sectorRepository.getTot(sector.getId()));
-            if (postList.size() > 0) sector.setPost(postList.get(0));
+            if (sector.getTot() > 0) {
+                List<Post> postList =
+                        postService
+                                .search(sector.getId(), 0, 1, SortType.UPDATE_TIME, "");
+                sector.setPost(postList.get(0));
+            } else {
+                sector.setPost(null);
+            }
         }).collect(Collectors.toList());
         return sectorList;
     }
