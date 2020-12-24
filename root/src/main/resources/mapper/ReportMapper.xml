@@ -90,7 +90,7 @@
 
     </resultMap>
 
-    <select id="getArticleReportByReportID" resultMap="ArticleReportMap">
+    <select id="getArticleReport" resultMap="ArticleReportMap">
         select Report.reporteeID, Report.title, Report.status, Report.content, Report.reportID,
                User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, User
@@ -98,16 +98,16 @@
         order by Report.reportID desc;
     </select>
 
-    <select id="getGateReportByReportID" resultMap="GateReportMap">
+    <select id="getGateReport" resultMap="GateReportMap">
         select Report.status, Report.content, Report.reportID, A.userID userIDA, A.userIdentity userIdentityA, A.image imageA,
                A.username usernameA, A.realName realNameA, A.userDegree userDegreeA, B.userID userIDB, B.userIdentity userIdentityB,
                B.image imageB, B.username usernameB, B.realName realNameB, B.userDegree userDegreeB
         from Report, User A, User B
-        where Report.type = 4 and A.userID = Report.reporteeID and B.userID = Report.reporterID and Report.status = 0
+        where Report.type = 4 and A.authorID = Report.reporteeID and B.userID = Report.reporterID and Report.status = 0
         order by Report.reportID desc;
     </select>
 
-    <select id="getCommentReportByReportID" resultMap="CommentReportMap">
+    <select id="getCommentReport" resultMap="CommentReportMap">
         select Comment.postCommentID, Comment.content commentContent, Report.status, Report.content reportContent,
                Report.reportID, User.userID, User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Comment, User
@@ -116,7 +116,7 @@
         order by Report.reportID desc;
     </select>
 
-    <select id="getPostReportByReportID" resultMap="PostReportMap">
+    <select id="getPostReport" resultMap="PostReportMap">
         select Post.postID, Post.postContent, Report.status, Report.content, Report.reportID, User.userID,
                User.userIdentity, User.image, User.username, User.realName, User.userDegree
         from Report, Post, User
