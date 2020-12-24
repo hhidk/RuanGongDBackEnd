@@ -61,8 +61,7 @@ public class Literature {
         ret.put("keyWord", this.keywords);
         ret.put("year", this.year);
         ret.put("n_citation", n_citation);
-        genapa();
-        genmla();
+
         return ret;
     }
 
@@ -129,6 +128,8 @@ public class Literature {
         ret.put("venue", this.venue == null ? null : this.venue.getRaw());
         ret.put("year", this.year);
         ret.put("ciation", this.n_citation);
+        genapa();
+        genmla();
         ret.put("MLAformat", this.refMLA);
         ret.put("APAformat", this.refAPA);
         return ret;
@@ -145,6 +146,8 @@ public class Literature {
         ret.put("authors", this.authors.stream().map(LitAuthor::getId).collect(Collectors.toList()));
         ret.put("download", this.pdf);
         ret.put("doi", this.doi);
+        genapa();
+        genmla();
         ret.put("MLAformat", this.refMLA);
         ret.put("APAformat", this.refAPA);
         ret.put("venue", this.venue == null ? null : this.venue.getRaw());
