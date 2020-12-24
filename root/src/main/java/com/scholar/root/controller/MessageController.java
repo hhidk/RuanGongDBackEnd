@@ -51,7 +51,7 @@ public class MessageController
     }
 
     @PostMapping("/deleteMsg")
-    public int deleteMsg(@RequestParam("messageID") String messageID) {
+    public int deleteMsg(@RequestParam("messageID") int messageID) {
         try {
             return messageService.deleteMsg(messageID);
         }
@@ -62,7 +62,7 @@ public class MessageController
     }
 
     @PostMapping("/replyMsg")
-    public int replyMsg(@RequestParam("messageID") String messageID, @RequestParam("content") String content) {
+    public int replyMsg(@RequestParam("messageID") int messageID, @RequestParam("content") String content) {
         try {
             return messageService.replyMsg(messageID, content);
         }
