@@ -111,17 +111,31 @@ public class PostService {
 
     public List<Post> getPostsByUserId(String userId) {
         List<Post> postList = postRepository.getByUserId(userId);
-        postList = postList.stream().map(this::getFullPostInfo).collect(Collectors.toList());
+        postList = postList.stream().map(this::getFullPostInfo)
+                .map(PostFormatHelper::new)
+                .sorted(Comparator.comparingLong(p ->
+                        p.getLastTime().getTime()
+                ))
+                .map(PostFormatHelper::getPost)
+                .collect(Collectors.toList());
+        Collections.reverse(postList);
         return postList;
     }
 
     public List<Post> getPostsByFollowing(String userId) {
         List<String> followingUserId = userFollowRepository.getFollowing(userId);
-        return followingUserId.stream()
+        List<Post> postList = followingUserId.stream()
                 .flatMap(id ->
                         postRepository.getByUserId(id).stream()
                 )
                 .map(this::getFullPostInfo)
+                .map(PostFormatHelper::new)
+                .sorted(Comparator.comparingLong(p ->
+                        p.getLastTime().getTime()
+                ))
+                .map(PostFormatHelper::getPost)
                 .collect(Collectors.toList());
+        Collections.reverse(postList);
+        return postList;
     }
 }
