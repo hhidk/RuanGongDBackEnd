@@ -56,12 +56,44 @@ public class Literature {
             ma.put("realName", author.getName());
             authorlist.add(ma);
         }
-        ret.put("authors",authorlist);
+        ret.put("authors", authorlist);
         ret.put("abstract", this.abstracts);
         ret.put("keyWord", this.keywords);
         ret.put("year", this.year);
         ret.put("n_citation", n_citation);
+        genapa();
+        genmla();
         return ret;
+    }
+
+    private void genapa() {
+        StringBuilder apa = new StringBuilder();
+        for (LitAuthor author : authors) {
+            apa.append(author.getName() + "&");
+        }
+        apa.deleteCharAt(apa.length() - 1);
+        apa.append(". ");
+        apa.append("(" + this.year +"). ");
+        apa.append(this.title);
+
+        this.refAPA=apa.toString();
+    }
+
+    private void genmla() {
+        StringBuilder mla = new StringBuilder();
+        for (LitAuthor author : authors) {
+            mla.append(author.getName() + ",");
+        }
+        mla.deleteCharAt(mla.length() - 1);
+        mla.append(". ");
+        mla.append("\"");
+        mla.append(this.title);
+        mla.append("\" ");
+        mla.append(this.venue.getRaw());
+        mla.append(". ");
+        mla.append(this.year);
+        mla.append(".");
+        this.refMLA = mla.toString();
     }
 
     public Map<String, Object> retGetMymap() {
@@ -70,18 +102,19 @@ public class Literature {
         ret.put("literatureID", this.id);
         ret.put("title", this.title);
         ret.put("keyWord", this.keywords);
-        ret.put("citation",this.n_citation);
+        ret.put("citation", this.n_citation);
         for (LitAuthor author : authors) {
             Map<String, Object> ma = new HashMap<>();
             ma.put("authorID", author.getId());
             ma.put("realName", author.getName());
             authorlist.add(ma);
         }
-        ret.put("authors",authorlist);
+        ret.put("authors", authorlist);
         ret.put("venue", this.venue == null ? null : this.venue.getRaw());
         return ret;
     }
-    public Map<String,Object>retSearchMap(){
+
+    public Map<String, Object> retSearchMap() {
         Map<String, Object> ret = new HashMap<>();
         List<Map<String, Object>> authorlist = new ArrayList<>();
         ret.put("literatureID", this.id);
@@ -92,10 +125,10 @@ public class Literature {
             ma.put("realName", author.getName());
             authorlist.add(ma);
         }
-        ret.put("authors",authorlist);
+        ret.put("authors", authorlist);
         ret.put("venue", this.venue == null ? null : this.venue.getRaw());
-        ret.put("year",this.year);
-        ret.put("ciation",this.n_citation);
+        ret.put("year", this.year);
+        ret.put("ciation", this.n_citation);
         ret.put("MLAformat", this.refMLA);
         ret.put("APAformat", this.refAPA);
         return ret;
@@ -104,7 +137,7 @@ public class Literature {
     public Map<String, Object> retGetmap() {
         Map<String, Object> ret = new HashMap<>();
         Map<String, Object> rret = new HashMap<>();
-        ret.put("year",this.year);
+        ret.put("year", this.year);
         ret.put("literatureID", this.id);
         ret.put("title", this.title);
         ret.put("abstract", this.abstracts);
@@ -133,7 +166,7 @@ public class Literature {
         ArrayList<Map<String, Object>> ls = (ArrayList<Map<String, Object>>) map.get("authors");
         if (ls != null) {
             for (Map<String, Object> l : ls) {
-               if (l.get("id")!=null){
+                if (l.get("id") != null) {
                     authors.add(new LitAuthor(l));
                 }
             }
