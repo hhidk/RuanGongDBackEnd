@@ -37,14 +37,19 @@ public class MessageService
     }
 
     public List<ConsultMessage> getConsultMsg(String userID) {
-        return messageMapper.getConsultMessageByUserID(userID);
+        List<ConsultMessage> list = messageMapper.getConsultMessageByUserID(userID);
+        for (ConsultMessage consultMessage : list)
+        {
+            messageMapper.setMessageViewed(consultMessage.getMessageID());
+        }
+        return list;
     }
 
-    public int deleteMsg(String messageID) {
+    public int deleteMsg(int messageID) {
         return messageMapper.deleteMessageByMessageID(messageID);
     }
 
-    public int replyMsg(String messageID, String content) {
+    public int replyMsg(int messageID, String content) {
 
         Message originalMessage = messageMapper.getMessageByMessageID(messageID);
         Message replyMessage = new Message();

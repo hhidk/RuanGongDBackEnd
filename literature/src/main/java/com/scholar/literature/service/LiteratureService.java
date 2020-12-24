@@ -164,8 +164,9 @@ public class LiteratureService {
         List<Map<String, Object>> relationList = new ArrayList<>();
         try {
             SearchRequest searchRequest = new SearchRequest("literature");
-            SearchSourceBuilder sb = new SearchSourceBuilder().size(10000);
+            SearchSourceBuilder sb = new SearchSourceBuilder().size(7);
             sb.query(QueryBuilders.termQuery("venue.raw", venue));
+            searchRequest.source(sb);
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
             SearchHits searchHits = searchResponse.getHits();
             for (SearchHit searchHit : searchHits) {

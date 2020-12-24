@@ -39,17 +39,44 @@ public class SearchService {
             for (SearchItem searchItem : list) {
                 parseQuery(bq, searchItem);
             }
-            bq = bq.filter(QueryBuilders.rangeQuery("year").gte(start).lte(end));
-            sb.from(0);
+            bq.filter(QueryBuilders.rangeQuery("year").
+                    gte(start).lte(end));
             sb.query(bq);
             sb.size(10000);
+            searchRequest.source(sb);
             SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-            return resultDeal(response,start,end);
+
+            return resultDeal(response,start,end,query(start,end,list));
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
+    public String query(int start,int end,SearchItem item){
+        StringBuilder sb =new StringBuilder();
+        sb.append("(("+ item.getValue()+")WN ALL)");
+        return sb.toString();
+    }
+
+    public String query(int start,int end,List<SearchItem>items){
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(start+"-"+end+":(");
+
+        for (int i = 0 ;i<items.size();i++){
+            if (i==0){
+                sb.append("("+items.get(i).getValue()+") "+items.get(i).getType());
+                continue;
+            }
+            sb.append(" "+items.get(i).getLogical()+" ("+items.get(i).getValue()+") "+items.get(i).getType());
+        }
+        sb.append(")");
+        return
+                sb.toString();
+    }
+
+
 
     public Map<String, Object> search(SearchItem item) {
         //String key = matchKeyword()
@@ -64,7 +91,7 @@ public class SearchService {
             sb.size(10000);
             //parse
             SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
-            return resultDeal(response,-1,-1);
+            return resultDeal(response,-1,-1,query(-1,-1,item));
         } catch (Exception e) {
             e.printStackTrace();
             log.error("unknown err");
@@ -72,7 +99,7 @@ public class SearchService {
         }
     }
 
-    private Map<String, Object> resultDeal(SearchResponse response,int start,int end) {
+    private Map<String, Object> resultDeal(SearchResponse response,int start,int end,String query) {
         try {
             int count = 0;
             int sum = 0;
@@ -96,6 +123,8 @@ public class SearchService {
             SearchHits searchHits = response.getHits();
             totalhits = searchHits.getTotalHits().value;
             answer.put("num", totalhits);
+            answer.put("query",query);
+
             for (SearchHit searchHit : searchHits) {
                 list3.add(new Literature(searchHit.getSourceAsMap()).retSearchMap());
                 litsort.add(new Literature(searchHit.getSourceAsMap()));
@@ -225,18 +254,17 @@ public class SearchService {
     }
 
     private void parseQuery(BoolQueryBuilder qb, SearchItem item) throws Exception {
-        String s = matchKeyword(item.getType());
         String value = item.getValue();
         switch (item.getLogical()) {
             case "NOT":
-                qb.mustNot(QueryBuilders.termQuery(s, value));
+                qb.mustNot(matchKeyword(item));
                 return;
+            case "NULL":
             case "AND":
-                qb.must(QueryBuilders.termQuery(s, value));
+                qb.must(matchKeyword(item));
                 return;
             case "OR":
-            case "NULL":
-                qb.should(QueryBuilders.termQuery(s, value));
+                qb.should(matchKeyword(item));
                 return;
             default:
                 log.error("illegal logical: {}", item.getLogical());
@@ -244,35 +272,32 @@ public class SearchService {
         }
     }
 
-    private String matchKeyword(String s) {
+    private QueryBuilder matchKeyword(SearchItem item) throws Exception {
         // TODO: unhandled FI
+        String s =item.getType();
         switch (s) {
-            case "SU": {
-                return "title";
+            case "SU":
+            case "TI": {
+                return   QueryBuilders.matchQuery("title",item.getValue()) ;
             }
             case "KY": {
-                return "keywords";
-            }
-            case "TI": {
-                return "title";
+                return QueryBuilders.matchQuery("keywords",item.getValue());
             }
             case "AU": {
-                return "authors.id";
+                return QueryBuilders.matchQuery("authors.name",item.getValue());
             }
             case "FI": {
-                return "unreachable place";
+                return QueryBuilders.matchQuery("authors.name",item.getValue());
             }
             case "AF": {
-                return "authors.org";
+                return QueryBuilders.matchQuery("authors.org",item.getValue());
             }
             case "LY": {
-                return "venue.raw";
-            }
-            case "RF": {
-                return "title";
+                return QueryBuilders.matchQuery("venue.raw",item.getValue());
             }
             default: {
-                return "title";
+                log.error("invalid Type");
+                throw new  Exception();
             }
         }
     }

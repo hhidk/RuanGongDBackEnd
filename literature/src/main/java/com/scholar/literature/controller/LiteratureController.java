@@ -57,9 +57,9 @@ public class LiteratureController {
     }
 
     @PostMapping(value = "/addLiterature", produces = "application/json;charset=UTF-8")
-    public int addLiterature(@RequestParam Map<String,Object> createLiForm, @RequestParam String userID) {
+    public int addLiterature(@RequestBody Map<String,Object> body, @RequestParam String userID) {
         try {
-            return literatureService.addLiterature(createLiForm,userID);
+            return literatureService.addLiterature(body,userID);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
