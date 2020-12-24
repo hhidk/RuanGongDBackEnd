@@ -43,12 +43,18 @@ public class SectorController {
         for (Sector sector : sectorList) {
             Map<String, Object> sectorMap = SectorGenerator.info(sector);
             Post post = sector.getPost();
-            PostFormatHelper helper = new PostFormatHelper(post);
-            sectorMap.putAll(UserGenerator
-                    .userInfo(userService.get(helper.getLastUserId()), "user"));
-            sectorMap.put("postId", String.valueOf(post.getPostId()));
-            sectorMap.put("postName", post.getTitle());
-            sectorMap.put("editTime", format(helper.getLastTime()));
+            if (post == null) {
+                sectorMap.put("postId", "");
+                sectorMap.put("postName", "");
+                sectorMap.put("editTime", "");
+            } else {
+                PostFormatHelper helper = new PostFormatHelper(post);
+                sectorMap.putAll(UserGenerator
+                        .userInfo(userService.get(helper.getLastUserId()), "user"));
+                sectorMap.put("postId", String.valueOf(post.getPostId()));
+                sectorMap.put("postName", post.getTitle());
+                sectorMap.put("editTime", format(helper.getLastTime()));
+            }
             sectorMapList.add(sectorMap);
         }
         return Map.of("sectors", sectorMapList);

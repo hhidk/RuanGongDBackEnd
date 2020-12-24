@@ -7,11 +7,6 @@ import java.util.List;
 public class PostFormatHelper {
     private final String lastUserId;
     private final Date lastTime;
-
-    public Post getPost() {
-        return post;
-    }
-
     private Post post;
 
     public PostFormatHelper(Post post) {
@@ -26,6 +21,10 @@ public class PostFormatHelper {
             lastUserId = latest.getUserId();
             lastTime = latest.getTime();
         }
+    }
+
+    public Post getPost() {
+        return post;
     }
 
     public String getLastUserId() {
