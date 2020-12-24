@@ -32,7 +32,7 @@ public class ReportService
 
 
     public List<ArticleReport> getArticleReports() throws Exception {
-        List<ArticleReport> list = reportMapper.getArticleReportByReportID();
+        List<ArticleReport> list = reportMapper.getArticleReport();
         for (ArticleReport articleReport : list)
         {
             if (articleReport.getReportContent().length() > 57)
@@ -45,7 +45,7 @@ public class ReportService
     }
 
     public List<GateReport> getGateReports() throws Exception {
-        List<GateReport> list = reportMapper.getGateReportByReportID();
+        List<GateReport> list = reportMapper.getGateReport();
         for (GateReport gateReport : list)
         {
             if (gateReport.getReportContent().length() > 57)
@@ -58,7 +58,7 @@ public class ReportService
     }
 
     public List<CommentReport> getCommentReports() throws Exception {
-        List<CommentReport> list = reportMapper.getCommentReportByReportID();
+        List<CommentReport> list = reportMapper.getCommentReport();
         for (CommentReport commentReport : list)
         {
 
@@ -74,7 +74,7 @@ public class ReportService
     }
 
     public List<PostReport> getPostReports() throws Exception {
-        List<PostReport> list = reportMapper.getPostReportByReportID();
+        List<PostReport> list = reportMapper.getPostReport();
         for (PostReport postReport : list)
         {
 

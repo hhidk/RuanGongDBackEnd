@@ -28,7 +28,7 @@ public class ReportController
         }
     }
 
-    @PostMapping("/getGateReports")
+    @RequestMapping("/getGateReports")
     public List<GateReport> getGateReports() {
         try {
             return reportService.getGateReports();
