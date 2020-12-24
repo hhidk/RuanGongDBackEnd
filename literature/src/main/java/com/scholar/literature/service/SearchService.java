@@ -39,11 +39,13 @@ public class SearchService {
             for (SearchItem searchItem : list) {
                 parseQuery(bq, searchItem);
             }
-            bq = bq.filter(QueryBuilders.rangeQuery("year").gte(start).lte(end));
-            sb.from(0);
+            bq.filter(QueryBuilders.rangeQuery("year").
+                    gte(start).lte(end));
             sb.query(bq);
             sb.size(10000);
+            searchRequest.source(sb);
             SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+
             return resultDeal(response,start,end,query(start,end,list));
         } catch (Exception e) {
             e.printStackTrace();
@@ -257,11 +259,11 @@ public class SearchService {
             case "NOT":
                 qb.mustNot(matchKeyword(item));
                 return;
+            case "NULL":
             case "AND":
                 qb.must(matchKeyword(item));
                 return;
             case "OR":
-            case "NULL":
                 qb.should(matchKeyword(item));
                 return;
             default:
@@ -279,19 +281,19 @@ public class SearchService {
                 return   QueryBuilders.matchQuery("title",item.getValue()) ;
             }
             case "KY": {
-                return QueryBuilders.termQuery("keywords",item.getValue());
+                return QueryBuilders.matchQuery("keywords",item.getValue());
             }
             case "AU": {
-                return QueryBuilders.termQuery("authors.name",item.getValue());
+                return QueryBuilders.matchQuery("authors.name",item.getValue());
             }
             case "FI": {
-                return QueryBuilders.termQuery("authors.name",item.getValue());
+                return QueryBuilders.matchQuery("authors.name",item.getValue());
             }
             case "AF": {
-                return QueryBuilders.termQuery("authors.org",item.getValue());
+                return QueryBuilders.matchQuery("authors.org",item.getValue());
             }
             case "LY": {
-                return QueryBuilders.termQuery("venue.raw",item.getValue());
+                return QueryBuilders.matchQuery("venue.raw",item.getValue());
             }
             default: {
                 log.error("invalid Type");

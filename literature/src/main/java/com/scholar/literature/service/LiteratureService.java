@@ -166,6 +166,7 @@ public class LiteratureService {
             SearchRequest searchRequest = new SearchRequest("literature");
             SearchSourceBuilder sb = new SearchSourceBuilder().size(10000);
             sb.query(QueryBuilders.termQuery("venue.raw", venue));
+            searchRequest.source(sb);
             SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
             SearchHits searchHits = searchResponse.getHits();
             for (SearchHit searchHit : searchHits) {
