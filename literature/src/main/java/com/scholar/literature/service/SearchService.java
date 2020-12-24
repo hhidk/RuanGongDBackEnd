@@ -85,11 +85,10 @@ public class SearchService {
             SearchRequest searchRequest = new SearchRequest("literature");
             SearchSourceBuilder sb = new SearchSourceBuilder();
             parseQuery(bq, item);
-            searchRequest.source(sb);
             sb.from(0);
             sb.query(bq);
             sb.size(10000);
-            //parse
+            searchRequest.source(sb);
             SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
             return resultDeal(response,-1,-1,query(-1,-1,item));
         } catch (Exception e) {
