@@ -74,7 +74,8 @@ public class SectorController {
     @PostMapping(value = "/getPostNum", produces = "application/json;charset=UTF-8")
     public Map<String, Object> getTotal(@RequestBody Map<String, Object> body) {
         int sectorId = Integer.parseInt((String) body.get("sectorId"));
-
-        return Map.of("total", String.valueOf(sectorService.getTot(sectorId)));
+        String keyword = (String) body.get("keyword");
+        if (keyword == null) keyword = "";
+        return Map.of("total", String.valueOf(sectorService.getTot(sectorId, keyword)));
     }
 }

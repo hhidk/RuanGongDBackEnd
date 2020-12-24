@@ -1,5 +1,6 @@
 package com.scholar.social.service;
 
+import com.scholar.social.repository.PostRepository;
 import com.scholar.social.repository.SectorRepository;
 import com.scholar.social.util.Post;
 import com.scholar.social.util.Sector;
@@ -17,12 +18,15 @@ import java.util.stream.Collectors;
 public class SectorService {
     private final SectorRepository sectorRepository;
     private final PostService postService;
+    private final PostRepository postRepository;
 
     @Autowired
     public SectorService(SectorRepository sectorRepository,
-                         PostService postService) {
+                         PostService postService,
+                         PostRepository postRepository) {
         this.sectorRepository = sectorRepository;
         this.postService = postService;
+        this.postRepository = postRepository;
     }
 
     public List<Sector> getAllSectors() {
@@ -43,8 +47,8 @@ public class SectorService {
         return sectorList;
     }
 
-    public int getTot(int sectorId) {
-        return sectorRepository.getTot(sectorId);
+    public int getTot(int sectorId, String keyword) {
+        return postRepository.search(sectorId, keyword).size();
     }
 
     public Map<Integer, String> getSectorNameMap() {
