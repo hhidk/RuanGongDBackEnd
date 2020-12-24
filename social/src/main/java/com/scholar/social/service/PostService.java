@@ -100,6 +100,7 @@ public class PostService {
         log.debug("postId: {}", postId);
         post.setComments(commentRepository.selectByPostId(String.valueOf(postId)));
         String tags = postRepository.getTags(postId);
+        if (tags == null) tags = "";
         post.setTags(Arrays.asList(tags.split(";")));
         return post;
     }
