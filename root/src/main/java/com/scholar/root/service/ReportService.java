@@ -35,10 +35,10 @@ public class ReportService
         List<ArticleReport> list = reportMapper.getArticleReport();
         for (ArticleReport articleReport : list)
         {
-            if (articleReport.getReportContent().length() > 57)
+            if (articleReport.getReportContent().length() > 52)
             {
                 articleReport.setTrimmed(true);
-                articleReport.setTrimmedContent(articleReport.getReportContent().substring(0, 55) + "...");
+                articleReport.setTrimmedContent(articleReport.getReportContent().substring(0, 50) + "...");
             }
         }
         return list;
@@ -48,10 +48,10 @@ public class ReportService
         List<GateReport> list = reportMapper.getGateReport();
         for (GateReport gateReport : list)
         {
-            if (gateReport.getReportContent().length() > 57)
+            if (gateReport.getReportContent().length() > 52)
             {
                 gateReport.setTrimmed(true);
-                gateReport.setTrimmedContent(gateReport.getReportContent().substring(0, 55) + "...");
+                gateReport.setTrimmedContent(gateReport.getReportContent().substring(0, 50) + "...");
             }
         }
         return list;
@@ -64,10 +64,10 @@ public class ReportService
 
             commentReport.setCommentID(Integer.parseInt(commentReport.getStrCommentID()));
 
-            if (commentReport.getReportContent().length() > 57)
+            if (commentReport.getReportContent().length() > 52)
             {
                 commentReport.setTrimmed(true);
-                commentReport.setTrimmedContent(commentReport.getReportContent().substring(0, 55) + "...");
+                commentReport.setTrimmedContent(commentReport.getReportContent().substring(0, 50) + "...");
             }
         }
         return list;
@@ -80,10 +80,10 @@ public class ReportService
 
             postReport.setPostID(Integer.parseInt(postReport.getStrPostID()));
 
-            if (postReport.getReportContent().length() > 57)
+            if (postReport.getReportContent().length() > 52)
             {
                 postReport.setTrimmed(true);
-                postReport.setTrimmedContent(postReport.getReportContent().substring(0, 55) + "...");
+                postReport.setTrimmedContent(postReport.getReportContent().substring(0, 50) + "...");
             }
         }
         return list;

@@ -73,10 +73,10 @@ public class ApplicationService
         List<GateApplication> list = applicationMapper.getAllGateApplication();
         for(GateApplication gateApplication : list)
         {
-            if (gateApplication.getContent().length() > 57)
+            if (gateApplication.getContent().length() > 52)
             {
                 gateApplication.setIsTrimmed(true);
-                gateApplication.setTrimmedContent(gateApplication.getContent().substring(0, 55) + "...");
+                gateApplication.setTrimmedContent(gateApplication.getContent().substring(0, 50) + "...");
             }
         }
         return list;
